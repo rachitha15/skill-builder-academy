@@ -15,6 +15,7 @@ import { CodeEditorWorkspace } from '@/components/workspaces/CodeEditorWorkspace
 import { TriggerTestWorkspace } from '@/components/workspaces/TriggerTestWorkspace';
 import { FinalReviewWorkspace } from '@/components/workspaces/FinalReviewWorkspace';
 import { InstructionTestWorkspace } from '@/components/workspaces/InstructionTestWorkspace';
+import { MessyInputsWorkspace } from '@/components/workspaces/MessyInputsWorkspace';
 import confetti from 'canvas-confetti';
 
 const LessonView = () => {

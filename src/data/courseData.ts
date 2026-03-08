@@ -378,32 +378,64 @@ Score multipliers: 10/10 = 2.0×, 8-9/10 = 1.7×, 6-7/10 = 1.4×, 5/10 = 1.1×`,
     estimatedMinutes: 25,
     maxXP: 400,
     challengeType: 'code_editor',
-    lessonContent: `Real meeting notes are messy. People write in fragments, misspell names, skip dates, and mix in off-topic chatter. Your Skill needs to handle this gracefully.
+    lessonContent: `Your Skill works on Clara's Tuesday standup. But Clara doesn't only have standups — she has 1:1s, retros, and leadership syncs. Each produces a different kind of mess.
 
-**Common edge cases:**
-- No clear action items in the notes
-- Action items without owners or deadlines
-- Multiple meetings mixed together
-- Very short or very long notes
-- Notes in different formats (bullet points, paragraphs, transcripts)
+**Common ways Skills break on messy inputs:**
 
-**Adding robustness to your instructions:**
-- Add an "Edge Cases" section to your SKILL.md
-- Include fallback behaviors ("If no deadline is mentioned, mark as 'TBD'")
-- Add a confidence indicator ("If an action item is ambiguous, mark it as 'uncertain'")`,
-    challengeInstructions: `### Challenge: Add Edge Case Handling
+Raj discovered this with his feedback categorizer. It worked great on standard English emails, but then:
 
-Update your instructions to handle messy, real-world meeting notes. Add an Edge Cases section with at least 3 edge cases and their handling strategies.`,
+- A customer wrote in Spanglish: *"The app es terrible, siempre crashing"* — Raj's Skill couldn't categorize it
+- Another sent just *"????"* with zero context — the Skill crashed trying to extract sentiment from nothing
+- A third wrote a 2000-word essay mixing praise, complaints, AND feature requests in one message — the Skill picked one category and missed the rest
+
+Each failure taught Raj something his instructions didn't cover. He fixed them not by adding more rules, but by **adding more examples.** Examples beat rules because rules can conflict, but examples show Claude exactly what you mean.
+
+Here's what Raj added after the Spanglish failure:
+
+\`\`\`
+Example: Mixed Language Input
+
+Input: "The app es terrible, siempre crashing when I try to upload files"
+
+Output:
+Category: Bug Report
+Severity: High
+Summary: App crashes on file upload (reported in Spanish/English)
+Note: Non-English content — interpret intent, don't skip
+\`\`\`
+
+One example fixed the entire class of problems. That's the power of examples over rules.
+
+**The iteration mindset:**
+
+The best Skills aren't written in one pass. They're written, broken, and rewritten. This module is about building that muscle.
+
+Clara just sent you three meeting dumps from this week. They're her worst ones. Your Skill is going to break. **That's the point.**`,
+    challengeInstructions: `### Challenge: Break It and Fix It
+
+Your instructions from Module 4 are pre-loaded in the editor. Above the editor, you'll see 3 of Clara's messiest meeting dumps — each a different kind of chaos.
+
+**Your task:** Edit your instructions so they handle all 3 inputs. You have **up to 3 attempts**.
+
+**Layer 1 checks:**
+- At least 300 characters
+- Modified from Module 4 (you can't just resubmit unchanged)
+- Addresses at least 2 of: abbreviations, ambiguous ownership, implied actions, contradictions
+
+**Layer 2:** Claude tests your instructions against all 3 inputs and evaluates on 4 criteria per input (12 total). You need **5/12** to pass.
+
+**XP multipliers:** 11-12 = 2.0×, 9-10 = 1.7×, 7-8 = 1.4×, 5-6 = 1.1×`,
     hints: [
-      "Think about what happens when meeting notes don't have clear owners or deadlines assigned to action items.",
-      "Consider: What if the notes contain no action items? What if dates are ambiguous? What if the same task is mentioned multiple times? (-25 XP)",
-      "Add sections like:\n## Edge Cases\n- **No action items found**: Return a note saying...\n- **Missing owner**: Default to...\n- **Ambiguous deadline**: ... (-50 XP)"
+      "Focus on three failure modes: (1) Who owns it when the notes don't say? Input 1 has 'someone remind me' and 'probably should figure that out' — no clear owner. (2) Is this an action or just a status update? Input 2's 'FYI staging env is down' isn't an action. (3) What do abbreviations like EOW, TBD, and AI mean in context? Hint: 'AI' in Input 2 means 'Action Item', not 'Artificial Intelligence'.",
+      "Add examples of tricky inputs to your instructions. Take Input 3's contradiction — 'T will take the first pass. Actually wait, S already started. Let T and S figure out who's owning it.' — and show Claude the correct output: ownership is disputed, flag both names, mark as 'Needs Resolution'. Examples fix ambiguity better than rules. (-25 XP)",
+      "Add these sections to your instructions:\n\n## Handling Abbreviations\n- EOW = End of Week, TBD = To Be Determined, ASAP = As Soon As Possible\n- Single letters (J, M, S, T) are name initials\n- \"AI:\" means Action Item, not Artificial Intelligence\n- \"FYI\" = informational only, NOT an action item\n\n## Handling Ambiguous Ownership\n- \"someone should...\" = Owner: Unassigned\n- \"let X and Y figure it out\" = Owner: X & Y (Needs Resolution)\n- \"remind me to...\" = Owner: note-taker\n\n## Handling Contradictions\n- Disputed ownership → flag both parties as 'Needs Resolution'\n- Priority changes mid-note → flag as 'Priority: Conditional' (-50 XP)"
     ],
-    layer1Checks: ['Has edge cases section', 'At least 3 edge cases', 'Has fallback behaviors', 'At least 150 characters'],
+    layer1Checks: ['At least 300 characters', 'Modified from Module 4', 'Handles 2+ messy input categories'],
     completionSummary: [
-      "Real-world inputs are messy — your Skill needs fallback behaviors",
-      "Always handle: missing data, ambiguous inputs, unexpected formats",
-      "Confidence indicators help users know when output might be uncertain"
+      "The best Skills are written, broken, and rewritten — iteration is the skill",
+      "Examples beat rules: one good example fixes an entire class of problems",
+      "Handle abbreviations, ambiguous ownership, contradictions, and non-actions explicitly",
+      "Real-world inputs will always surprise you — build for messiness"
     ]
   },
   {
