@@ -1,10 +1,19 @@
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, Loader2, AlertTriangle, RotateCcw } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle2, XCircle, Loader2, AlertTriangle, RotateCcw, Clock } from 'lucide-react';
 import { ValidationResult } from '@/context/CourseContext';
 import { Layer2Result } from '@/lib/layer2Evaluator';
-import { Progress } from '@/components/ui/progress';
 import { toast } from '@/hooks/use-toast';
+
+const TEST_QUERIES = [
+  { text: "Here are my meeting notes from today, can you extract the action items?", expected: true },
+  { text: "Pull out the to-dos from this standup recap", expected: true },
+  { text: "What are the follow-ups from this meeting?", expected: true },
+  { text: "I pasted my 1:1 notes, can you find the next steps?", expected: true },
+  { text: "Extract action items and owners from these notes", expected: true },
+  { text: "Help me schedule a meeting with the design team", expected: false },
+  { text: "Write an agenda for tomorrow's sprint planning", expected: false },
+];
 
 interface Props {
   moduleId: number;
@@ -23,27 +32,29 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
   const [layer2Loading, setLayer2Loading] = useState(false);
   const [layer2Error, setLayer2Error] = useState<string | null>(null);
   const [passed, setPassed] = useState(false);
-  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [revealedCount, setRevealedCount] = useState(0);
+  const [showingQueries, setShowingQueries] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+  const revealInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const startLoadingProgress = () => {
-    setLoadingProgress(0);
-    progressInterval.current = setInterval(() => {
-      setLoadingProgress(prev => {
-        if (prev >= 90) {
-          if (progressInterval.current) clearInterval(progressInterval.current);
-          return 90;
+  // Clean up interval on unmount
+  useEffect(() => {
+    return () => {
+      if (revealInterval.current) clearInterval(revealInterval.current);
+    };
+  }, []);
+
+  const startReveal = () => {
+    setRevealedCount(0);
+    revealInterval.current = setInterval(() => {
+      setRevealedCount(prev => {
+        if (prev >= 7) {
+          if (revealInterval.current) clearInterval(revealInterval.current);
+          return 7;
         }
-        return prev + Math.random() * 15;
+        return prev + 1;
       });
-    }, 300);
-  };
-
-  const stopLoadingProgress = () => {
-    if (progressInterval.current) clearInterval(progressInterval.current);
-    setLoadingProgress(100);
-    setTimeout(() => setLoadingProgress(0), 400);
+    }, 250);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -65,29 +76,33 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
     setResults(res);
     setLayer2Results(null);
     setLayer2Error(null);
+    setRevealedCount(0);
+    setShowingQueries(false);
 
     const allLayer1Passed = res.every(r => r.passed);
 
     if (allLayer1Passed && layer2Evaluate) {
       setLayer2Loading(true);
-      startLoadingProgress();
+      setShowingQueries(true);
       try {
         const l2 = await layer2Evaluate(code);
         setLayer2Results(l2);
+        setLayer2Loading(false);
+        startReveal();
         if (l2.score >= 4) {
           setPassed(true);
-          onComplete(l2.score, l2.maxScore);
+          // Delay onComplete until reveal finishes
+          setTimeout(() => onComplete(l2.score, l2.maxScore), 250 * 7 + 300);
         }
       } catch (err) {
         const message = err instanceof Error ? err.message : 'An unexpected error occurred.';
         setLayer2Error(message);
+        setShowingQueries(false);
         toast({
           title: 'Evaluation failed',
           description: message,
           variant: 'destructive',
         });
-      } finally {
-        stopLoadingProgress();
         setLayer2Loading(false);
       }
     } else if (allLayer1Passed && !layer2Evaluate) {
@@ -104,6 +119,12 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
     if (score === 4) return '1.1×';
     return 'Retry';
   };
+
+  const revealedScore = layer2Results
+    ? layer2Results.results.slice(0, revealedCount).filter(r => r.correct).length
+    : 0;
+
+  const allRevealed = revealedCount >= 7 && layer2Results !== null;
 
   return (
     <div className="flex flex-col h-full">
@@ -135,7 +156,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
             animate={{ opacity: 1, y: 0 }}
             className="mt-4 rounded-lg border border-border bg-card p-4"
           >
-            <p className="font-semibold text-foreground mb-3 text-sm">Layer 1 — Structural Checks</p>
+            <p className="font-semibold text-foreground mb-3 text-sm">Step 1 — Structural Checks</p>
             <div className="space-y-2">
               {results.map((r, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
@@ -157,21 +178,160 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
           </motion.div>
         )}
 
-        {/* Layer 2 Loading */}
-        {layer2Loading && (
+        {/* Layer 2 — Live Grading Reveal */}
+        {showingQueries && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 rounded-lg border border-border bg-card p-5"
+            className="mt-4 rounded-lg border border-border bg-card p-4"
           >
-            <div className="flex items-center gap-3 mb-3">
-              <Loader2 className="h-5 w-5 text-primary animate-spin" />
-              <div>
-                <p className="text-sm font-semibold text-foreground">Running trigger test...</p>
-                <p className="text-xs text-muted-foreground">Testing your description against 7 real user queries • Usually takes 2–3 seconds</p>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                {layer2Loading && <Loader2 className="h-4 w-4 text-primary animate-spin" />}
+                <p className="font-semibold text-foreground text-sm">
+                  Step 2 — Does Claude know when to activate?
+                </p>
               </div>
+              {layer2Results && (
+                <div className="flex items-center gap-2">
+                  <motion.span
+                    key={revealedScore}
+                    initial={{ scale: 1.3 }}
+                    animate={{ scale: 1 }}
+                    className={`text-sm font-bold font-mono ${revealedScore > 0 ? 'text-primary' : 'text-muted-foreground'}`}
+                  >
+                    {revealedScore}/{layer2Results.maxScore}
+                  </motion.span>
+                  {allRevealed && (
+                    <motion.span
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
+                        layer2Results.score >= 4
+                          ? 'bg-primary/15 text-primary'
+                          : 'bg-destructive/15 text-destructive'
+                      }`}
+                    >
+                      {getMultiplierLabel(layer2Results.score)}
+                    </motion.span>
+                  )}
+                </div>
+              )}
             </div>
-            <Progress value={loadingProgress} className="h-1.5" />
+
+            {layer2Loading && (
+              <p className="text-xs text-muted-foreground mb-3">
+                Testing your description against 7 real user queries...
+              </p>
+            )}
+
+            <div className="space-y-1.5">
+              {TEST_QUERIES.map((tq, i) => {
+                const isRevealed = layer2Results && i < revealedCount;
+                const result = layer2Results?.results[i];
+
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    className={`flex items-start gap-2 text-sm rounded-md p-2 transition-colors duration-300 ${
+                      isRevealed
+                        ? result?.correct
+                          ? 'bg-primary/5'
+                          : 'bg-destructive/5'
+                        : 'bg-background/50'
+                    }`}
+                  >
+                    {/* Status icon */}
+                    <div className="mt-0.5 flex-shrink-0 w-4 h-4">
+                      <AnimatePresence mode="wait">
+                        {isRevealed ? (
+                          result?.correct ? (
+                            <motion.div
+                              key="pass"
+                              initial={{ scale: 0, rotate: -90 }}
+                              animate={{ scale: 1, rotate: 0 }}
+                              transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                            >
+                              <CheckCircle2 className="h-4 w-4 text-primary" />
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key="fail"
+                              initial={{ scale: 0, rotate: 90 }}
+                              animate={{ scale: 1, rotate: 0 }}
+                              transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                            >
+                              <XCircle className="h-4 w-4 text-destructive" />
+                            </motion.div>
+                          )
+                        ) : (
+                          <Clock className="h-4 w-4 text-muted-foreground/40" />
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    {/* Query content */}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-foreground text-xs leading-relaxed">
+                        <span className="text-muted-foreground font-mono mr-1.5">Q{i + 1}</span>
+                        "{tq.text}"
+                      </p>
+
+                      {/* Result badges */}
+                      {isRevealed && result && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          className="flex gap-2 mt-1"
+                        >
+                          <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${
+                            tq.expected ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'
+                          }`}>
+                            Expected: {tq.expected ? 'Activate' : 'Skip'}
+                          </span>
+                          <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${
+                            result.correct
+                              ? 'bg-primary/10 text-primary'
+                              : 'bg-destructive/10 text-destructive'
+                          }`}>
+                            Got: {result.triggered ? 'Activate' : 'Skip'}
+                          </span>
+                        </motion.div>
+                      )}
+
+                      {/* Pending badge */}
+                      {!isRevealed && (
+                        <span className="inline-block mt-1 text-xs px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground/60 font-medium">
+                          Pending...
+                        </span>
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Feedback after all revealed */}
+            {allRevealed && layer2Results && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="mt-4 p-3 rounded-md bg-background/50 border border-border">
+                  <p className="text-xs text-muted-foreground leading-relaxed">{layer2Results.feedback}</p>
+                </div>
+
+                {layer2Results.score >= 4 ? (
+                  <p className="mt-3 text-primary font-semibold text-sm">Trigger test passed! ✅</p>
+                ) : (
+                  <p className="mt-3 text-destructive font-semibold text-sm">Need at least 4/7 correct. Revise your description and try again.</p>
+                )}
+              </motion.div>
+            )}
           </motion.div>
         )}
 
@@ -196,64 +356,6 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
                 </button>
               </div>
             </div>
-          </motion.div>
-        )}
-
-        {/* Layer 2 Results */}
-        {layer2Results && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-4 rounded-lg border border-border bg-card p-4"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <p className="font-semibold text-foreground text-sm">Layer 2 — Trigger Test Results</p>
-              <div className="flex items-center gap-2">
-                <span className={`text-sm font-bold font-mono ${layer2Results.score >= 4 ? 'text-primary' : 'text-destructive'}`}>
-                  {layer2Results.score}/{layer2Results.maxScore}
-                </span>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
-                  layer2Results.score >= 4
-                    ? 'bg-primary/15 text-primary'
-                    : 'bg-destructive/15 text-destructive'
-                }`}>
-                  {getMultiplierLabel(layer2Results.score)}
-                </span>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              {layer2Results.results.map((r) => (
-                <div key={r.query} className="flex items-start gap-2 text-sm rounded-md p-2 bg-background/50">
-                  {r.correct ? (
-                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                  ) : (
-                    <XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <p className="text-foreground truncate text-xs">
-                      <span className="text-muted-foreground font-mono mr-1">Q{r.query}</span>
-                      "{r.queryText}"
-                    </p>
-                    <div className="flex gap-3 mt-0.5 text-xs text-muted-foreground">
-                      <span>Expected: <span className={r.expected ? 'text-primary' : 'text-muted-foreground'}>{r.expected ? 'trigger' : 'skip'}</span></span>
-                      <span>Got: <span className={r.triggered === r.expected ? 'text-primary' : 'text-destructive'}>{r.triggered ? 'trigger' : 'skip'}</span></span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-4 p-3 rounded-md bg-background/50 border border-border">
-              <p className="text-xs text-muted-foreground leading-relaxed">{layer2Results.feedback}</p>
-            </div>
-
-            {layer2Results.score >= 4 && (
-              <p className="mt-3 text-primary font-semibold text-sm">Trigger test passed! ✅</p>
-            )}
-            {layer2Results.score < 4 && (
-              <p className="mt-3 text-destructive font-semibold text-sm">Need at least 4/7 correct. Revise your description and try again.</p>
-            )}
           </motion.div>
         )}
       </div>
