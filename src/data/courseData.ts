@@ -316,34 +316,59 @@ You'll write the SKILL.md body (everything below the frontmatter). **After you s
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'trigger_test',
-    lessonContent: `A great Skill is useless if Claude doesn't know when to use it. The description field in your frontmatter acts as a trigger — Claude reads it to decide whether to activate your Skill.
+    lessonContent: `You've built Clara's Skill and it works. But how do you know it triggers at the right times?
 
-**Good triggers are:**
-- Specific enough that the Skill doesn't fire on unrelated requests
-- Broad enough that it catches all relevant requests
-- Written from the user's perspective
+Clara shares the Claude workspace with 3 other PMs at Tidepool. If her Skill's description is too broad, it will hijack their unrelated queries — imagine a colleague asking Claude to draft a product brief and getting back a list of action items instead. That's **over-triggering**.
 
-**Example trigger phrases:**
-- "Use when the user provides meeting notes or transcripts and wants action items extracted"
-- "Activate when asked to process meeting documentation into structured tasks"
+If the description is too narrow, Clara's own queries will miss — she pastes her 1:1 notes and says "what did we agree to do?" but the Skill doesn't activate because it only recognizes "extract action items." That's **under-triggering**.
 
-**Testing triggers means thinking about:**
-- What queries SHOULD activate the Skill
-- What queries should NOT activate it
-- Edge cases that could go either way`,
-    challengeInstructions: `### Challenge: Trigger Testing
+**The testing framework:**
 
-Write 5 queries that SHOULD trigger your Skill and 5 that should NOT. Then we'll test them.`,
+Professional Skill builders test three types of queries:
+
+**1. Obvious triggers** — Queries that should clearly activate the Skill.
+
+Raj tested his feedback-categorizer with: "Categorize these support tickets"
+
+**2. Paraphrased triggers** — Same intent, completely different words. This tests whether the description is robust.
+
+Raj tested with: "Which of these customer emails are complaints vs feature requests?" — same intent as categorizing, but phrased as a question, not a command.
+
+**3. Negative triggers** — Queries that *seem* related but should NOT activate the Skill. These are the hardest to get right.
+
+Raj tested with: "Write a response to this angry customer" — this is about customer feedback, but it's drafting a response, not categorizing. His Skill should NOT trigger.
+
+**Diagnosing trigger problems:**
+
+If your Skill **under-triggers** (misses queries it should catch), your description is missing keyword coverage. Add more trigger phrases and synonyms — "to-dos", "follow-ups", "next steps", "action items" are all ways people ask for the same thing.
+
+If your Skill **over-triggers** (fires on unrelated queries), your description is too generic. Add specificity about the input type and output, or add negative guidance like "Do NOT use for meeting scheduling or agenda creation."
+
+**The debugging trick:**
+
+Ask Claude directly: "When would you use the meeting-action-extractor skill?" Claude will quote the description back and explain when it would trigger. If the answer doesn't match your intent, revise the description.`,
+    challengeInstructions: `### Challenge: Test Clara's Triggers
+
+Write 5 queries that SHOULD trigger Clara's Skill and 5 that should NOT. Think about how Clara and her colleagues actually talk to Claude.
+
+**Requirements:**
+- At least 2 positive queries must NOT contain "action items" — try paraphrasing
+- At least 2 negative queries must contain "meeting" — these are the trickiest
+
+After Layer 1 checks pass, we'll run a **trigger simulation** against Clara's Skill description from Module 3. You need **5/10 correct** to pass.
+
+Score multipliers: 10/10 = 2.0×, 8-9/10 = 1.7×, 6-7/10 = 1.4×, 5/10 = 1.1×`,
     hints: [
-      "For 'should trigger': think about different ways someone might ask to process meeting notes.",
-      "For 'should NOT trigger': think about requests that mention meetings but don't need action item extraction. (-25 XP)",
-      "Should trigger examples: 'Here are my meeting notes, extract action items', 'Process this transcript'. Should NOT: 'Schedule a meeting', 'What was discussed in yesterday's meeting?' (-50 XP)"
+      "Think about how different people ask for the same thing. Clara says 'what did we commit to?' while an engineer might say 'pull the tasks from the retro.' Same intent, very different words. For negatives, think about meeting-related tasks that AREN'T about extracting actions.",
+      "The trickiest negatives are meeting-related but NOT about action extraction: 'write an agenda for tomorrow's standup', 'summarize what we discussed without listing action items', 'schedule a follow-up meeting', 'create meeting notes template'. (-25 XP)",
+      "Here's a complete example test suite:\n\nShould trigger:\n1. \"Here are my standup notes, what needs to get done?\"\n2. \"What are the follow-ups from my 1:1 with Jake?\"\n3. \"Go through this retro summary and find the commitments\"\n4. \"I pasted the leadership sync notes, who owes what?\"\n5. \"Pull out everything with a deadline from these notes\"\n\nShould NOT trigger:\n1. \"Write an agenda for tomorrow's sprint planning\"\n2. \"Summarize this meeting for the team newsletter\"\n3. \"Draft a follow-up email after the client call\"\n4. \"Schedule a meeting with design and engineering\"\n5. \"Create a template for weekly status reports\" (-50 XP)"
     ],
-    layer1Checks: ['5 trigger queries provided', '5 non-trigger queries provided', 'All fields filled'],
+    layer1Checks: ['All 10 fields filled (5+ chars each)', 'At least 2 positive queries without "action items"', 'At least 2 negative queries contain "meeting"'],
     completionSummary: [
-      "The description field acts as a trigger for your Skill",
-      "Good triggers are specific enough to avoid false activations",
-      "Test both positive and negative cases"
+      "Professional Skill builders test obvious triggers, paraphrased triggers, and negative triggers",
+      "Under-triggering means missing keyword coverage — add synonyms",
+      "Over-triggering means the description is too generic — add specificity",
+      "The trickiest tests are meeting-related queries that AREN'T about action extraction"
     ]
   },
   {
