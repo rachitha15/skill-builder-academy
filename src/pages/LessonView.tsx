@@ -8,6 +8,7 @@ import { MODULE_DATA } from '@/data/courseData';
 import { XPCounter } from '@/components/XPCounter';
 import { calculateXP } from '@/lib/validation';
 import { validateFrontmatter, validateInstructions, validateEdgeCases } from '@/lib/validation';
+import { evaluateDescription } from '@/lib/layer2Evaluator';
 import { MultipleChoiceWorkspace } from '@/components/workspaces/MultipleChoiceWorkspace';
 import { FolderStructureWorkspace } from '@/components/workspaces/FolderStructureWorkspace';
 import { CodeEditorWorkspace } from '@/components/workspaces/CodeEditorWorkspace';
@@ -120,6 +121,11 @@ const LessonView = () => {
             initialCode={moduleState.userWork}
             placeholder={getPlaceholder(moduleId)}
             validate={getValidatorForModule(moduleId)}
+            layer2Evaluate={moduleId === 3 ? (code: string) => {
+              const descMatch = code.match(/description:\s*[>|]?\s*([\s\S]*?)(?=\n---|\n[a-z]+:)/i);
+              const desc = descMatch?.[1]?.replace(/[>|]\s*/g, '').trim() || code;
+              return evaluateDescription(desc);
+            } : undefined}
             onComplete={handleComplete}
             onWorkUpdate={handleWorkUpdate}
           />

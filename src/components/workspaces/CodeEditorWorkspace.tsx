@@ -2,19 +2,23 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { ValidationResult } from '@/context/CourseContext';
+import { Layer2Result } from '@/lib/layer2Evaluator';
 
 interface Props {
   moduleId: number;
   initialCode: string;
   placeholder: string;
   validate: (code: string) => ValidationResult[];
+  layer2Evaluate?: (code: string) => Promise<Layer2Result>;
   onComplete: (score: number, maxScore: number) => void;
   onWorkUpdate: (work: string) => void;
 }
 
-export function CodeEditorWorkspace({ initialCode, placeholder, validate, onComplete, onWorkUpdate }: Props) {
+export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2Evaluate, onComplete, onWorkUpdate }: Props) {
   const [code, setCode] = useState(initialCode);
   const [results, setResults] = useState<ValidationResult[] | null>(null);
+  const [layer2Results, setLayer2Results] = useState<Layer2Result | null>(null);
+  const [layer2Loading, setLayer2Loading] = useState(false);
   const [passed, setPassed] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -32,20 +36,46 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, onComp
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const res = validate(code);
     setResults(res);
-    const passedCount = res.filter(r => r.passed).length;
-    const allPassed = res.every(r => r.passed);
-    setPassed(allPassed);
-    if (allPassed) {
+    setLayer2Results(null);
+
+    const allLayer1Passed = res.every(r => r.passed);
+
+    if (allLayer1Passed && layer2Evaluate) {
+      // Run Layer 2
+      setLayer2Loading(true);
+      try {
+        const l2 = await layer2Evaluate(code);
+        setLayer2Results(l2);
+        if (l2.score >= 4) {
+          setPassed(true);
+          onComplete(l2.score, l2.maxScore);
+        }
+      } finally {
+        setLayer2Loading(false);
+      }
+    } else if (allLayer1Passed && !layer2Evaluate) {
+      // No Layer 2 — complete on Layer 1
+      const passedCount = res.filter(r => r.passed).length;
+      setPassed(true);
       onComplete(passedCount, res.length);
     }
+  };
+
+  const getMultiplierLabel = (score: number) => {
+    if (score === 7) return '2.0×';
+    if (score === 6) return '1.7×';
+    if (score === 5) return '1.4×';
+    if (score === 4) return '1.1×';
+    return 'Retry';
   };
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex-1 p-4 overflow-y-auto">
+        {/* Code editor */}
         <div className="rounded-lg border border-border bg-editor overflow-hidden">
           <div className="flex items-center gap-2 px-4 py-2 border-b border-border bg-card">
             <div className="w-3 h-3 rounded-full bg-destructive/60" />
@@ -64,13 +94,14 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, onComp
           />
         </div>
 
+        {/* Layer 1 Results */}
         {results && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-4 rounded-lg border border-border bg-card p-4"
           >
-            <p className="font-semibold text-foreground mb-3 text-sm">Validation Results</p>
+            <p className="font-semibold text-foreground mb-3 text-sm">Layer 1 — Structural Checks</p>
             <div className="space-y-2">
               {results.map((r, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
@@ -86,8 +117,81 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, onComp
                 </div>
               ))}
             </div>
-            {passed && (
+            {results.every(r => r.passed) && !layer2Evaluate && (
               <p className="mt-3 text-primary font-semibold text-sm">All checks passed! ✅</p>
+            )}
+          </motion.div>
+        )}
+
+        {/* Layer 2 Loading */}
+        {layer2Loading && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-4 rounded-lg border border-border bg-card p-5 flex items-center gap-3"
+          >
+            <Loader2 className="h-5 w-5 text-primary animate-spin" />
+            <div>
+              <p className="text-sm font-semibold text-foreground">Running trigger test...</p>
+              <p className="text-xs text-muted-foreground">Testing your description against 7 real user queries</p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Layer 2 Results */}
+        {layer2Results && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-4 rounded-lg border border-border bg-card p-4"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <p className="font-semibold text-foreground text-sm">Layer 2 — Trigger Test Results</p>
+              <div className="flex items-center gap-2">
+                <span className={`text-sm font-bold font-mono ${layer2Results.score >= 4 ? 'text-primary' : 'text-destructive'}`}>
+                  {layer2Results.score}/{layer2Results.maxScore}
+                </span>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
+                  layer2Results.score >= 4
+                    ? 'bg-primary/15 text-primary'
+                    : 'bg-destructive/15 text-destructive'
+                }`}>
+                  {getMultiplierLabel(layer2Results.score)}
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              {layer2Results.results.map((r) => (
+                <div key={r.query} className="flex items-start gap-2 text-sm rounded-md p-2 bg-background/50">
+                  {r.correct ? (
+                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  ) : (
+                    <XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-foreground truncate text-xs">
+                      <span className="text-muted-foreground font-mono mr-1">Q{r.query}</span>
+                      "{r.queryText}"
+                    </p>
+                    <div className="flex gap-3 mt-0.5 text-xs text-muted-foreground">
+                      <span>Expected: <span className={r.expected ? 'text-primary' : 'text-muted-foreground'}>{r.expected ? 'trigger' : 'skip'}</span></span>
+                      <span>Got: <span className={r.triggered === r.expected ? 'text-primary' : 'text-destructive'}>{r.triggered ? 'trigger' : 'skip'}</span></span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 p-3 rounded-md bg-background/50 border border-border">
+              <p className="text-xs text-muted-foreground leading-relaxed">{layer2Results.feedback}</p>
+            </div>
+
+            {layer2Results.score >= 4 && (
+              <p className="mt-3 text-primary font-semibold text-sm">Trigger test passed! ✅</p>
+            )}
+            {layer2Results.score < 4 && (
+              <p className="mt-3 text-destructive font-semibold text-sm">Need at least 4/7 correct. Revise your description and try again.</p>
             )}
           </motion.div>
         )}
@@ -96,10 +200,10 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, onComp
       <div className="p-4 border-t border-border">
         <button
           onClick={handleSubmit}
-          disabled={code.trim().length === 0}
-          className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 transition-opacity"
+          disabled={code.trim().length === 0 || layer2Loading}
+          className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
         >
-          Submit
+          {layer2Loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Testing...</> : 'Submit'}
         </button>
       </div>
     </div>
