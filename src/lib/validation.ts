@@ -120,8 +120,9 @@ export function calculateXP(
   }
   if (score < config.minPass) return { total: 0, breakdown: [{ label: 'Below passing', value: 0 }] };
 
-  const firstAttemptBonus = attempts === 0 ? 50 : 0;
-  const hintPenalty = Math.max(0, Math.min(hintsUsed - 1, 1)) * 25 + Math.max(0, hintsUsed - 2) * 50;
+  const perfectThreshold = config.tiers[0]?.[0] ?? Number.MAX_SAFE_INTEGER;
+  const firstAttemptBonus = attempts === 1 && score >= perfectThreshold ? 50 : 0;
+  const hintPenalty = hintsUsed > 0 ? 25 + Math.max(0, hintsUsed - 1) * 50 : 0;
   const total = Math.min(config.maxXP, Math.max(0, base + firstAttemptBonus - hintPenalty));
 
   return {
