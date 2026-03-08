@@ -201,7 +201,7 @@ const LessonView = () => {
         </div>
 
         {/* Right panel - workspace */}
-        <div className="md:w-[60%] flex-1 min-h-0 overflow-y-auto">
+        <div className="flex-1 md:w-[60%] min-h-[50vh] md:min-h-0 overflow-y-auto">
           {renderWorkspace()}
         </div>
       </div>
