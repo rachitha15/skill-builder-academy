@@ -66,34 +66,48 @@ For each scenario, pick the best answer. You need **3/4 correct** to pass.`,
     estimatedMinutes: 10,
     maxXP: 150,
     challengeType: 'folder_structure',
-    lessonContent: `Now that you know *what* a Skill is, let's look at *how* one is structured.
+    lessonContent: `Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`meeting-action-extractor\` is correct. \`Meeting Action Extractor\` is not.
 
-Every Skill lives in a folder. The folder name should be kebab-case (lowercase, hyphens between words). For your meeting-action-extractor Skill, the folder is called \`meeting-action-extractor\`.
+Inside the folder, one required file: \`SKILL.md\`. Note the exact casing — it must be exactly \`SKILL.md\`. Not \`skill.md\`. Not \`Skill.md\`.
 
-**Required file:**
-- \`SKILL.md\` — The main instructions file. This is the only required file.
+This file has two parts:
 
-**Optional directories:**
-- \`scripts/\` — Executable code Claude can run
-- \`references/\` — Additional documentation or context
-- \`assets/\` — Templates, images, or other files
-- \`README.md\` — Human-readable description
-- \`package.json\` — If your Skill uses scripts with dependencies
+**Part 1: YAML Frontmatter** — Metadata at the top, wrapped in \`---\` delimiters. Claude reads this first to decide if it should load the full Skill.
 
-The SKILL.md file starts with YAML frontmatter (metadata between \`---\` delimiters), followed by the instructions in markdown.`,
+\`\`\`yaml
+---
+name: meeting-action-extractor
+description: Extracts structured action items from messy meeting notes. Use when user pastes meeting notes and asks for action items, to-dos, or follow-ups.
+---
+\`\`\`
+
+**Part 2: Markdown Body** — The actual instructions below the frontmatter.
+
+**Optional folders:**
+
+- \`scripts/\` — Executable code (Python, Bash)
+- \`references/\` — Extra documentation
+- \`assets/\` — Templates, fonts, icons
+
+**Critical rule: No README.md** inside the Skill folder. Documentation goes in SKILL.md or references/.`,
     challengeInstructions: `### Challenge: Build the Skeleton
 
-Set up your Skill's folder structure and write the opening frontmatter.`,
+Complete all 3 tasks to set up your Skill's folder structure:
+
+1. **Name the folder** for your meeting-notes-to-action-items Skill
+2. **Identify the required files** — check only what's truly required
+3. **Write the opening frontmatter** with just the name field`,
     hints: [
-      "The folder name should match your Skill name: meeting-action-extractor",
-      "SKILL.md is the only required file. The others are optional but good practice. (-25 XP)",
-      "Frontmatter starts and ends with --- on their own lines. Include at least name and description. (-50 XP)"
+      "Folder names use kebab-case: all lowercase, words separated by hyphens.",
+      "Only one file is truly required. The others are optional. And remember — one of the options should definitely NOT be in a Skill folder. (-25 XP)",
+      "Here's the complete answer:\n- Folder name: meeting-action-extractor\n- Only SKILL.md is required (don't check README.md!)\n- Frontmatter:\n---\nname: meeting-action-extractor\n--- (-50 XP)"
     ],
-    layer1Checks: ['Folder name is kebab-case', 'Required files selected', 'Valid YAML frontmatter'],
+    layer1Checks: ['Folder name is kebab-case', 'Only SKILL.md checked as required', 'README.md not checked', 'Valid YAML frontmatter delimiters', 'Name field is kebab-case'],
     completionSummary: [
-      "Skills live in kebab-case named folders",
-      "SKILL.md is the only required file",
-      "YAML frontmatter provides metadata about your Skill"
+      "Skill folders use kebab-case names (e.g., meeting-action-extractor)",
+      "SKILL.md is the only required file — everything else is optional",
+      "README.md does NOT belong inside a Skill folder",
+      "YAML frontmatter goes between --- delimiters at the top of SKILL.md"
     ]
   },
   {
