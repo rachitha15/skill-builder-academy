@@ -117,45 +117,74 @@ Complete all 3 tasks to set up your Skill's folder structure:
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'code_editor',
-    lessonContent: `The frontmatter is the first thing Claude reads when it encounters your Skill. It's YAML metadata between \`---\` delimiters at the top of your SKILL.md file.
+    lessonContent: `Your frontmatter's \`description\` field has **two jobs** — and most people only do one of them.
 
-Good frontmatter tells Claude:
-- **What** the Skill is called (\`name\`)
-- **What** it does (\`description\`)
-- **When** to use it (trigger language in the description)
+**Job 1: WHAT does the Skill do?**
+This is the easy part. "Extracts action items from meeting notes." Done.
 
-**Required fields:**
-- \`name\`: kebab-case identifier (e.g., \`meeting-action-extractor\`)
-- \`description\`: 50+ characters explaining what the Skill does and when to use it
+**Job 2: WHEN should Claude use it?**
+This is where most Skills fail. Without trigger language, Claude has to *guess* when to activate your Skill. And Claude's guesses aren't great.
 
-**Rules:**
-- Name must be kebab-case
-- Name cannot contain "claude" or "anthropic"
-- Description should include trigger language ("Use when...", "Use for...")
-- No XML tags allowed in frontmatter
+### Good vs. Bad Descriptions
 
-\`\`\`yaml
----
-name: meeting-action-extractor
-description: >
-  Use when processing meeting notes or transcripts to extract
-  structured action items with owners, deadlines, and priorities.
-  Turns messy meeting documentation into clear, actionable tasks.
----
-\`\`\``,
+**✅ Good — clear WHAT + WHEN:**
+- *"Extracts structured action items from meeting notes. Use when a user pastes meeting notes, standup recaps, or 1:1 notes and asks for action items, to-dos, or follow-ups."*
+- *"Converts raw meeting transcripts into actionable task lists. Use when someone asks to pull out next steps, owners, or deadlines from meeting documentation."*
+- *"Identifies and structures follow-up tasks from meetings. Use for processing meeting notes, standup summaries, or any notes where action items need extraction."*
+
+**❌ Bad — vague or missing trigger:**
+- *"Helps with meetings."* — Too vague, no trigger
+- *"An AI assistant for extracting information."* — What information? When?
+- *"meeting-action-extractor skill for Claude"* — Just repeats the name
+
+### Trigger Phrases Users Actually Say
+Think about what someone types before pasting their notes:
+- *"Here are my meeting notes, can you extract the action items?"*
+- *"Pull out the to-dos from this standup recap"*
+- *"What are the follow-ups from this meeting?"*
+- *"I pasted my 1:1 notes, find the next steps"*
+
+Your description should contain the **keywords** from these phrases: action items, to-dos, follow-ups, next steps, meeting notes, standup.
+
+### Input Types to Mention
+Be specific about what your Skill processes:
+- Meeting notes (bullet points, free-form)
+- Standup recaps
+- 1:1 notes
+- Meeting transcripts
+
+### Rules
+- Under **1024 characters** total
+- **No XML tags** (\`<\` or \`>\` characters)
+- Name can't contain "claude" or "anthropic"
+- Name must be **kebab-case**
+
+> **Pro tip:** "Use when" is your best friend. It's the clearest signal to Claude that what follows is trigger criteria.`,
     challengeInstructions: `### Challenge: Write Your Frontmatter
 
-Write the complete YAML frontmatter for your meeting-action-extractor Skill. It must pass all structural checks.`,
+Write the complete YAML frontmatter for your meeting-action-extractor Skill. Your frontmatter needs both a \`name\` and a \`description\` field.
+
+**Layer 1** — Structural checks run instantly:
+- \`---\` delimiters present
+- \`name\` is kebab-case
+- \`description\` is 50+ characters
+- Trigger language included
+- No \`<\` or \`>\` characters
+- No reserved names
+
+**Layer 2** — If Layer 1 passes, we run a **trigger accuracy test**. Your description is tested against 7 real user queries to see if Claude would correctly activate (or skip) your Skill. You need **4/7 correct** to pass.
+
+Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     hints: [
-      "Start with --- on its own line, end with --- on its own line. Put name and description between them.",
-      "Use the > character for multi-line description in YAML. Make sure it's at least 50 characters. (-25 XP)",
-      "Here's the structure:\n---\nname: meeting-action-extractor\ndescription: >\n  Use when... [at least 50 chars total]\n--- (-50 XP)"
+      "Include both WHAT and WHEN. Use phrases like 'action items', 'to-dos', 'follow-ups', 'next steps'. Mention the input types: meeting notes, standup recaps, 1:1 notes.",
+      "To avoid over-triggering on scheduling queries, be specific about INPUT (meeting notes, transcripts) and OUTPUT (action items with owners and deadlines). Don't just say 'helps with meetings'. (-25 XP)",
+      "Here's an example that scores 7/7:\n\n---\nname: meeting-action-extractor\ndescription: >\n  Extracts structured action items with owners, deadlines,\n  and priorities from meeting notes. Use when a user pastes\n  meeting notes, standup recaps, or 1:1 notes and asks for\n  action items, to-dos, follow-ups, or next steps.\n--- (-50 XP)"
     ],
     layer1Checks: ['YAML delimiters present', 'Name is kebab-case', 'Description 50+ chars', 'Trigger language present', 'No XML tags', 'No reserved names'],
     completionSummary: [
-      "Frontmatter uses YAML between --- delimiters",
-      "Name must be kebab-case, description must be 50+ characters",
-      "Include trigger language so Claude knows when to activate the Skill"
+      "The description field has two jobs: WHAT the Skill does + WHEN to use it",
+      "Trigger language ('Use when...') tells Claude when to activate your Skill",
+      "Be specific about inputs (meeting notes) and outputs (action items) to avoid over-triggering"
     ]
   },
   {

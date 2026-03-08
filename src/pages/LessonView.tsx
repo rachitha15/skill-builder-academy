@@ -8,6 +8,7 @@ import { MODULE_DATA } from '@/data/courseData';
 import { XPCounter } from '@/components/XPCounter';
 import { calculateXP } from '@/lib/validation';
 import { validateFrontmatter, validateInstructions, validateEdgeCases } from '@/lib/validation';
+import { evaluateDescription } from '@/lib/layer2Evaluator';
 import { MultipleChoiceWorkspace } from '@/components/workspaces/MultipleChoiceWorkspace';
 import { FolderStructureWorkspace } from '@/components/workspaces/FolderStructureWorkspace';
 import { CodeEditorWorkspace } from '@/components/workspaces/CodeEditorWorkspace';
