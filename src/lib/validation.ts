@@ -94,7 +94,7 @@ export function validateFinalReview(content: string): ValidationResult[] {
 }
 
 const MODULE_SCORING: Record<number, { maxXP: number; tiers: [number, number][]; minPass: number }> = {
-  1: { maxXP: 150, tiers: [[4, 150], [3, 100]], minPass: 3 },
+  1: { maxXP: 150, tiers: [[4, 100], [3, 100]], minPass: 3 },
   2: { maxXP: 150, tiers: [[3, 150], [3, 100]], minPass: 3 },
   3: { maxXP: 300, tiers: [[7, 300], [6, 255], [5, 210], [4, 165]], minPass: 4 },
   4: { maxXP: 400, tiers: [[6, 400], [5, 340], [4, 280], [3, 220]], minPass: 3 },
