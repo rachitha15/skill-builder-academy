@@ -114,7 +114,7 @@ const CourseComplete = () => {
         {/* Social Share */}
         <div className="flex gap-3 justify-center mb-8">
           <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=https://untutorial.in`}
+            href={`https://www.linkedin.com/feed/?shareActive=true&text=${linkedInText}`}
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-md border border-border bg-card text-sm text-foreground hover:bg-muted transition-colors"
@@ -122,7 +122,7 @@ const CourseComplete = () => {
             Share on LinkedIn
           </a>
           <a
-            href={`https://twitter.com/intent/tweet?text=${shareText}`}
+            href={`https://twitter.com/intent/tweet?text=${tweetText}&url=https://untutorial.in`}
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-md border border-border bg-card text-sm text-foreground hover:bg-muted transition-colors"
