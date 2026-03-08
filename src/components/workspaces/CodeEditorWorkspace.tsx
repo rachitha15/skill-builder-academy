@@ -178,6 +178,16 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
             {results.every(r => r.passed) && !layer2Evaluate && (
               <p className="mt-3 text-primary font-semibold text-sm">All checks passed! ✅</p>
             )}
+            {results.every(r => r.passed) && layer2Evaluate && layer2Loading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-4 flex items-center justify-center gap-2 py-3 rounded-md bg-primary/5 border border-primary/20"
+              >
+                <Loader2 className="h-4 w-4 text-primary animate-spin" />
+                <span className="text-xs font-semibold text-primary">Running trigger test — scroll down ↓</span>
+              </motion.div>
+            )}
           </motion.div>
         )}
 
