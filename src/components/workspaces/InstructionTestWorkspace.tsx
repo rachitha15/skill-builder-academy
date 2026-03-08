@@ -295,6 +295,11 @@ export function InstructionTestWorkspace({ initialCode, placeholder, validate, o
           >
             {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Testing...</> : '🧪 Test My Instructions'}
           </button>
+          {results?.some(r => !r.passed) && (
+            <p className="mt-2 text-xs text-destructive">
+              Step 1 has failed checks. Update your instructions and click Test My Instructions again.
+            </p>
+          )}
         </div>
       )}
     </div>
