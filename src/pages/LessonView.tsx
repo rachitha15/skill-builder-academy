@@ -50,9 +50,12 @@ const LessonView = () => {
     return null;
   }
 
-  if (moduleState.status === 'locked') {
-    navigate('/course');
-    return null;
+  if (moduleState.status === 'locked' && moduleId !== 1) {
+    const prevCompleted = state.modules.find(m => m.id === moduleId - 1)?.status === 'completed';
+    if (!prevCompleted) {
+      navigate('/course');
+      return null;
+    }
   }
 
   const revealHint = () => {
