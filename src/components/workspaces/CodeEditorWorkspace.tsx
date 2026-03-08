@@ -252,96 +252,108 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
             </p>
 
             {/* Should Activate group */}
+            {/* Should Activate group */}
             <div className="mb-3">
               <p className="text-xs font-semibold text-primary mb-1.5">Should activate your Skill ({shouldActivateQueries.length})</p>
               <div className="space-y-1.5">
                 {shouldActivateQueries.map((tq) => {
                   const i = tq.originalIndex;
-                const isRevealed = layer2Results && i < revealedCount;
-                const result = layer2Results?.results[i];
-
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className={`flex items-start gap-2 text-sm rounded-md p-2 transition-colors duration-300 ${
-                      isRevealed
-                        ? result?.correct
-                          ? 'bg-primary/5'
-                          : 'bg-destructive/5'
-                        : 'bg-background/50'
-                    }`}
-                  >
-                    {/* Status icon */}
-                    <div className="mt-0.5 flex-shrink-0 w-4 h-4">
-                      <AnimatePresence mode="wait">
-                        {isRevealed ? (
-                          result?.correct ? (
-                            <motion.div
-                              key="pass"
-                              initial={{ scale: 0, rotate: -90 }}
-                              animate={{ scale: 1, rotate: 0 }}
-                              transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                            >
-                              <CheckCircle2 className="h-4 w-4 text-primary" />
-                            </motion.div>
+                  const isRevealed = layer2Results && i < revealedCount;
+                  const result = layer2Results?.results[i];
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      className={`flex items-start gap-2 text-sm rounded-md p-2 transition-colors duration-300 ${
+                        isRevealed ? (result?.correct ? 'bg-primary/5' : 'bg-destructive/5') : 'bg-background/50'
+                      }`}
+                    >
+                      <div className="mt-0.5 flex-shrink-0 w-4 h-4">
+                        <AnimatePresence mode="wait">
+                          {isRevealed ? (
+                            result?.correct ? (
+                              <motion.div key="pass" initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
+                                <CheckCircle2 className="h-4 w-4 text-primary" />
+                              </motion.div>
+                            ) : (
+                              <motion.div key="fail" initial={{ scale: 0, rotate: 90 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
+                                <XCircle className="h-4 w-4 text-destructive" />
+                              </motion.div>
+                            )
                           ) : (
-                            <motion.div
-                              key="fail"
-                              initial={{ scale: 0, rotate: 90 }}
-                              animate={{ scale: 1, rotate: 0 }}
-                              transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                            >
-                              <XCircle className="h-4 w-4 text-destructive" />
-                            </motion.div>
-                          )
-                        ) : (
-                          <Clock className="h-4 w-4 text-muted-foreground/40" />
+                            <Clock className="h-4 w-4 text-muted-foreground/40" />
+                          )}
+                        </AnimatePresence>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-foreground text-xs leading-relaxed">"{tq.text}"</p>
+                        {isRevealed && result && (
+                          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`text-xs font-medium mt-1 ${getVerdict(result, tq.expected).className}`}>
+                            {getVerdict(result, tq.expected).label}
+                          </motion.p>
                         )}
-                      </AnimatePresence>
-                    </div>
+                        {!isRevealed && (
+                          <span className="inline-block mt-1 text-xs px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground/60 font-medium">Pending...</span>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
 
-                    {/* Query content */}
-                    <div className="flex-1 min-w-0">
-                      <p className="text-foreground text-xs leading-relaxed">
-                        <span className="text-muted-foreground font-mono mr-1.5">Q{i + 1}</span>
-                        "{tq.text}"
-                      </p>
-
-                      {/* Result badges */}
-                      {isRevealed && result && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          className="flex gap-2 mt-1"
-                        >
-                          <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${
-                            tq.expected ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'
-                          }`}>
-                            Expected: {tq.expected ? 'Activate' : 'Skip'}
-                          </span>
-                          <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${
-                            result.correct
-                              ? 'bg-primary/10 text-primary'
-                              : 'bg-destructive/10 text-destructive'
-                          }`}>
-                            Got: {result.triggered ? 'Activate' : 'Skip'}
-                          </span>
-                        </motion.div>
-                      )}
-
-                      {/* Pending badge */}
-                      {!isRevealed && (
-                        <span className="inline-block mt-1 text-xs px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground/60 font-medium">
-                          Pending...
-                        </span>
-                      )}
-                    </div>
-                  </motion.div>
-                );
-              })}
+            {/* Should NOT Activate group */}
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground mb-1.5">Should NOT activate ({shouldNotActivateQueries.length})</p>
+              <div className="space-y-1.5">
+                {shouldNotActivateQueries.map((tq) => {
+                  const i = tq.originalIndex;
+                  const isRevealed = layer2Results && i < revealedCount;
+                  const result = layer2Results?.results[i];
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      className={`flex items-start gap-2 text-sm rounded-md p-2 transition-colors duration-300 ${
+                        isRevealed ? (result?.correct ? 'bg-primary/5' : 'bg-destructive/5') : 'bg-background/50'
+                      }`}
+                    >
+                      <div className="mt-0.5 flex-shrink-0 w-4 h-4">
+                        <AnimatePresence mode="wait">
+                          {isRevealed ? (
+                            result?.correct ? (
+                              <motion.div key="pass" initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
+                                <CheckCircle2 className="h-4 w-4 text-primary" />
+                              </motion.div>
+                            ) : (
+                              <motion.div key="fail" initial={{ scale: 0, rotate: 90 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
+                                <XCircle className="h-4 w-4 text-destructive" />
+                              </motion.div>
+                            )
+                          ) : (
+                            <Clock className="h-4 w-4 text-muted-foreground/40" />
+                          )}
+                        </AnimatePresence>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-foreground text-xs leading-relaxed">"{tq.text}"</p>
+                        {isRevealed && result && (
+                          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`text-xs font-medium mt-1 ${getVerdict(result, tq.expected).className}`}>
+                            {getVerdict(result, tq.expected).label}
+                          </motion.p>
+                        )}
+                        {!isRevealed && (
+                          <span className="inline-block mt-1 text-xs px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground/60 font-medium">Pending...</span>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Feedback after all revealed */}
