@@ -246,14 +246,17 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
               )}
             </div>
 
-            {layer2Loading && (
-              <p className="text-xs text-muted-foreground mb-3">
-                Testing your description against 7 real user queries...
-              </p>
-            )}
+            {/* Explainer paragraph */}
+            <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+              We're simulating 7 real user messages to see if Claude would correctly recognize when to use your Skill based on your description. 5 queries <span className="font-semibold text-foreground">should</span> activate it, and 2 <span className="font-semibold text-foreground">should not</span>.
+            </p>
 
-            <div className="space-y-1.5">
-              {TEST_QUERIES.map((tq, i) => {
+            {/* Should Activate group */}
+            <div className="mb-3">
+              <p className="text-xs font-semibold text-primary mb-1.5">Should activate your Skill ({shouldActivateQueries.length})</p>
+              <div className="space-y-1.5">
+                {shouldActivateQueries.map((tq) => {
+                  const i = tq.originalIndex;
                 const isRevealed = layer2Results && i < revealedCount;
                 const result = layer2Results?.results[i];
 
