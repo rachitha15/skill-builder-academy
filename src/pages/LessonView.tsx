@@ -160,7 +160,7 @@ const LessonView = () => {
         return (
           <CodeEditorWorkspace
             moduleId={moduleId}
-            initialCode={moduleState.userWork}
+            initialCode={getInitialCode(moduleId)}
             placeholder={getPlaceholder(moduleId)}
             validate={getValidatorForModule(moduleId)}
             layer2Evaluate={moduleId === 3 ? (code: string) => {
