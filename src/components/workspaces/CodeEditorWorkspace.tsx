@@ -184,6 +184,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
         {/* Layer 2 — Live Grading Reveal */}
         {showingQueries && (
           <motion.div
+            ref={layer2Ref}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-4 rounded-lg border border-border bg-card p-4"
