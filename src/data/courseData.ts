@@ -423,7 +423,7 @@ Review your complete SKILL.md below. Make any final edits, then run the final te
 export const SCENARIOS = [
   {
     id: 1,
-    text: 'Every Monday, I paste our team\'s meeting notes into Claude and ask it to extract action items with owners and deadlines. I always have to remind it to use bullet points and sort by priority.',
+    text: 'Every Monday, Clara pastes her standup notes into Claude and asks for action items. She always has to remind it to use bullet points, flag overdue items, and sort by priority.',
     options: [
       { label: 'A', text: 'Good use case for a Skill', correct: true },
       { label: 'B', text: 'A saved prompt template would be better', correct: false },
@@ -432,7 +432,7 @@ export const SCENARIOS = [
   },
   {
     id: 2,
-    text: 'I need to ask Claude what the capital of France is.',
+    text: 'Clara needs to ask Claude what time the London office opens.',
     options: [
       { label: 'A', text: 'Good use case for a Skill', correct: false },
       { label: 'B', text: 'Just ask Claude directly', correct: true },
@@ -441,7 +441,7 @@ export const SCENARIOS = [
   },
   {
     id: 3,
-    text: 'I want Claude to automatically monitor my Slack channels and alert me when a decision is made.',
+    text: 'Clara wants Claude to automatically monitor the #engineering Slack channel and flag whenever a launch blocker is mentioned.',
     options: [
       { label: 'A', text: 'Good use case for a standalone Skill', correct: false },
       { label: 'B', text: 'This needs a Skill + MCP connector', correct: true },
@@ -450,7 +450,7 @@ export const SCENARIOS = [
   },
   {
     id: 4,
-    text: 'I write competitive analysis reports every quarter. The format is always the same. I always have to re-explain the structure.',
+    text: 'Raj (the support lead) writes the same weekly summary for leadership every Friday. Same structure, same sections, same format. He re-explains the template to Claude every time.',
     options: [
       { label: 'A', text: 'Good use case for a Skill', correct: true },
       { label: 'B', text: 'A Word template would be better', correct: false },

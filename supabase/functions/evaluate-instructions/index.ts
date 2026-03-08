@@ -51,12 +51,12 @@ Respond in this exact JSON format:
 {
   "output": "The full output produced by following the instructions",
   "criteria": [
-    {"name": "At least 4 action items", "passed": true, "detail": "why"},
-    {"name": "Demo prep is high priority", "passed": true, "detail": "why"},
-    {"name": "Unassigned owner handled", "passed": true, "detail": "why"},
-    {"name": "Standup change excluded", "passed": true, "detail": "why"},
-    {"name": "Vague deadlines handled", "passed": true, "detail": "why"},
-    {"name": "Clean output format", "passed": true, "detail": "why"}
+     {"name": "At least 4 action items extracted", "passed": true, "detail": "why"},
+    {"name": "Demo prep marked high priority", "passed": true, "detail": "why"},
+    {"name": "Welcome email bug has Unassigned owner", "passed": true, "detail": "why"},
+    {"name": "Standup time change correctly excluded as decision", "passed": true, "detail": "why"},
+    {"name": "Jira-to-Linear note excluded as FYI", "passed": true, "detail": "why"},
+    {"name": "Clean readable output format", "passed": true, "detail": "why"}
   ],
   "score": 6,
   "feedback": "One specific suggestion to improve the instructions"
