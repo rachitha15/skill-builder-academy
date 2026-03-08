@@ -23,6 +23,12 @@ const LessonView = () => {
   const [revealedHints, setRevealedHints] = useState<number[]>([]);
   const [completed, setCompleted] = useState(false);
 
+  // Reset local state when navigating between modules
+  useEffect(() => {
+    setCompleted(false);
+    setRevealedHints([]);
+  }, [moduleId]);
+
   const moduleData = MODULE_DATA.find(m => m.id === moduleId);
   const moduleState = state.modules.find(m => m.id === moduleId);
 

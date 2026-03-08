@@ -77,7 +77,7 @@ export function MultipleChoiceWorkspace({ onComplete }: Props) {
                   {showResult && isSelected && !opt.correct && (
                     <XCircle className="ml-auto h-4 w-4 text-destructive pop-in" />
                   )}
-                </label>
+                </div>
               );
             })}
           </div>
