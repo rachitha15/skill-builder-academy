@@ -134,12 +134,6 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
       const result = data as EvalResponse;
       setEvalResult(result);
       setShowResults(true);
-
-      // Stagger row animations
-      result.results.forEach((_, i) => {
-        setTimeout(() => setVisibleRows(v => Math.max(v, i + 1)), (i + 1) * 100);
-      });
-
       onWorkUpdate(JSON.stringify({ shouldTrigger, shouldNotTrigger }));
 
       // Don't auto-complete — let user review results and click Continue
