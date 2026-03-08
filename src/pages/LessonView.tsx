@@ -14,6 +14,7 @@ import { FolderStructureWorkspace } from '@/components/workspaces/FolderStructur
 import { CodeEditorWorkspace } from '@/components/workspaces/CodeEditorWorkspace';
 import { TriggerTestWorkspace } from '@/components/workspaces/TriggerTestWorkspace';
 import { FinalReviewWorkspace } from '@/components/workspaces/FinalReviewWorkspace';
+import { InstructionTestWorkspace } from '@/components/workspaces/InstructionTestWorkspace';
 import confetti from 'canvas-confetti';
 
 const LessonView = () => {
@@ -94,7 +95,7 @@ const LessonView = () => {
   const getPlaceholder = (id: number) => {
     switch (id) {
       case 3: return '---\nname: meeting-action-extractor\ndescription: >\n  Use when...\n---';
-      case 4: return '## Context\n\n## Input\n\n## Steps\n\n## Output Format';
+      case 4: return '# Meeting Action Extractor\n\n## Instructions\n\n[Write your step-by-step instructions here]\n\n## Output Format\n\n[Define what the output should look like]\n\n## Edge Cases\n\n[What should happen when info is missing or unclear?]\n\n## Example\n\n[Show Claude an example input and the correct output]';
       case 6: return '## Edge Cases\n\n- **No action items found**: ...\n- **Missing owner**: ...\n- **Ambiguous deadline**: ...';
       default: return '';
     }
@@ -157,6 +158,17 @@ const LessonView = () => {
       case 'folder_structure':
         return <FolderStructureWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} />;
       case 'code_editor':
+        if (moduleId === 4) {
+          return (
+            <InstructionTestWorkspace
+              initialCode={getInitialCode(moduleId)}
+              placeholder={getPlaceholder(moduleId)}
+              validate={getValidatorForModule(moduleId)}
+              onComplete={handleComplete}
+              onWorkUpdate={handleWorkUpdate}
+            />
+          );
+        }
         return (
           <CodeEditorWorkspace
             moduleId={moduleId}

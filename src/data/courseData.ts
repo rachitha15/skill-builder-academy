@@ -194,33 +194,74 @@ Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     estimatedMinutes: 30,
     maxXP: 400,
     challengeType: 'code_editor',
-    lessonContent: `After the frontmatter comes the instructions — the actual content that teaches Claude how to perform the task.
+    lessonContent: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail — not because the idea is bad, but because the instructions are vague.
 
-Great Skill instructions follow a pattern:
+**The #1 rule: Write for a smart new hire, not for yourself.**
 
-1. **Context** — What is this Skill for? (1-2 sentences)
-2. **Input format** — What will the user provide?
-3. **Steps** — What should Claude do, step by step?
-4. **Output format** — What should the result look like?
-5. **Edge cases** — What if the input is weird or incomplete?
+You know what "good action items" look like. Claude doesn't — unless you tell it. Compare:
 
-**Tips for writing good instructions:**
-- Be specific. "Extract action items" is vague. "For each action item, identify: the task, the owner, the deadline, and the priority (high/medium/low)" is clear.
-- Use markdown formatting (headers, lists, bold) to structure your instructions
-- Think about what a smart new hire would need to know
-- Include an example of expected output`,
-    challengeInstructions: `### Challenge: Write the Instructions
+❌ **Vague:** "Extract action items from the notes."
 
-Write the markdown instructions section for your meeting-action-extractor Skill. Include context, input format, steps, and output format.`,
+✅ **Specific:** "For each action item found in the meeting notes, extract: (1) the task description in one clear sentence, (2) the owner — the person responsible, identified by name, (3) the deadline — the specific date or timeframe mentioned, or 'No deadline specified' if none, (4) priority — High if blocking other work or mentioned urgently, Medium if important but not blocking, Low if nice-to-have or minor."
+
+The second version removes ambiguity. Claude doesn't have to guess what you mean by "priority" because you defined it.
+
+**Structuring your instructions:**
+
+Use this pattern:
+1. **Context** — What is this Skill for? One sentence.
+2. **Input** — What will the user provide? Be specific about format.
+3. **Steps** — What should Claude do? Number them.
+4. **Output format** — What should the result look like? Show an example.
+5. **Edge cases** — What happens when things are messy? (Missing owners, vague deadlines, etc.)
+
+**The power of examples:**
+
+Including an example input/output pair in your instructions is one of the most powerful things you can do. Claude learns patterns from examples faster than from rules.
+
+\`\`\`
+## Example
+
+Input:
+"Met with Sarah and Jake. Sarah will update the roadmap by Friday.
+Jake needs to review the API docs. Oh and someone should probably
+look at the billing bug eventually."
+
+Output:
+- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High
+- **Review API docs** | Owner: Jake | Deadline: No deadline specified | Priority: Medium
+- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline specified | Priority: Low
+\`\`\`
+
+**Handling messy reality:**
+
+Real meeting notes are messy. Your instructions should tell Claude how to handle this:
+- If no owner is mentioned → set to "Unassigned"
+- If deadline is vague → convert to nearest reasonable date or keep original phrasing
+- If an action item is implied but not explicit → extract it but note "(Implied)"
+- If notes contain non-action discussion → ignore it`,
+    challengeInstructions: `### Challenge: Write Your Skill Instructions
+
+Write the complete Markdown body (everything below the frontmatter) for your \`meeting-action-extractor\` Skill.
+
+Your instructions will be tested against a sample of **messy meeting notes you haven't seen**. Claude will execute your Skill, and you'll see the actual output it produces.
+
+**Requirements:**
+- At least 200 characters
+- Contains numbered steps or structured instructions
+- Handles missing info (unassigned owners, vague deadlines)
+
+**After submit:** Claude runs your instructions against the test input and evaluates on 6 criteria. You need **3/6** to pass.`,
     hints: [
-      "Start with a ## Context section explaining what this Skill does with meeting notes.",
-      "Include clear steps: 1) Read the notes, 2) Identify action items, 3) For each item extract owner/deadline/priority, 4) Format as structured output. (-25 XP)",
-      "Here's a skeleton:\n## Context\n...\n## Input\n...\n## Steps\n1. ...\n## Output Format\n...\n## Edge Cases\n... (-50 XP)"
+      "Structure your instructions with: Context → Input → Steps → Output Format → Edge Cases. Don't forget to include an example input/output pair — Claude learns from examples faster than rules.",
+      "Make sure you define what to do when: (1) no owner is mentioned → 'Unassigned', (2) deadlines are vague like 'end of week', (3) something is discussed but isn't actually an action item (like changing the standup time). These edge cases are where most Skills fail. (-25 XP)",
+      "Here's a complete reference:\n\n# Meeting Action Extractor\n\n## Context\nThis Skill extracts structured action items from messy meeting notes.\n\n## Input\nUnstructured meeting notes, standup recaps, or 1:1 notes.\n\n## Steps\n1. Read through all notes carefully\n2. Identify each action item (task someone needs to do)\n3. For each action item, extract: task description, owner, deadline, priority\n4. Skip non-action items (decisions, general discussion)\n5. Format as a clean list\n\n## Output Format\n- **Task** | Owner: name | Deadline: date | Priority: High/Medium/Low\n\n## Edge Cases\n- No owner → \"Unassigned\"\n- Vague deadline → keep original phrasing\n- Implied task → extract with \"(Implied)\" note\n- Non-action discussion → skip entirely\n\n## Example\nInput: \"Sarah will update the roadmap by Friday. Someone should look at the billing bug.\"\nOutput:\n- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High\n- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline | Priority: Low (-50 XP)"
     ],
-    layer1Checks: ['Has context/overview section', 'Has input format section', 'Has steps/process section', 'Has output format section', 'At least 200 characters'],
+    layer1Checks: ['Content is 200+ characters', 'Has structured instructions', 'Handles missing info', 'Contains relevant task keywords'],
     completionSummary: [
       "Good instructions follow: Context → Input → Steps → Output → Edge Cases",
       "Be specific about what Claude should extract and how to format it",
+      "Include an example input/output pair — Claude learns from examples faster than rules",
       "Think like you're training a smart new hire"
     ]
   },
