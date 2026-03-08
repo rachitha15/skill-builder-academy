@@ -221,57 +221,74 @@ Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     estimatedMinutes: 30,
     maxXP: 400,
     challengeType: 'code_editor',
-    lessonContent: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail — not because the idea is bad, but because the instructions are vague.
+    lessonContent: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail.
 
 **The #1 rule: Write for a smart new hire, not for yourself.**
 
-You know what "good action items" look like. Claude doesn't — unless you tell it. Compare:
+Let's look at how Raj structured his feedback categorizer instructions:
 
-❌ **Vague:** "Extract action items from the notes."
+❌ **Vague:** "Categorize the feedback."
 
-✅ **Specific:** "For each action item found in the meeting notes, extract: (1) the task description in one clear sentence, (2) the owner — the person responsible, identified by name, (3) the deadline — the specific date or timeframe mentioned, or 'No deadline specified' if none, (4) priority — High if blocking other work or mentioned urgently, Medium if important but not blocking, Low if nice-to-have or minor."
+✅ **Specific:**
+\`\`\`
+For each piece of customer feedback:
+1. Read the full message
+2. Categorize as ONE of: Bug Report, Feature Request, Praise, Complaint
+3. Assign severity:
+   - Critical: service outage, data loss, security issue
+   - High: major feature broken, billing error
+   - Medium: minor bug, UX confusion
+   - Low: cosmetic issue, nice-to-have suggestion
+4. Write a 1-sentence summary (max 15 words)
+5. Suggest a response using the templates in references/
+\`\`\`
 
-The second version removes ambiguity. Claude doesn't have to guess what you mean by "priority" because you defined it.
+See the difference? Raj defined exactly what each severity level means. He didn't leave Claude guessing.
 
-**Structuring your instructions:**
+**Structuring your instructions — the pattern:**
 
-Use this pattern:
 1. **Context** — What is this Skill for? One sentence.
-2. **Input** — What will the user provide? Be specific about format.
-3. **Steps** — What should Claude do? Number them.
-4. **Output format** — What should the result look like? Show an example.
-5. **Edge cases** — What happens when things are messy? (Missing owners, vague deadlines, etc.)
+2. **Steps** — What should Claude do? Number them.
+3. **Output format** — What should the result look like? Show a template.
+4. **Edge cases** — What happens when things are messy?
+5. **Example** — Show an input/output pair. This is the most powerful thing you can include.
 
 **The power of examples:**
 
-Including an example input/output pair in your instructions is one of the most powerful things you can do. Claude learns patterns from examples faster than from rules.
+Raj included this in his Skill:
 
 \`\`\`
 ## Example
 
-Input:
-"Met with Sarah and Jake. Sarah will update the roadmap by Friday.
-Jake needs to review the API docs. Oh and someone should probably
-look at the billing bug eventually."
+Input: "Your app crashed three times today and I lost my
+draft. This is unacceptable for a paid product."
 
 Output:
-- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High
-- **Review API docs** | Owner: Jake | Deadline: No deadline specified | Priority: Medium
-- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline specified | Priority: Low
+- Category: Bug Report
+- Severity: Critical
+- Summary: App crashes causing data loss for paid user
+- Response: [Apology template + escalation to engineering]
 \`\`\`
+
+Claude learns patterns from examples faster than from rules. One good example is worth five paragraphs of instructions.
 
 **Handling messy reality:**
 
-Real meeting notes are messy. Your instructions should tell Claude how to handle this:
-- If no owner is mentioned → set to "Unassigned"
-- If deadline is vague → convert to nearest reasonable date or keep original phrasing
-- If an action item is implied but not explicit → extract it but note "(Implied)"
-- If notes contain non-action discussion → ignore it`,
-    challengeInstructions: `### Challenge: Write Your Skill Instructions
+Raj knew customer feedback is messy — sometimes a message is both a complaint AND a feature request. Sometimes the sentiment is unclear. So he added:
 
-Write the complete Markdown body (everything below the frontmatter) for your \`meeting-action-extractor\` Skill.
+\`\`\`
+## Edge Cases
+- If feedback contains multiple categories, create separate entries for each
+- If sentiment is ambiguous, categorize as "Needs Review" and flag for human
+- If the message is not customer feedback (e.g., spam, internal), skip it
+\`\`\`
 
-Your instructions will be tested against a sample of **messy meeting notes you haven't seen**. Claude will execute your Skill, and you'll see the actual output it produces.
+Now it's your turn to write instructions for Clara. Her meeting notes are different from customer feedback — messier, with abbreviations, vague deadlines, and non-action items mixed in. Apply the same structure you just saw from Raj: Context → Steps → Output Format → Edge Cases → Example.`,
+    challengeInstructions: `### Challenge: Write Clara's Instructions
+
+Clara's standup notes are chaotic. Names are sometimes full, sometimes just initials. Deadlines are vague ("end of week", "soonish"). Some things discussed aren't action items at all. Write instructions that handle Clara's reality.
+
+You'll write the SKILL.md body (everything below the frontmatter). **After you submit, we'll test your instructions against one of Clara's actual standups — one you haven't seen yet.**
 
 **Requirements:**
 - At least 200 characters
@@ -280,9 +297,9 @@ Your instructions will be tested against a sample of **messy meeting notes you h
 
 **After submit:** Claude runs your instructions against the test input and evaluates on 6 criteria. You need **3/6** to pass.`,
     hints: [
-      "Structure your instructions with: Context → Input → Steps → Output Format → Edge Cases. Don't forget to include an example input/output pair — Claude learns from examples faster than rules.",
-      "Make sure you define what to do when: (1) no owner is mentioned → 'Unassigned', (2) deadlines are vague like 'end of week', (3) something is discussed but isn't actually an action item (like changing the standup time). These edge cases are where most Skills fail. (-25 XP)",
-      "Here's a complete reference:\n\n# Meeting Action Extractor\n\n## Context\nThis Skill extracts structured action items from messy meeting notes.\n\n## Input\nUnstructured meeting notes, standup recaps, or 1:1 notes.\n\n## Steps\n1. Read through all notes carefully\n2. Identify each action item (task someone needs to do)\n3. For each action item, extract: task description, owner, deadline, priority\n4. Skip non-action items (decisions, general discussion)\n5. Format as a clean list\n\n## Output Format\n- **Task** | Owner: name | Deadline: date | Priority: High/Medium/Low\n\n## Edge Cases\n- No owner → \"Unassigned\"\n- Vague deadline → keep original phrasing\n- Implied task → extract with \"(Implied)\" note\n- Non-action discussion → skip entirely\n\n## Example\nInput: \"Sarah will update the roadmap by Friday. Someone should look at the billing bug.\"\nOutput:\n- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High\n- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline | Priority: Low (-50 XP)"
+      "Look at how Raj structured his feedback categorizer: Context → Steps → Output Format → Edge Cases → Example. Clara's Skill needs the same structure, but for meeting notes. And don't skip the example — it's the most powerful part.",
+      "Clara's notes use abbreviations (T, S, J, P, mktg) and have two non-action items mixed in: the standup time change (that's a decision) and the Jira migration FYI. Your instructions need to tell Claude how to handle both. (-25 XP)",
+      "Here's a complete reference:\n\n# Meeting Action Extractor\n\n## Context\nThis Skill extracts structured action items from Clara's messy meeting notes at Tidepool.\n\n## Steps\n1. Read through all notes carefully\n2. Identify each action item (task someone needs to do)\n3. For each action item, extract: task description, owner, deadline, priority\n4. Skip non-action items (decisions, FYIs, general discussion)\n5. Format as a clean list\n\n## Output Format\n- **Task** | Owner: name | Deadline: date | Priority: High/Medium/Low\n\n## Edge Cases\n- No owner mentioned → \"Unassigned\"\n- Abbreviations/initials → expand if possible, keep as-is if not\n- Vague deadline → keep original phrasing (\"end of week\")\n- Decisions (e.g., schedule changes) → exclude, note as decision\n- FYI items (no action needed) → exclude, note as FYI\n\n## Example\nInput: \"Sarah will update the roadmap by Friday. Someone should look at the billing bug.\"\nOutput:\n- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High\n- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline | Priority: Low (-50 XP)"
     ],
     layer1Checks: ['Content is 200+ characters', 'Has structured instructions', 'Handles missing info', 'Contains relevant task keywords'],
     completionSummary: [
