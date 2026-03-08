@@ -101,6 +101,8 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "burst-ring": "burst-ring 1s ease-out forwards",
+        "float-up": "float-up 1.5s ease-out forwards",
       },
     },
   },

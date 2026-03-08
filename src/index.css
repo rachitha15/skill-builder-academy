@@ -4,50 +4,52 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 214 32% 91%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
 
-    --card: 217 33% 17%;
-    --card-foreground: 214 32% 91%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 217 33% 17%;
-    --popover-foreground: 214 32% 91%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 160 84% 39%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 18 100% 60%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 38 92% 50%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 51 100% 52%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 217 19% 27%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 64%;
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 214 32% 91%;
+    --accent: 0 0% 7%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 215 19% 35%;
-    --input: 215 19% 35%;
-    --ring: 160 84% 39%;
+    --success: 142 71% 45%;
 
-    --radius: 0.75rem;
+    --border: 0 0% 13%;
+    --input: 0 0% 13%;
+    --ring: 18 100% 60%;
 
-    --editor: 222 47% 15%;
-    --editor-foreground: 214 32% 91%;
+    --radius: 0.375rem;
 
-    --xp: 160 84% 39%;
-    --xp-cost: 38 92% 50%;
+    --editor: 0 0% 10%;
+    --editor-foreground: 0 0% 100%;
 
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 214 32% 91%;
-    --sidebar-primary: 160 84% 39%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 214 32% 91%;
-    --sidebar-border: 215 19% 35%;
-    --sidebar-ring: 160 84% 39%;
+    --xp: 18 100% 60%;
+    --xp-cost: 51 100% 52%;
+
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 18 100% 60%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 7%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 13%;
+    --sidebar-ring: 18 100% 60%;
   }
 }
 
@@ -73,7 +75,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.03;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
@@ -112,7 +114,25 @@
 
 /* Glow effect for primary elements */
 .glow-primary {
-  box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 60px hsl(var(--primary) / 0.1);
+  box-shadow: 0 0 20px hsl(18 100% 60% / 0.3), 0 0 60px hsl(18 100% 60% / 0.1);
+}
+
+/* Burst ring animation */
+@keyframes burst-ring {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.burst-ring {
+  animation: burst-ring 1s ease-out forwards;
+}
+
+/* Float up animation */
+@keyframes float-up {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-60px); }
+}
+.float-up {
+  animation: float-up 1.5s ease-out forwards;
 }
 
 /* Code editor styling */
@@ -141,12 +161,12 @@
 .lesson-content h1 { @apply text-2xl font-bold mb-4 text-foreground; }
 .lesson-content h2 { @apply text-xl font-bold mb-3 mt-6 text-foreground; }
 .lesson-content h3 { @apply text-lg font-semibold mb-2 mt-4 text-foreground; }
-.lesson-content p { @apply mb-4 leading-relaxed text-muted-foreground; }
-.lesson-content strong { @apply text-foreground font-semibold; }
+.lesson-content p { @apply mb-5 leading-relaxed text-muted-foreground; }
+.lesson-content strong { @apply text-primary font-semibold; }
 .lesson-content ul { @apply mb-4 ml-6 list-disc space-y-1; }
 .lesson-content ol { @apply mb-4 ml-6 list-decimal space-y-1; }
 .lesson-content li { @apply text-muted-foreground leading-relaxed; }
-.lesson-content code { @apply font-mono text-primary bg-card px-1.5 py-0.5 rounded text-sm; }
-.lesson-content pre { @apply mb-4 p-4 bg-card rounded-lg overflow-x-auto; }
+.lesson-content code { @apply font-mono text-primary bg-[#1a1200] px-1.5 py-0.5 rounded text-sm; }
+.lesson-content pre { @apply mb-4 p-4 bg-editor rounded-lg overflow-x-auto; }
 .lesson-content pre code { @apply bg-transparent px-0 py-0; }
 .lesson-content blockquote { @apply border-l-2 border-primary pl-4 italic text-muted-foreground mb-4; }
