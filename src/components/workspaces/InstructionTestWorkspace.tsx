@@ -58,7 +58,14 @@ export function InstructionTestWorkspace({ initialCode, placeholder, validate, o
     setError(null);
 
     const allPassed = res.every(r => r.passed);
-    if (!allPassed) return;
+    if (!allPassed) {
+      toast({
+        title: 'Fix Step 1 checks first',
+        description: 'Update the failed structural checks, then click Test My Instructions again.',
+        variant: 'destructive',
+      });
+      return;
+    }
 
     // Layer 2: AI evaluation
     setLoading(true);
