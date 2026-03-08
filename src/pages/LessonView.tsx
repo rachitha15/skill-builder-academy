@@ -30,6 +30,18 @@ const LessonView = () => {
     setRevealedHints([]);
   }, [moduleId]);
 
+  // Auto-start module on first visit
+  useEffect(() => {
+    const mod = state.modules.find(m => m.id === moduleId);
+    if (mod && mod.status === 'locked') {
+      // Allow module 1 to always be startable, others only if previous is completed
+      const canStart = moduleId === 1 || state.modules.find(m => m.id === moduleId - 1)?.status === 'completed';
+      if (canStart) {
+        dispatch({ type: 'START_MODULE', moduleId });
+      }
+    }
+  }, [moduleId, state.modules, dispatch]);
+
   const moduleData = MODULE_DATA.find(m => m.id === moduleId);
   const moduleState = state.modules.find(m => m.id === moduleId);
 
@@ -38,9 +50,12 @@ const LessonView = () => {
     return null;
   }
 
-  if (moduleState.status === 'locked') {
-    navigate('/course');
-    return null;
+  if (moduleState.status === 'locked' && moduleId !== 1) {
+    const prevCompleted = state.modules.find(m => m.id === moduleId - 1)?.status === 'completed';
+    if (!prevCompleted) {
+      navigate('/course');
+      return null;
+    }
   }
 
   const revealHint = () => {
@@ -54,8 +69,9 @@ const LessonView = () => {
   };
 
   const handleComplete = (score: number, maxScore: number) => {
+    const currentAttempts = moduleState.attempts + 1;
     dispatch({ type: 'INCREMENT_ATTEMPTS', moduleId });
-    const { total } = calculateXP(moduleId, score, maxScore, moduleState.attempts, moduleState.hintsUsed);
+    const { total } = calculateXP(moduleId, score, maxScore, currentAttempts, moduleState.hintsUsed);
     dispatch({ type: 'COMPLETE_MODULE', moduleId, xpEarned: total });
     setCompleted(true);
   };

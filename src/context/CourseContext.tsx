@@ -36,7 +36,7 @@ type CourseAction =
 
 const initialModules: ModuleState[] = Array.from({ length: 7 }, (_, i) => ({
   id: i + 1,
-  status: i === 0 ? 'in_progress' : 'locked',
+  status: 'locked' as const,
   xpEarned: 0,
   attempts: 0,
   hintsUsed: 0,

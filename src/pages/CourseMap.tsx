@@ -48,7 +48,8 @@ const CourseMap = () => {
         <div className="space-y-4">
           {MODULE_DATA.map((mod, i) => {
             const modState = state.modules[i];
-            const isLocked = modState.status === 'locked';
+            const isFirstModule = mod.id === 1;
+            const isLocked = modState.status === 'locked' && !isFirstModule;
             const isCompleted = modState.status === 'completed';
             const isInProgress = modState.status === 'in_progress';
 
