@@ -185,7 +185,7 @@ const LessonView = () => {
           />
         );
       case 'trigger_test':
-        return <TriggerTestWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} description={state.modules[2]?.userWork || ''} />;
+        return <TriggerTestWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} />;
       case 'final_review':
         return (
           <FinalReviewWorkspace

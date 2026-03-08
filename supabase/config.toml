@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.evaluate-instructions]
 verify_jwt = false
+
+[functions.evaluate-triggers]
+verify_jwt = false
