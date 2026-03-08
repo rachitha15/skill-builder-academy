@@ -86,7 +86,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
       setLayer2Loading(true);
       setShowingQueries(true);
       // Auto-scroll to Layer 2 section after it renders
-      setTimeout(() => layer2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      setTimeout(() => layer2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 200);
       try {
         const l2 = await layer2Evaluate(code);
         setLayer2Results(l2);
