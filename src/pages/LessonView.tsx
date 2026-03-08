@@ -30,6 +30,18 @@ const LessonView = () => {
     setRevealedHints([]);
   }, [moduleId]);
 
+  // Auto-start module on first visit
+  useEffect(() => {
+    const mod = state.modules.find(m => m.id === moduleId);
+    if (mod && mod.status === 'locked') {
+      // Allow module 1 to always be startable, others only if previous is completed
+      const canStart = moduleId === 1 || state.modules.find(m => m.id === moduleId - 1)?.status === 'completed';
+      if (canStart) {
+        dispatch({ type: 'START_MODULE', moduleId });
+      }
+    }
+  }, [moduleId, state.modules, dispatch]);
+
   const moduleData = MODULE_DATA.find(m => m.id === moduleId);
   const moduleState = state.modules.find(m => m.id === moduleId);
 
