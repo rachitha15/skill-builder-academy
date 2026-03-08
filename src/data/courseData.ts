@@ -28,29 +28,41 @@ Here's the key insight: **a Skill is not code.** It's a markdown file. If you ca
 
 A Skill folder contains:
 
-- **SKILL.md** (required) — The instructions file
-- **scripts/** (optional) — Code Claude can run
-- **references/** (optional) — Extra documentation
-- **assets/** (optional) — Templates and files
+- **SKILL.md** (required) — The instructions file. Written in Markdown with some YAML metadata at the top.
+- **scripts/** (optional) — Code Claude can run to help with the task.
+- **references/** (optional) — Extra documentation Claude can look at when needed.
+- **assets/** (optional) — Templates, images, or other files used in the output.
 
-For most Skills — including the one you'll build — all you need is the SKILL.md file. One file.
+For most Skills — including the one you'll build in this course — all you need is the SKILL.md file. That's it. One file.
 
 **Three things that make Skills powerful:**
 
-1. **Progressive Disclosure** — Claude only loads the full Skill when needed
-2. **Composability** — Multiple Skills work together
-3. **Portability** — Works in Claude.ai, Claude Code, and the API
+1. **Progressive Disclosure** — Claude doesn't load the full Skill into memory until it's needed. First it reads a short description. Only if the task matches does it read the full instructions. This keeps things fast.
+2. **Composability** — Multiple Skills can work together. A meeting-notes Skill could work alongside a Skill that formats documents, or one that creates Slack messages.
+3. **Portability** — A Skill works in Claude.ai, Claude Code, and the API. Build once, use everywhere.
 
-**What you're building in this course:**
+**Let's see a real example.**
 
-By Module 7, you'll have a working Skill called \`meeting-action-extractor\`. Paste messy meeting notes into Claude, get clean action items with owners, deadlines, and priorities. No templates. No re-explaining.`,
+Imagine a customer support lead named Raj who gets hundreds of feedback emails weekly. He built a Skill called \`feedback-categorizer\` that reads raw customer feedback and sorts it into categories: bug report, feature request, praise, or complaint — with severity and a suggested response template. He taught Claude once, and now it handles feedback consistently every time.
+
+That's the power of Skills. You define the workflow once, and Claude executes it reliably.
+
+---
+
+> **Now meet Clara.**
+>
+> Clara is a programme manager at Tidepool, a 40-person startup. She runs 3 standups a week, has 1:1s with 6 reports, and sits in a weekly leadership sync. After every meeting, she has a Google Doc full of chaotic notes — abbreviations, half-sentences, implied tasks.
+>
+> She's been pasting her notes into Claude with "give me the action items" but the results are inconsistent. She wants a Skill that handles her messy notes reliably. **You're going to build it for her.**
+
+By Module 7, you'll have a working Skill called \`meeting-action-extractor\`. Clara will paste her messy notes, and the Skill will produce clean action items with owners, deadlines, and priority. Let's start.`,
     challengeInstructions: `### Challenge: Skill or Not a Skill?
 
-For each scenario, pick the best answer. You need **3/4 correct** to pass.`,
+You'll be shown 4 scenarios. For each one, identify whether a Claude Skill is the right solution. You need **3/4 correct** to pass.`,
     hints: [
-      "Think about whether the task is repetitive and follows a consistent pattern. Skills shine when you find yourself re-explaining the same instructions.",
-      "Consider what requires external system access (like monitoring Slack) versus what Claude can do with just text input. MCP connectors bridge the gap to external systems.",
-      "For Scenario 2: One-off factual questions don't need Skills. For Scenario 3: Real-time monitoring needs more than just instructions."
+      "Think about repetition. Skills shine when you do the same type of task regularly and want consistent results.",
+      "Scenario 3 involves real-time monitoring of an external service. A standalone Skill can't connect to Slack on its own — it would need something extra. (-25 XP)",
+      "Scenario 1: ✅ Skill (repetitive, same format every time). Scenario 2: ✅ Just ask Claude (one-off question). Scenario 3: ✅ Skill + MCP (needs external access). Scenario 4: ✅ Skill (same structure re-explained weekly). (-50 XP)"
     ],
     layer1Checks: ['At least 3 out of 4 correct answers'],
     completionSummary: [
