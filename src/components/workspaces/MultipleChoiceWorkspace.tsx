@@ -59,17 +59,14 @@ export function MultipleChoiceWorkspace({ onComplete }: Props) {
               else if (isSelected) borderClass = 'border-primary';
 
               return (
-                <label
+                <div
                   key={opt.label}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => { if (!submitted) setAnswers(a => ({ ...a, [scenario.id]: opt.label })); }}
+                  onKeyDown={(e) => { if (!submitted && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); setAnswers(a => ({ ...a, [scenario.id]: opt.label })); } }}
                   className={`flex items-center gap-3 p-3 rounded-md border cursor-pointer transition-colors ${borderClass} ${submitted ? 'pointer-events-none' : 'hover:border-primary'}`}
                 >
-                  <input
-                    type="radio"
-                    name={`scenario-${scenario.id}`}
-                    checked={isSelected}
-                    onChange={() => setAnswers(a => ({ ...a, [scenario.id]: opt.label }))}
-                    className="sr-only"
-                  />
                   <span className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-mono font-bold ${isSelected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground text-muted-foreground'}`}>
                     {opt.label}
                   </span>
