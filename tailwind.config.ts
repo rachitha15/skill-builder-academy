@@ -58,6 +58,7 @@ export default {
         },
         xp: "hsl(var(--xp))",
         "xp-cost": "hsl(var(--xp-cost))",
+        success: "hsl(var(--success))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
