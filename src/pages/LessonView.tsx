@@ -13,9 +13,9 @@ import { MultipleChoiceWorkspace } from '@/components/workspaces/MultipleChoiceW
 import { FolderStructureWorkspace } from '@/components/workspaces/FolderStructureWorkspace';
 import { CodeEditorWorkspace } from '@/components/workspaces/CodeEditorWorkspace';
 import { TriggerTestWorkspace } from '@/components/workspaces/TriggerTestWorkspace';
-import { FinalReviewWorkspace } from '@/components/workspaces/FinalReviewWorkspace';
 import { InstructionTestWorkspace } from '@/components/workspaces/InstructionTestWorkspace';
 import { MessyInputsWorkspace } from '@/components/workspaces/MessyInputsWorkspace';
+import { ShipItWorkspace } from '@/components/workspaces/ShipItWorkspace';
 import confetti from 'canvas-confetti';
 
 const LessonView = () => {
@@ -197,8 +197,7 @@ const LessonView = () => {
         return <TriggerTestWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} />;
       case 'final_review':
         return (
-          <FinalReviewWorkspace
-            initialCode={moduleState.userWork || getAssembledContent()}
+          <ShipItWorkspace
             onComplete={handleComplete}
             onWorkUpdate={handleWorkUpdate}
           />
