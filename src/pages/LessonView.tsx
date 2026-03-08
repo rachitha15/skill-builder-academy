@@ -95,7 +95,7 @@ const LessonView = () => {
   const getPlaceholder = (id: number) => {
     switch (id) {
       case 3: return '---\nname: meeting-action-extractor\ndescription: >\n  Use when...\n---';
-      case 4: return '## Context\n\n## Input\n\n## Steps\n\n## Output Format';
+      case 4: return '# Meeting Action Extractor\n\n## Instructions\n\n[Write your step-by-step instructions here]\n\n## Output Format\n\n[Define what the output should look like]\n\n## Edge Cases\n\n[What should happen when info is missing or unclear?]\n\n## Example\n\n[Show Claude an example input and the correct output]';
       case 6: return '## Edge Cases\n\n- **No action items found**: ...\n- **Missing owner**: ...\n- **Ambiguous deadline**: ...';
       default: return '';
     }
