@@ -35,6 +35,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
   const [revealedCount, setRevealedCount] = useState(0);
   const [showingQueries, setShowingQueries] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const layer2Ref = useRef<HTMLDivElement>(null);
   const revealInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Clean up interval on unmount
@@ -84,6 +85,8 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
     if (allLayer1Passed && layer2Evaluate) {
       setLayer2Loading(true);
       setShowingQueries(true);
+      // Auto-scroll to Layer 2 section after it renders
+      setTimeout(() => layer2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
       try {
         const l2 = await layer2Evaluate(code);
         setLayer2Results(l2);
@@ -181,6 +184,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
         {/* Layer 2 — Live Grading Reveal */}
         {showingQueries && (
           <motion.div
+            ref={layer2Ref}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-4 rounded-lg border border-border bg-card p-4"
