@@ -14,8 +14,8 @@ const CourseComplete = () => {
     const duration = 3000;
     const end = Date.now() + duration;
     const frame = () => {
-      confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#10b981', '#f59e0b', '#e2e8f0'] });
-      confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#10b981', '#f59e0b', '#e2e8f0'] });
+      confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff6b35', '#ffd60a', '#22c55e'] });
+      confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff6b35', '#ffd60a', '#22c55e'] });
       if (Date.now() < end) requestAnimationFrame(frame);
     };
     frame();
@@ -40,14 +40,20 @@ const CourseComplete = () => {
         transition={{ duration: 0.5 }}
         className="max-w-lg w-full text-center"
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', delay: 0.3 }}
-          className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/20 border border-primary/30 mb-6"
-        >
-          <Trophy className="h-10 w-10 text-primary" />
-        </motion.div>
+        {/* Burst ring behind trophy */}
+        <div className="relative inline-block mb-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full border-2 border-primary/40 burst-ring" />
+          </div>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', delay: 0.3 }}
+            className="relative z-10 inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/20 border border-primary/30"
+          >
+            <Trophy className="h-10 w-10 text-primary" />
+          </motion.div>
+        </div>
 
         <h1 className="text-4xl font-display font-extrabold text-foreground mb-3">
           You built your first Claude Skill! 🎉
@@ -55,7 +61,7 @@ const CourseComplete = () => {
         <p className="text-muted-foreground mb-8">Congratulations, Skill Builder!</p>
 
         {/* Badge card */}
-        <div className="rounded-xl border border-primary/30 bg-card p-6 mb-8 glow-primary">
+        <div className="rounded-lg border border-primary/30 bg-card p-6 mb-8 glow-primary">
           <p className="text-xs text-primary uppercase tracking-widest font-bold mb-2">Skill Builder</p>
           <p className="font-mono text-3xl font-bold text-primary">{state.totalXP} XP</p>
           <p className="text-sm text-muted-foreground mt-1">7 modules completed</p>
@@ -64,13 +70,13 @@ const CourseComplete = () => {
         <div className="space-y-3 mb-8">
           <button
             onClick={handleDownload}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity"
           >
             <Download className="h-4 w-4" /> Download Your Skill
           </button>
         </div>
 
-        <div className="rounded-xl border border-border bg-card p-5 mb-8 text-left">
+        <div className="rounded-lg border border-border bg-card p-5 mb-8 text-left">
           <h3 className="font-display font-bold text-foreground text-sm mb-2">How to install</h3>
           <ol className="text-sm text-muted-foreground space-y-1 list-decimal ml-4">
             <li>Go to Claude Settings → Skills</li>
@@ -84,7 +90,7 @@ const CourseComplete = () => {
             href={`https://www.linkedin.com/sharing/share-offsite/?url=https://untutorial.in&summary=${shareText}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 rounded-lg border border-border bg-card text-sm text-foreground hover:bg-muted transition-colors"
+            className="px-4 py-2 rounded-md border border-border bg-card text-sm text-foreground hover:bg-muted transition-colors"
           >
             Share on LinkedIn
           </a>
@@ -92,7 +98,7 @@ const CourseComplete = () => {
             href={`https://twitter.com/intent/tweet?text=${shareText}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 rounded-lg border border-border bg-card text-sm text-foreground hover:bg-muted transition-colors"
+            className="px-4 py-2 rounded-md border border-border bg-card text-sm text-foreground hover:bg-muted transition-colors"
           >
             Share on Twitter
           </a>

@@ -33,9 +33,11 @@ export function XPCounter({ className = '' }: { className?: string }) {
   }, [state.totalXP]);
 
   return (
-    <div className={`relative inline-flex items-center gap-1.5 ${className}`}>
-      <span className="text-xs font-medium text-muted-foreground">XP</span>
-      <span className="font-mono font-bold text-xp text-lg">{displayXP}</span>
+    <div className={`relative inline-flex items-center gap-2 ${className}`}>
+      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">XP</span>
+      <span className="font-mono font-extrabold text-primary text-3xl" style={{ textShadow: '0 0 20px hsl(18 100% 60% / 0.4)' }}>
+        {displayXP}
+      </span>
       <AnimatePresence>
         {floatingXP && (
           <motion.span
@@ -43,7 +45,7 @@ export function XPCounter({ className = '' }: { className?: string }) {
             animate={{ opacity: 0, y: -30 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2 }}
-            className="absolute -top-2 right-0 text-sm font-bold text-xp pointer-events-none"
+            className="absolute -top-4 right-0 text-sm font-bold text-primary pointer-events-none"
           >
             +{floatingXP}
           </motion.span>

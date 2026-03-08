@@ -1,8 +1,8 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Lightbulb, ChevronDown } from 'lucide-react';
+import { ArrowLeft, Lightbulb } from 'lucide-react';
 import { useCourse } from '@/context/CourseContext';
 import { MODULE_DATA } from '@/data/courseData';
 import { XPCounter } from '@/components/XPCounter';
@@ -13,6 +13,7 @@ import { FolderStructureWorkspace } from '@/components/workspaces/FolderStructur
 import { CodeEditorWorkspace } from '@/components/workspaces/CodeEditorWorkspace';
 import { TriggerTestWorkspace } from '@/components/workspaces/TriggerTestWorkspace';
 import { FinalReviewWorkspace } from '@/components/workspaces/FinalReviewWorkspace';
+import confetti from 'canvas-confetti';
 
 const LessonView = () => {
   const { id } = useParams<{ id: string }>();
@@ -74,7 +75,6 @@ const LessonView = () => {
     }
   };
 
-  // Build assembled content for module 7
   const getAssembledContent = () => {
     const m3 = state.modules[2]?.userWork || '---\nname: meeting-action-extractor\ndescription: >\n  ...\n---';
     const m4 = state.modules[3]?.userWork || '';
@@ -93,29 +93,12 @@ const LessonView = () => {
   const renderWorkspace = () => {
     if (completed || moduleState.status === 'completed') {
       return (
-        <div className="flex flex-col items-center justify-center h-full gap-4 p-8 text-center">
-          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', duration: 0.5 }} className="text-5xl">✅</motion.div>
-          <h3 className="text-xl font-display font-bold text-foreground">Module Complete!</h3>
-          <p className="text-muted-foreground text-sm">You earned {moduleState.xpEarned} XP</p>
-          {moduleId < 7 ? (
-            <button
-              onClick={() => navigate(`/course/module/${moduleId + 1}`)}
-              className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
-            >
-              Next Module →
-            </button>
-          ) : (
-            <button
-              onClick={() => navigate('/course/complete')}
-              className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
-            >
-              View Certificate 🎉
-            </button>
-          )}
-          <Link to="/course" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Back to Course Map
-          </Link>
-        </div>
+        <CompletionState
+          moduleId={moduleId}
+          xpEarned={moduleState.xpEarned}
+          onNext={() => moduleId < 7 ? navigate(`/course/module/${moduleId + 1}`) : navigate('/course/complete')}
+          isLast={moduleId >= 7}
+        />
       );
     }
 
@@ -151,13 +134,13 @@ const LessonView = () => {
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Top bar */}
-      <div className="flex-shrink-0 border-b border-border bg-background/80 backdrop-blur-sm px-6 py-3 flex items-center justify-between">
+      <div className="flex-shrink-0 border-b border-border bg-background px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link to="/course" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" /> Course Map
           </Link>
           <div className="h-4 w-px bg-border" />
-          <span className="text-sm text-muted-foreground">Module {moduleId} of 7</span>
+          <span className="text-sm text-muted-foreground">Module <span className="text-primary font-bold">{moduleId}</span> of 7</span>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-sm font-display font-semibold text-foreground">{moduleData.title}</span>
@@ -168,13 +151,13 @@ const LessonView = () => {
       {/* Split panel */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
         {/* Left panel - lesson */}
-        <div className="md:w-[40%] border-r border-border overflow-y-auto p-6">
+        <div className="md:w-[40%] border-r border-border border-l-4 border-l-primary overflow-y-auto p-6">
           <div className="lesson-content">
             <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
           </div>
 
           {/* Challenge instructions */}
-          <div className="mt-6 rounded-xl border border-primary/20 bg-primary/5 p-5">
+          <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5">
             <div className="lesson-content">
               <ReactMarkdown>{moduleData.challengeInstructions}</ReactMarkdown>
             </div>
@@ -213,5 +196,41 @@ const LessonView = () => {
     </div>
   );
 };
+
+/* Completion state with confetti + burst */
+function CompletionState({ moduleId, xpEarned, onNext, isLast }: { moduleId: number; xpEarned: number; onNext: () => void; isLast: boolean }) {
+  useEffect(() => {
+    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#ff6b35', '#ffd60a', '#22c55e'] });
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full gap-5 p-8 text-center">
+      {/* Burst ring behind checkmark */}
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full border-2 border-primary/40 burst-ring" />
+        </div>
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', duration: 0.5 }} className="text-6xl relative z-10">
+          ✅
+        </motion.div>
+      </div>
+      <h3 className="text-3xl font-display font-extrabold text-foreground">Module Complete!</h3>
+      <div className="relative">
+        <p className="font-mono text-4xl font-extrabold text-primary" style={{ textShadow: '0 0 20px hsl(18 100% 60% / 0.4)' }}>
+          +{xpEarned} XP
+        </p>
+      </div>
+      <button
+        onClick={onNext}
+        className="px-6 py-3 rounded-md bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity"
+      >
+        {isLast ? 'View Certificate 🎉' : 'Next Module →'}
+      </button>
+      <Link to="/course" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        Back to Course Map
+      </Link>
+    </div>
+  );
+}
 
 export default LessonView;

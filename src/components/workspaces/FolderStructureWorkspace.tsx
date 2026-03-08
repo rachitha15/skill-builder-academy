@@ -56,13 +56,13 @@ export function FolderStructureWorkspace({ onComplete, onWorkUpdate }: Props) {
             value={folderName}
             onChange={e => setFolderName(e.target.value)}
             placeholder="my-skill-name"
-            className={`flex-1 px-3 py-2 rounded-md bg-editor border text-sm font-mono text-editor-foreground focus:outline-none focus:ring-1 focus:ring-ring ${
-              folderName && (isKebabCase ? 'border-primary' : 'border-destructive')
-            } ${!folderName ? 'border-border' : ''}`}
+            className={`flex-1 px-3 py-2 rounded-md bg-editor border text-sm font-mono text-editor-foreground focus:outline-none focus:ring-1 ${
+              folderName && isKebabCase ? 'border-success focus:ring-success' : folderName ? 'border-destructive focus:ring-destructive' : 'border-border focus:ring-primary'
+            }`}
           />
           {folderName && (
             isKebabCase
-              ? <CheckCircle2 className="h-4 w-4 text-primary" />
+              ? <CheckCircle2 className="h-4 w-4 text-success" />
               : <XCircle className="h-4 w-4 text-destructive" />
           )}
         </div>
@@ -79,7 +79,7 @@ export function FolderStructureWorkspace({ onComplete, onWorkUpdate }: Props) {
             <label
               key={file}
               className={`flex items-center gap-3 p-2.5 rounded-md border cursor-pointer transition-colors ${
-                selectedFiles.includes(file) ? 'border-primary bg-primary/10' : 'border-border hover:border-muted-foreground'
+                selectedFiles.includes(file) ? 'border-primary bg-primary/10' : 'border-border hover:border-primary'
               }`}
             >
               <input
@@ -107,7 +107,7 @@ export function FolderStructureWorkspace({ onComplete, onWorkUpdate }: Props) {
           value={frontmatter}
           onChange={e => setFrontmatter(e.target.value)}
           placeholder={"---\nname: my-skill-name\n---"}
-          className="w-full min-h-[120px] px-4 py-3 rounded-md bg-editor border border-border text-sm font-mono text-editor-foreground focus:outline-none focus:ring-1 focus:ring-ring resize-y code-editor"
+          className="w-full min-h-[120px] px-4 py-3 rounded-md bg-[#1a1200] border border-border text-sm font-mono text-editor-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-y code-editor"
           spellCheck={false}
         />
       </div>
@@ -121,7 +121,7 @@ export function FolderStructureWorkspace({ onComplete, onWorkUpdate }: Props) {
           <div className="space-y-2">
             {results.map((r, i) => (
               <div key={i} className="flex items-start gap-2 text-sm">
-                {r.passed ? <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" /> : <XCircle className="h-4 w-4 text-destructive mt-0.5" />}
+                {r.passed ? <CheckCircle2 className="h-4 w-4 text-success mt-0.5" /> : <XCircle className="h-4 w-4 text-destructive mt-0.5" />}
                 <div>
                   <span className={r.passed ? 'text-foreground' : 'text-destructive'}>{r.check}</span>
                   {!r.passed && <p className="text-xs text-muted-foreground mt-0.5">{r.message}</p>}
@@ -129,13 +129,13 @@ export function FolderStructureWorkspace({ onComplete, onWorkUpdate }: Props) {
               </div>
             ))}
           </div>
-          {passed && <p className="mt-3 text-primary font-semibold text-sm">All checks passed! ✅</p>}
+          {passed && <p className="mt-3 text-success font-semibold text-sm">All checks passed! ✅</p>}
         </motion.div>
       )}
 
       <button
         onClick={handleSubmit}
-        className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+        className="px-6 py-3 rounded-md bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity"
       >
         Submit
       </button>
