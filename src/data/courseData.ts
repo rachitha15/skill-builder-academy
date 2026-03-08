@@ -148,52 +148,48 @@ Clara wants a Skill for extracting action items from her meeting notes. Help her
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'code_editor',
-    lessonContent: `Your frontmatter's \`description\` field has **two jobs** — and most people only do one of them.
+    lessonContent: `The YAML frontmatter is the most important thing you'll write. Here's why: Claude reads the frontmatter of every installed Skill at startup. It uses the \`description\` field to decide which Skills to load for any given task.
 
-**Job 1: WHAT does the Skill do?**
-This is the easy part. "Extracts action items from meeting notes." Done.
+**The description field has two jobs:**
 
-**Job 2: WHEN should Claude use it?**
-This is where most Skills fail. Without trigger language, Claude has to *guess* when to activate your Skill. And Claude's guesses aren't great.
+1. **What it does** — A clear statement of the Skill's purpose.
+2. **When to use it** — Specific trigger phrases or situations.
 
-### Good vs. Bad Descriptions
+Both are required. Missing either one is the #1 reason Skills fail.
 
-**✅ Good — clear WHAT + WHEN:**
-- *"Extracts structured action items from meeting notes. Use when a user pastes meeting notes, standup recaps, or 1:1 notes and asks for action items, to-dos, or follow-ups."*
-- *"Converts raw meeting transcripts into actionable task lists. Use when someone asks to pull out next steps, owners, or deadlines from meeting documentation."*
-- *"Identifies and structures follow-up tasks from meetings. Use for processing meeting notes, standup summaries, or any notes where action items need extraction."*
+**Let's look at how Raj wrote his description:**
 
-**❌ Bad — vague or missing trigger:**
-- *"Helps with meetings."* — Too vague, no trigger
-- *"An AI assistant for extracting information."* — What information? When?
-- *"meeting-action-extractor skill for Claude"* — Just repeats the name
+\`\`\`yaml
+description: Categorizes customer feedback into bug reports,
+  feature requests, praise, or complaints with severity level
+  and suggested response. Use when user pastes customer emails,
+  survey responses, support tickets, or NPS comments and asks
+  to sort, categorize, triage, or prioritize feedback.
+\`\`\`
 
-### Trigger Phrases Users Actually Say
-Think about what someone types before pasting their notes:
-- *"Here are my meeting notes, can you extract the action items?"*
-- *"Pull out the to-dos from this standup recap"*
-- *"What are the follow-ups from this meeting?"*
-- *"I pasted my 1:1 notes, find the next steps"*
+Why this works: It says WHAT (categorizes into specific types with severity) and WHEN (specific input types + specific trigger phrases like "sort", "categorize", "triage").
 
-Your description should contain the **keywords** from these phrases: action items, to-dos, follow-ups, next steps, meeting notes, standup.
+**Bad descriptions:**
 
-### Input Types to Mention
-Be specific about what your Skill processes:
-- Meeting notes (bullet points, free-form)
-- Standup recaps
-- 1:1 notes
-- Meeting transcripts
+❌ *"Helps with customer stuff."*
+Too vague. Claude has no idea when to use it.
 
-### Rules
-- Under **1024 characters** total
-- **No XML tags** (\`<\` or \`>\` characters)
-- Name can't contain "claude" or "anthropic"
-- Name must be **kebab-case**
+❌ *"An advanced NLP pipeline for multi-label sentiment classification with hierarchical taxonomy mapping."*
+Technically accurate but zero trigger phrases. Claude won't match this to "hey can you sort through these support emails?"
+
+**Pro tips for writing descriptions:**
+- **Include words users actually say** — Raj used "sort", "categorize", "triage"
+- **Mention input types** — Raj listed "customer emails", "survey responses", "support tickets"
+- Keep it under **1024 characters** total
+- **No XML tags** (\`<\` or \`>\` characters) — security restriction
+- Don't put "claude" or "anthropic" in the Skill name
 
 > **Pro tip:** "Use when" is your best friend. It's the clearest signal to Claude that what follows is trigger criteria.`,
-    challengeInstructions: `### Challenge: Write Your Frontmatter
+    challengeInstructions: `### Challenge: Write Clara's Frontmatter
 
-Write the complete YAML frontmatter for your meeting-action-extractor Skill. Your frontmatter needs both a \`name\` and a \`description\` field.
+Clara's Skill needs to trigger when she pastes standup notes, 1:1 notes, sprint retro summaries, or leadership sync notes. It should NOT trigger when she asks Claude to draft emails, write docs, or schedule meetings.
+
+Write the complete YAML frontmatter for Clara's \`meeting-action-extractor\` Skill. Your frontmatter needs both a \`name\` and a \`description\` field.
 
 **Layer 1** — Structural checks run instantly:
 - \`---\` delimiters present
@@ -207,9 +203,9 @@ Write the complete YAML frontmatter for your meeting-action-extractor Skill. You
 
 Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     hints: [
-      "Include both WHAT and WHEN. Use phrases like 'action items', 'to-dos', 'follow-ups', 'next steps'. Mention the input types: meeting notes, standup recaps, 1:1 notes.",
-      "To avoid over-triggering on scheduling queries, be specific about INPUT (meeting notes, transcripts) and OUTPUT (action items with owners and deadlines). Don't just say 'helps with meetings'. (-25 XP)",
-      "Here's an example that scores 7/7:\n\n---\nname: meeting-action-extractor\ndescription: >\n  Extracts structured action items with owners, deadlines,\n  and priorities from meeting notes. Use when a user pastes\n  meeting notes, standup recaps, or 1:1 notes and asks for\n  action items, to-dos, follow-ups, or next steps.\n--- (-50 XP)"
+      "Remember how Raj listed specific input types AND specific actions in his description? Clara's Skill needs the same — list the types of notes she pastes AND what she asks Claude to do with them.",
+      "To avoid triggering on email drafting or doc writing, be specific about what the Skill DOES (extracts action items) and what it DOESN'T do. Clara's Skill processes existing notes — it doesn't create new content. (-25 XP)",
+      "Here's an example that scores 7/7:\n\n---\nname: meeting-action-extractor\ndescription: >\n  Extracts structured action items with owners, deadlines,\n  and priorities from meeting notes. Use when a user pastes\n  standup notes, 1:1 notes, sprint retro summaries, or\n  leadership sync notes and asks for action items, to-dos,\n  follow-ups, or next steps.\n--- (-50 XP)"
     ],
     layer1Checks: ['YAML delimiters present', 'Name is kebab-case', 'Description 50+ chars', 'Trigger language present', 'No XML tags', 'No reserved names'],
     completionSummary: [
