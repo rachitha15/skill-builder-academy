@@ -56,7 +56,7 @@ export function validateInstructions(content: string): ValidationResult[] {
   return [
     { check: 'Sufficient detail', passed: content.length >= 200, message: 'Instructions should be at least 200 characters' },
     { check: 'Structured instructions', passed: /\d+\.\s+|##\s*(steps|process|instructions|context|input|output)/i.test(content), message: 'Include numbered steps or structured sections (## Steps, ## Context, etc.)' },
-    { check: 'Handles missing info', passed: /unassigned|no\s+deadline|no\s+owner|not\s+specified|if\s+no|when\s+missing|if\s+missing|missing\s+(owner|deadline|assignee|info)|unknown|tbd|n\/a|none/i.test(content), message: 'Include handling for missing info (e.g., "Unassigned", "No deadline", "If no owner...")' },
+    { check: 'Handles missing info', passed: /unassigned|not\s+available|no\s+deadline|no\s+owner|not\s+specified|if\s+no|when\s+missing|if\s+missing|missing\s+(owner|deadline|assignee|info)|unknown|tbd|n\/a|none|skip|omit|leave\s+blank/i.test(content), message: 'Include handling for missing info (e.g., "Unassigned", "Not available", "No deadline", "If no owner...")' },
     { check: 'Relevant to task', passed: /action|task|item|extract|owner|deadline|priority/i.test(content), message: 'Instructions should reference action items, tasks, owners, deadlines, or priorities' },
   ];
 }
