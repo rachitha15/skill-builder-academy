@@ -443,36 +443,64 @@ Your instructions from Module 4 are pre-loaded in the editor. Above the editor, 
     title: "Ship It",
     subtitle: "Package and download your finished Skill",
     estimatedMinutes: 10,
-    maxXP: 200,
+    maxXP: 250,
     challengeType: 'final_review',
-    lessonContent: `You've built all the pieces. Now it's time to assemble your complete SKILL.md and ship it.
+    lessonContent: `Clara's Skill is ready. You built it, tested it, broke it on her worst notes, and fixed it. Now let's package it.
 
-**Final checklist:**
-1. ✅ Frontmatter has valid name and description
-2. ✅ Description includes trigger language
-3. ✅ Instructions have context, input, steps, output sections
-4. ✅ Edge cases are handled
-5. ✅ No XML tags or reserved names
-6. ✅ Markdown is well-formatted
-7. ✅ The Skill actually solves the problem it claims to
+**Your complete \`meeting-action-extractor\` Skill:**
 
-**How to install your Skill:**
-1. Go to Claude Settings → Skills
-2. Upload your Skill folder
-3. Test it with real meeting notes!`,
+\`\`\`
+meeting-action-extractor/
+└── SKILL.md
+\`\`\`
+
+One folder, one file. Simple by design.
+
+The SKILL.md contains:
+1. Your YAML frontmatter (from Module 3)
+2. Your instructions body (from Module 4, refined in Module 6)
+
+**Installing your Skill in Claude:**
+
+1. Download the .zip file (button on the right →)
+2. Open Claude.ai → Settings → Capabilities → Skills
+3. Click "Upload skill"
+4. Select the .zip file
+5. Toggle the Skill on
+6. Test it: paste meeting notes and ask for action items
+
+Clara's Skill will now trigger automatically whenever she (or you!) pastes meeting notes and asks for action items. No more re-explaining. No more templates. Just results.
+
+**What you've learned — the framework:**
+
+1. Define the use case (Clara's repeatable workflow)
+2. Write clear frontmatter (what + when)
+3. Write specific instructions (steps + examples + edge cases)
+4. Test triggers (obvious + paraphrased + negative)
+5. Break it with messy inputs and fix it
+6. Ship it
+
+This framework works for ANY Skill — competitive analysis, customer research synthesis, OKR drafting, sprint planning, or whatever your workflow needs. The meeting-action-extractor was the vehicle. The skill-building framework is what you take with you.
+
+**One more thing before you ship:**
+
+Your Skill needs to pass one final test — a set of Clara's notes you haven't seen yet. Think of it as the final boss. Review your SKILL.md, make any last edits, and run the test.`,
     challengeInstructions: `### Challenge: Final Review & Ship
 
-Review your complete SKILL.md below. Make any final edits, then run the final test and download your Skill!`,
+Review your complete SKILL.md below. Check off each item in the pre-ship checklist, make any final edits, then run the final test against Clara's unseen notes.
+
+**Pass threshold:** 4/6 criteria. Base XP: 200 (+50 first attempt bonus).`,
     hints: [
       "Review each section carefully. Make sure the frontmatter, instructions, and edge cases all work together.",
       "Check that your description clearly explains when to use the Skill. (-25 XP)",
-      "If the final test fails, look at which checks failed and fix those specific sections. (-50 XP)"
+      "If the final test fails, look at which criteria failed and fix those specific sections. (-50 XP)"
     ],
-    layer1Checks: ['Valid frontmatter', 'Has instructions', 'Has edge cases', 'Well-formatted markdown', 'No XML tags', 'No reserved names', 'Description has trigger language'],
+    layer1Checks: ['At least 500 characters', 'Has --- delimiters', 'Has name: field', 'Has description: field', 'Has numbered steps', 'Handles edge cases'],
     completionSummary: [
       "You built a complete, working Claude Skill from scratch!",
       "Your meeting-action-extractor can turn messy notes into structured action items",
-      "Install it in Claude Settings → Skills → Upload"
+      "Install it in Claude Settings → Skills → Upload",
+      "The skill-building framework works for ANY repeatable workflow"
     ]
   }
 ];

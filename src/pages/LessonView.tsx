@@ -197,8 +197,7 @@ const LessonView = () => {
         return <TriggerTestWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} />;
       case 'final_review':
         return (
-          <FinalReviewWorkspace
-            initialCode={moduleState.userWork || getAssembledContent()}
+          <ShipItWorkspace
             onComplete={handleComplete}
             onWorkUpdate={handleWorkUpdate}
           />
