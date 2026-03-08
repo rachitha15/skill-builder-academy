@@ -47,7 +47,7 @@ const LessonView = () => {
 
   const handleComplete = (score: number, maxScore: number) => {
     dispatch({ type: 'INCREMENT_ATTEMPTS', moduleId });
-    const { total } = calculateXP(moduleData.maxXP, score, maxScore, moduleState.attempts, moduleState.hintsUsed);
+    const { total } = calculateXP(moduleId, score, maxScore, moduleState.attempts, moduleState.hintsUsed);
     dispatch({ type: 'COMPLETE_MODULE', moduleId, xpEarned: total });
     setCompleted(true);
   };
