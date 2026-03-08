@@ -17,7 +17,7 @@ const CourseMap = () => {
 
   return (
     <div className="min-h-screen bg-background noise-bg">
-      <nav className="border-b border-border/50 sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
+      <nav className="border-b border-border/50 sticky top-0 z-10 bg-background/95 backdrop-blur-sm">
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" /> Back
@@ -28,7 +28,7 @@ const CourseMap = () => {
 
       <div className="max-w-3xl mx-auto px-6 py-10">
         <div className="mb-8">
-          <h1 className="text-3xl font-display font-bold text-foreground mb-2">
+          <h1 className="text-4xl font-display font-extrabold text-foreground mb-3">
             Build Your First Claude Skill
           </h1>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -38,7 +38,7 @@ const CourseMap = () => {
         </div>
 
         {/* Progress bar */}
-        <div className="w-full h-2 rounded-full bg-card mb-10 overflow-hidden">
+        <div className="w-full h-2 rounded-full bg-muted mb-10 overflow-hidden">
           <motion.div
             className="h-full bg-primary rounded-full progress-fill"
             style={{ width: `${(state.modules.filter(m => m.status === 'completed').length / 7) * 100}%` }}
@@ -60,30 +60,31 @@ const CourseMap = () => {
                 transition={{ delay: i * 0.05 }}
                 onClick={() => {
                   if (isLocked) return;
-                  if (isCompleted) navigate(`/course/module/${mod.id}`);
-                  else navigate(`/course/module/${mod.id}`);
+                  navigate(`/course/module/${mod.id}`);
                 }}
-                className={`group relative rounded-xl border p-5 transition-all cursor-pointer ${
+                className={`group relative rounded-lg border p-5 transition-all cursor-pointer ${
                   isLocked
-                    ? 'border-border/50 opacity-50 cursor-not-allowed'
+                    ? 'border-border opacity-50 cursor-not-allowed bg-card'
                     : isCompleted
-                    ? 'border-primary/30 bg-primary/5 hover:border-primary/50'
-                    : 'border-border bg-card hover:border-primary/50 hover:bg-card/80'
+                    ? 'border-border bg-card border-l-4 border-l-success hover:border-l-success/80'
+                    : isInProgress
+                    ? 'border-border bg-card border-l-4 border-l-primary hover:border-l-primary/80'
+                    : 'border-border bg-card hover:border-primary/50'
                 }`}
                 title={isLocked ? `Complete Module ${mod.id - 1} first` : undefined}
               >
                 <div className="flex items-center gap-4">
                   <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center font-mono font-bold text-sm ${
-                    isCompleted ? 'bg-primary text-primary-foreground' : isInProgress ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-muted text-muted-foreground'
+                    isCompleted ? 'bg-success text-primary-foreground' : isInProgress ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-muted text-muted-foreground'
                   }`}>
                     {isCompleted ? <CheckCircle2 className="h-5 w-5" /> : isLocked ? <Lock className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-xs text-muted-foreground font-mono">Module {mod.id}</span>
-                      {isInProgress && <span className="px-1.5 py-0.5 text-[10px] rounded bg-primary/20 text-primary font-medium">In Progress</span>}
+                      {isInProgress && <span className="px-1.5 py-0.5 text-[10px] rounded bg-primary text-primary-foreground font-bold">In Progress</span>}
                     </div>
-                    <h3 className="font-display font-bold text-foreground text-sm mt-0.5">{mod.title}</h3>
+                    <h3 className="font-display font-bold text-foreground text-base mt-0.5">{mod.title}</h3>
                     <p className="text-xs text-muted-foreground mt-0.5">{mod.subtitle}</p>
                   </div>
                   <div className="text-right flex-shrink-0">
@@ -102,7 +103,7 @@ const CourseMap = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-8 text-center">
             <Link
               to="/course/complete"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-bold glow-primary hover:opacity-90 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-md bg-primary text-primary-foreground font-bold glow-primary hover:opacity-90 transition-all"
             >
               View Your Certificate 🎉
             </Link>
