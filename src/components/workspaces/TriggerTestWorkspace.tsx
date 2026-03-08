@@ -111,7 +111,7 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
     setError(null);
     setEvalResult(null);
     setShowResults(false);
-    setVisibleRows(0);
+    
 
     if (!validateLayer1()) return;
 
