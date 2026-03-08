@@ -381,15 +381,17 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
         )}
       </div>
 
-      <div className="p-4 border-t border-border">
-        <button
-          onClick={handleSubmit}
-          disabled={code.trim().length === 0 || layer2Loading}
-          className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-        >
-          {layer2Loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Testing...</> : 'Submit'}
-        </button>
-      </div>
+      {!passed && (
+        <div className="p-4 border-t border-border">
+          <button
+            onClick={handleSubmit}
+            disabled={code.trim().length === 0 || layer2Loading}
+            className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+          >
+            {layer2Loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Testing...</> : 'Submit'}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
