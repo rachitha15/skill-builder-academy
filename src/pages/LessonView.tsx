@@ -159,6 +159,14 @@ const LessonView = () => {
       case 'folder_structure':
         return <FolderStructureWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} />;
       case 'code_editor':
+        if (moduleId === 6) {
+          return (
+            <MessyInputsWorkspace
+              onComplete={handleComplete}
+              onWorkUpdate={handleWorkUpdate}
+            />
+          );
+        }
         if (moduleId === 4) {
           return (
             <InstructionTestWorkspace
