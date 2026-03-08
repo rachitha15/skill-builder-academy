@@ -35,6 +35,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
   const [revealedCount, setRevealedCount] = useState(0);
   const [showingQueries, setShowingQueries] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const layer2Ref = useRef<HTMLDivElement>(null);
   const revealInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Clean up interval on unmount
