@@ -94,8 +94,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
         startReveal();
         if (l2.score >= 4) {
           setPassed(true);
-          // Delay onComplete until reveal finishes
-          setTimeout(() => onComplete(l2.score, l2.maxScore), 250 * 7 + 300);
+          // User will click Continue button to proceed
         }
       } catch (err) {
         const message = err instanceof Error ? err.message : 'An unexpected error occurred.';
