@@ -58,7 +58,14 @@ export function InstructionTestWorkspace({ initialCode, placeholder, validate, o
     setError(null);
 
     const allPassed = res.every(r => r.passed);
-    if (!allPassed) return;
+    if (!allPassed) {
+      toast({
+        title: 'Fix Step 1 checks first',
+        description: 'Update the failed structural checks, then click Test My Instructions again.',
+        variant: 'destructive',
+      });
+      return;
+    }
 
     // Layer 2: AI evaluation
     setLoading(true);
@@ -103,7 +110,17 @@ export function InstructionTestWorkspace({ initialCode, placeholder, validate, o
           <textarea
             ref={textareaRef}
             value={code}
-            onChange={e => { setCode(e.target.value); onWorkUpdate(e.target.value); }}
+            onChange={e => {
+              const nextCode = e.target.value;
+              setCode(nextCode);
+              onWorkUpdate(nextCode);
+              if (results || evalResult || error || passed) {
+                setResults(null);
+                setEvalResult(null);
+                setError(null);
+                setPassed(false);
+              }
+            }}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
             disabled={loading}
@@ -278,6 +295,11 @@ export function InstructionTestWorkspace({ initialCode, placeholder, validate, o
           >
             {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Testing...</> : '🧪 Test My Instructions'}
           </button>
+          {results?.some(r => !r.passed) && (
+            <p className="mt-2 text-xs text-destructive">
+              Step 1 has failed checks. Update your instructions and click Test My Instructions again.
+            </p>
+          )}
         </div>
       )}
     </div>
