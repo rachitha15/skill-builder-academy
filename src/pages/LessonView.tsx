@@ -23,6 +23,12 @@ const LessonView = () => {
   const [revealedHints, setRevealedHints] = useState<number[]>([]);
   const [completed, setCompleted] = useState(false);
 
+  // Reset local state when navigating between modules
+  useEffect(() => {
+    setCompleted(false);
+    setRevealedHints([]);
+  }, [moduleId]);
+
   const moduleData = MODULE_DATA.find(m => m.id === moduleId);
   const moduleState = state.modules.find(m => m.id === moduleId);
 
@@ -214,7 +220,7 @@ function CompletionState({ moduleId, xpEarned, onNext, isLast }: { moduleId: num
           ✅
         </motion.div>
       </div>
-      <h3 className="text-3xl font-display font-extrabold text-foreground">Module Complete!</h3>
+      <h3 className="text-3xl font-display font-bold tracking-tight text-foreground">Module Complete!</h3>
       <div className="relative">
         <p className="font-mono text-4xl font-extrabold text-primary" style={{ textShadow: '0 0 20px hsl(18 100% 60% / 0.4)' }}>
           +{xpEarned} XP

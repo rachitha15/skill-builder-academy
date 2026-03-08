@@ -30,7 +30,7 @@ const Landing = () => {
             transition={{ duration: 0.6 }}
             className="md:w-1/2 text-left"
           >
-            <h1 className="text-5xl md:text-6xl font-display font-extrabold text-foreground leading-tight mb-6">
+            <h1 className="text-5xl md:text-6xl font-display font-bold tracking-tight text-foreground leading-tight mb-6">
               Stop watching{' '}
               <span className="relative inline-block">
                 <span className="relative z-10">tutorials</span>
