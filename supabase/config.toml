@@ -1,1 +1,4 @@
 project_id = "linvrngdhjoblbtrzkmc"
+
+[functions.evaluate-description]
+verify_jwt = false
