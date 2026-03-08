@@ -51,7 +51,8 @@ const CourseMap = () => {
             const isFirstModule = mod.id === 1;
             const isLocked = modState.status === 'locked' && !isFirstModule;
             const isCompleted = modState.status === 'completed';
-            const isInProgress = modState.status === 'in_progress';
+            const hasStartedModule = modState.attempts > 0 || modState.hintsUsed > 0 || modState.userWork.trim().length > 0;
+            const isInProgress = modState.status === 'in_progress' && (!isFirstModule || hasStartedModule);
 
             return (
               <motion.div

@@ -54,7 +54,25 @@ const initialState: CourseState = {
 function loadState(): CourseState {
   try {
     const saved = localStorage.getItem('untutorial-progress');
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const parsed = JSON.parse(saved) as CourseState;
+
+      // Backward-compat migration: if progress is effectively untouched,
+      // keep Module 1 in locked/not-started state on the map.
+      const isUntouched = parsed.modules?.every(m =>
+        m.status !== 'completed' &&
+        m.attempts === 0 &&
+        m.hintsUsed === 0 &&
+        m.xpEarned === 0 &&
+        m.userWork.trim().length === 0
+      );
+
+      if (isUntouched && parsed.modules?.[0]?.status === 'in_progress') {
+        parsed.modules[0] = { ...parsed.modules[0], status: 'locked' };
+      }
+
+      return parsed;
+    }
   } catch {}
   return initialState;
 }
