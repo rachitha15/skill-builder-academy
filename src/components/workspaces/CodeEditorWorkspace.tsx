@@ -94,8 +94,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
         startReveal();
         if (l2.score >= 4) {
           setPassed(true);
-          // Delay onComplete until reveal finishes
-          setTimeout(() => onComplete(l2.score, l2.maxScore), 250 * 7 + 300);
+          // User will click Continue button to proceed
         }
       } catch (err) {
         const message = err instanceof Error ? err.message : 'An unexpected error occurred.';
@@ -340,7 +339,15 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
                 </div>
 
                 {layer2Results.score >= 4 ? (
-                  <p className="mt-3 text-primary font-semibold text-sm">Trigger test passed! ✅</p>
+                  <>
+                    <p className="mt-3 text-primary font-semibold text-sm">Trigger test passed! ✅</p>
+                    <button
+                      onClick={() => onComplete(layer2Results.score, layer2Results.maxScore)}
+                      className="mt-4 w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+                    >
+                      Continue →
+                    </button>
+                  </>
                 ) : (
                   <p className="mt-3 text-destructive font-semibold text-sm">Need at least 4/7 correct. Revise your description and try again.</p>
                 )}
