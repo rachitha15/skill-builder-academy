@@ -1,8 +1,10 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, XCircle, Loader2, AlertTriangle, RotateCcw } from 'lucide-react';
 import { ValidationResult } from '@/context/CourseContext';
 import { Layer2Result } from '@/lib/layer2Evaluator';
+import { Progress } from '@/components/ui/progress';
+import { toast } from '@/hooks/use-toast';
 
 interface Props {
   moduleId: number;
@@ -19,8 +21,30 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
   const [results, setResults] = useState<ValidationResult[] | null>(null);
   const [layer2Results, setLayer2Results] = useState<Layer2Result | null>(null);
   const [layer2Loading, setLayer2Loading] = useState(false);
+  const [layer2Error, setLayer2Error] = useState<string | null>(null);
   const [passed, setPassed] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startLoadingProgress = () => {
+    setLoadingProgress(0);
+    progressInterval.current = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 90) {
+          if (progressInterval.current) clearInterval(progressInterval.current);
+          return 90;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 300);
+  };
+
+  const stopLoadingProgress = () => {
+    if (progressInterval.current) clearInterval(progressInterval.current);
+    setLoadingProgress(100);
+    setTimeout(() => setLoadingProgress(0), 400);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Tab') {
@@ -40,12 +64,13 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
     const res = validate(code);
     setResults(res);
     setLayer2Results(null);
+    setLayer2Error(null);
 
     const allLayer1Passed = res.every(r => r.passed);
 
     if (allLayer1Passed && layer2Evaluate) {
-      // Run Layer 2
       setLayer2Loading(true);
+      startLoadingProgress();
       try {
         const l2 = await layer2Evaluate(code);
         setLayer2Results(l2);
@@ -53,11 +78,19 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
           setPassed(true);
           onComplete(l2.score, l2.maxScore);
         }
+      } catch (err) {
+        const message = err instanceof Error ? err.message : 'An unexpected error occurred.';
+        setLayer2Error(message);
+        toast({
+          title: 'Evaluation failed',
+          description: message,
+          variant: 'destructive',
+        });
       } finally {
+        stopLoadingProgress();
         setLayer2Loading(false);
       }
     } else if (allLayer1Passed && !layer2Evaluate) {
-      // No Layer 2 — complete on Layer 1
       const passedCount = res.filter(r => r.passed).length;
       setPassed(true);
       onComplete(passedCount, res.length);
@@ -76,7 +109,7 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
     <div className="flex flex-col h-full">
       <div className="flex-1 p-4 overflow-y-auto">
         {/* Code editor */}
-        <div className="rounded-lg border border-border bg-editor overflow-hidden">
+        <div className={`rounded-lg border border-border bg-editor overflow-hidden transition-opacity ${layer2Loading ? 'opacity-60 pointer-events-none' : ''}`}>
           <div className="flex items-center gap-2 px-4 py-2 border-b border-border bg-card">
             <div className="w-3 h-3 rounded-full bg-destructive/60" />
             <div className="w-3 h-3 rounded-full bg-secondary/60" />
@@ -89,7 +122,8 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
             onChange={e => { setCode(e.target.value); onWorkUpdate(e.target.value); }}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
-            className="w-full min-h-[300px] p-4 bg-editor text-editor-foreground font-mono text-sm leading-relaxed resize-y focus:outline-none placeholder:text-muted-foreground/40 code-editor"
+            disabled={layer2Loading}
+            className="w-full min-h-[300px] p-4 bg-editor text-editor-foreground font-mono text-sm leading-relaxed resize-y focus:outline-none placeholder:text-muted-foreground/40 code-editor disabled:cursor-not-allowed"
             spellCheck={false}
           />
         </div>
@@ -128,12 +162,39 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 rounded-lg border border-border bg-card p-5 flex items-center gap-3"
+            className="mt-4 rounded-lg border border-border bg-card p-5"
           >
-            <Loader2 className="h-5 w-5 text-primary animate-spin" />
-            <div>
-              <p className="text-sm font-semibold text-foreground">Running trigger test...</p>
-              <p className="text-xs text-muted-foreground">Testing your description against 7 real user queries</p>
+            <div className="flex items-center gap-3 mb-3">
+              <Loader2 className="h-5 w-5 text-primary animate-spin" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Running trigger test...</p>
+                <p className="text-xs text-muted-foreground">Testing your description against 7 real user queries • Usually takes 2–3 seconds</p>
+              </div>
+            </div>
+            <Progress value={loadingProgress} className="h-1.5" />
+          </motion.div>
+        )}
+
+        {/* Layer 2 Error */}
+        {layer2Error && !layer2Loading && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 p-4"
+          >
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-destructive">Trigger test failed</p>
+                <p className="text-xs text-muted-foreground mt-1">{layer2Error}</p>
+                <button
+                  onClick={handleSubmit}
+                  className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:opacity-80 transition-opacity"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" />
+                  Try again
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
