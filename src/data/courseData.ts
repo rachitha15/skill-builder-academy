@@ -78,40 +78,59 @@ You'll be shown 4 scenarios. For each one, identify whether a Claude Skill is th
     estimatedMinutes: 10,
     maxXP: 150,
     challengeType: 'folder_structure',
-    lessonContent: `Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`meeting-action-extractor\` is correct. \`Meeting Action Extractor\` is not.
+    lessonContent: `Now you know what a Skill is. Let's look at what one actually looks like on the inside.
 
-Inside the folder, one required file: \`SKILL.md\`. Note the exact casing — it must be exactly \`SKILL.md\`. Not \`skill.md\`. Not \`Skill.md\`.
+Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`feedback-categorizer\` is correct. \`Feedback Categorizer\` is not. \`feedback_categorizer\` is not.
+
+Inside the folder, there's one required file: \`SKILL.md\`. Note the exact casing — it must be exactly \`SKILL.md\`. Not \`skill.md\`. Not \`Skill.md\`. Exactly \`SKILL.md\`.
 
 This file has two parts:
 
-**Part 1: YAML Frontmatter** — Metadata at the top, wrapped in \`---\` delimiters. Claude reads this first to decide if it should load the full Skill.
+**Part 1: YAML Frontmatter** — This is metadata at the very top of the file, wrapped in \`---\` delimiters. It tells Claude the name of your Skill and when to use it.
+
+Here's what Raj's feedback categorizer looks like:
 
 \`\`\`yaml
 ---
-name: meeting-action-extractor
-description: Extracts structured action items from messy meeting notes. Use when user pastes meeting notes and asks for action items, to-dos, or follow-ups.
+name: feedback-categorizer
+description: Categorizes customer feedback into bug reports, feature requests, praise, or complaints with severity level. Use when user pastes customer emails, survey responses, or support tickets and asks to sort, categorize, or triage feedback.
 ---
 \`\`\`
 
-**Part 2: Markdown Body** — The actual instructions below the frontmatter.
+**Part 2: Markdown Body** — Everything below the frontmatter is the instructions Claude follows when the Skill is active.
 
-**Optional folders:**
+\`\`\`markdown
+# Feedback Categorizer
 
-- \`scripts/\` — Executable code (Python, Bash)
-- \`references/\` — Extra documentation
-- \`assets/\` — Templates, fonts, icons
+## Instructions
+1. Read the customer feedback provided
+2. Categorize into: Bug Report, Feature Request, Praise, or Complaint
+3. Assign severity: Critical, High, Medium, Low
+4. Write a 1-sentence summary
+5. Suggest a response template
 
-**Critical rule: No README.md** inside the Skill folder. Documentation goes in SKILL.md or references/.`,
-    challengeInstructions: `### Challenge: Build the Skeleton
+## Edge Cases
+- If feedback contains multiple categories, create separate entries
+- If sentiment is ambiguous, default to "Needs Review"
+\`\`\`
 
-Complete all 3 tasks to set up your Skill's folder structure:
+**The optional folders:**
 
-1. **Name the folder** for your meeting-notes-to-action-items Skill
+- \`scripts/\` — Python or Bash scripts Claude can run. Example: a validation script that checks output format.
+- \`references/\` — Extra documentation Claude reads for context.
+- \`assets/\` — Files used in the output, like report templates.
+
+**Critical rule: No README.md** inside the Skill folder. All documentation goes in SKILL.md or references/.`,
+    challengeInstructions: `### Challenge: Build Clara's Skeleton
+
+Clara wants a Skill for extracting action items from her meeting notes. Help her set up the structure.
+
+1. **Name the folder** for Clara's meeting-notes-to-action-items Skill
 2. **Identify the required files** — check only what's truly required
 3. **Write the opening frontmatter** with just the name field`,
     hints: [
-      "Folder names use kebab-case: all lowercase, words separated by hyphens.",
-      "Only one file is truly required. The others are optional. And remember — one of the options should definitely NOT be in a Skill folder. (-25 XP)",
+      "Folder names use kebab-case: all lowercase, words separated by hyphens. No spaces, no underscores, no capitals.",
+      "Only one file is truly required. The others are optional. And remember — there's one file that should NEVER be inside a Skill folder. (-25 XP)",
       "Here's the complete answer:\n- Folder name: meeting-action-extractor\n- Only SKILL.md is required (don't check README.md!)\n- Frontmatter:\n---\nname: meeting-action-extractor\n--- (-50 XP)"
     ],
     layer1Checks: ['Folder name is kebab-case', 'Only SKILL.md checked as required', 'README.md not checked', 'Valid YAML frontmatter delimiters', 'Name field is kebab-case'],
