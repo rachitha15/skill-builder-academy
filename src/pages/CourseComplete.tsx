@@ -55,7 +55,7 @@ const CourseComplete = () => {
           </motion.div>
         </div>
 
-        <h1 className="text-4xl font-display font-extrabold text-foreground mb-3">
+        <h1 className="text-4xl font-display font-bold tracking-tight text-foreground mb-3">
           You built your first Claude Skill! 🎉
         </h1>
         <p className="text-muted-foreground mb-8">Congratulations, Skill Builder!</p>

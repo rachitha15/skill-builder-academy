@@ -28,7 +28,7 @@ const CourseMap = () => {
 
       <div className="max-w-3xl mx-auto px-6 py-10">
         <div className="mb-8">
-          <h1 className="text-4xl font-display font-extrabold text-foreground mb-3">
+          <h1 className="text-4xl font-display font-bold tracking-tight text-foreground mb-3">
             Build Your First Claude Skill
           </h1>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
