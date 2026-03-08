@@ -22,12 +22,17 @@ export async function evaluateDescription(description: string): Promise<Layer2Re
 
   if (error) {
     console.error('Edge function error:', error);
-    throw new Error('Failed to evaluate description. Please try again.');
+    const msg = error instanceof Error ? error.message : String(error);
+    throw new Error(msg || 'Failed to evaluate description. Please try again.');
   }
 
-  if (data.error) {
+  if (data?.error) {
     console.error('Evaluation error:', data.error);
-    throw new Error(data.error);
+    throw new Error(data.details ? `${data.error}: ${data.details}` : data.error);
+  }
+
+  if (!data?.results || !Array.isArray(data.results)) {
+    throw new Error('Unexpected response format from evaluation service.');
   }
 
   return data as Layer2Result;
