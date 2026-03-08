@@ -143,10 +143,7 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
 
       onWorkUpdate(JSON.stringify({ shouldTrigger, shouldNotTrigger }));
 
-      const score = result.trigger_score;
-      if (score >= 5) {
-        onComplete(score, 10);
-      }
+      // Don't auto-complete — let user review results and click Continue
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
