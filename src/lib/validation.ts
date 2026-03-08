@@ -93,25 +93,41 @@ export function validateFinalReview(content: string): ValidationResult[] {
   ];
 }
 
+const MODULE_SCORING: Record<number, { maxXP: number; tiers: [number, number][]; minPass: number }> = {
+  1: { maxXP: 150, tiers: [[4, 150], [3, 100]], minPass: 3 },
+  2: { maxXP: 150, tiers: [[3, 150], [3, 100]], minPass: 3 },
+  3: { maxXP: 300, tiers: [[7, 300], [6, 255], [5, 210], [4, 165]], minPass: 4 },
+  4: { maxXP: 400, tiers: [[6, 400], [5, 340], [4, 280], [3, 220]], minPass: 3 },
+  5: { maxXP: 300, tiers: [[10, 300], [8, 255], [6, 210], [5, 165]], minPass: 5 },
+  6: { maxXP: 400, tiers: [[11, 400], [9, 340], [7, 280], [5, 220]], minPass: 5 },
+  7: { maxXP: 200, tiers: [[1, 200]], minPass: 1 },
+};
+
 export function calculateXP(
-  baseXP: number,
+  moduleId: number,
   score: number,
-  maxScore: number,
+  _maxScore: number,
   attempts: number,
   hintsUsed: number
 ): { total: number; breakdown: { label: string; value: number }[] } {
-  const multiplier = score / maxScore >= 1 ? 1.5 : score / maxScore >= 0.75 ? 1.0 : 0.5;
-  const base = Math.round(baseXP * 0.67);
-  const qualityBonus = Math.round(base * (multiplier - 1));
-  const firstAttemptBonus = attempts === 0 ? 50 : 0;
-  const hintPenalty = Math.min(hintsUsed, 1) * 0 + Math.max(0, Math.min(hintsUsed - 1, 1)) * 25 + Math.max(0, hintsUsed - 2) * 50;
+  const config = MODULE_SCORING[moduleId];
+  if (!config) return { total: 0, breakdown: [] };
 
-  const total = Math.max(0, base + qualityBonus + firstAttemptBonus - hintPenalty);
+  // Find base XP from tier
+  let base = 0;
+  for (const [threshold, xp] of config.tiers) {
+    if (score >= threshold) { base = xp; break; }
+  }
+  if (score < config.minPass) return { total: 0, breakdown: [{ label: 'Below passing', value: 0 }] };
+
+  const firstAttemptBonus = attempts === 0 ? 50 : 0;
+  const hintPenalty = Math.max(0, Math.min(hintsUsed - 1, 1)) * 25 + Math.max(0, hintsUsed - 2) * 50;
+  const total = Math.min(config.maxXP, Math.max(0, base + firstAttemptBonus - hintPenalty));
+
   return {
     total,
     breakdown: [
-      { label: 'Base XP', value: base },
-      { label: `Quality (${multiplier}x)`, value: qualityBonus },
+      { label: 'Score XP', value: base },
       ...(firstAttemptBonus > 0 ? [{ label: 'First attempt bonus', value: firstAttemptBonus }] : []),
       ...(hintPenalty > 0 ? [{ label: 'Hints used', value: -hintPenalty }] : []),
     ]
