@@ -42,7 +42,8 @@ const CourseComplete = () => {
     setJoined(true);
   };
 
-  const shareText = encodeURIComponent(`I just built my first Claude Skill on Untutorial! 🛠️ ${state.totalXP} XP earned. Stop watching tutorials. Start building. untutorial.in #ClaudeSkills #BuildWithAI`);
+  const tweetText = encodeURIComponent(`I just built my first Claude Skill on Untutorial! 🛠️ ${state.totalXP} XP earned. Stop watching tutorials. Start building. #ClaudeSkills #BuildWithAI`);
+  const linkedInText = encodeURIComponent(`I just built my first Claude Skill on Untutorial! 🛠️ ${state.totalXP} XP earned. Stop watching tutorials. Start building.\n\nhttps://untutorial.in\n\n#ClaudeSkills #BuildWithAI`);
 
   return (
     <div className="min-h-screen bg-background noise-bg flex items-center justify-center px-6 py-12">
