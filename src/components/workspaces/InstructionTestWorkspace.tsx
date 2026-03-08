@@ -110,7 +110,17 @@ export function InstructionTestWorkspace({ initialCode, placeholder, validate, o
           <textarea
             ref={textareaRef}
             value={code}
-            onChange={e => { setCode(e.target.value); onWorkUpdate(e.target.value); }}
+            onChange={e => {
+              const nextCode = e.target.value;
+              setCode(nextCode);
+              onWorkUpdate(nextCode);
+              if (results || evalResult || error || passed) {
+                setResults(null);
+                setEvalResult(null);
+                setError(null);
+                setPassed(false);
+              }
+            }}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
             disabled={loading}
