@@ -360,9 +360,11 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
             {/* Feedback after all revealed */}
             {allRevealed && layer2Results && (
               <motion.div
+                ref={continueRef}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
+                onAnimationComplete={() => continueRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })}
               >
                 <div className="mt-4 p-3 rounded-md bg-background/50 border border-border">
                   <p className="text-xs text-muted-foreground leading-relaxed">{layer2Results.feedback}</p>
