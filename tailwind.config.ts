@@ -88,6 +88,14 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" },
           "50%": { boxShadow: "0 0 40px hsl(var(--primary) / 0.5)" },
         },
+        "burst-ring": {
+          "0%": { transform: "scale(0.8)", opacity: "0.6" },
+          "100%": { transform: "scale(2.5)", opacity: "0" },
+        },
+        "float-up": {
+          "0%": { opacity: "1", transform: "translateY(0)" },
+          "100%": { opacity: "0", transform: "translateY(-60px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
