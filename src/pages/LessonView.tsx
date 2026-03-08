@@ -121,6 +121,11 @@ const LessonView = () => {
             initialCode={moduleState.userWork}
             placeholder={getPlaceholder(moduleId)}
             validate={getValidatorForModule(moduleId)}
+            layer2Evaluate={moduleId === 3 ? (code: string) => {
+              const descMatch = code.match(/description:\s*[>|]?\s*([\s\S]*?)(?=\n---|\n[a-z]+:)/i);
+              const desc = descMatch?.[1]?.replace(/[>|]\s*/g, '').trim() || code;
+              return evaluateDescription(desc);
+            } : undefined}
             onComplete={handleComplete}
             onWorkUpdate={handleWorkUpdate}
           />
