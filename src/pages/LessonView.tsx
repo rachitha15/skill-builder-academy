@@ -163,7 +163,7 @@ const LessonView = () => {
       {/* Split panel */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
         {/* Left panel - lesson */}
-        <div className="max-h-[40vh] md:max-h-none md:w-[40%] border-r border-border border-l-4 border-l-primary overflow-y-auto p-6 flex-shrink-0">
+        <div className="max-h-[35vh] md:max-h-none md:w-[40%] border-r border-border border-l-4 border-l-primary overflow-y-auto p-6 flex-shrink-0">
           <div className="lesson-content">
             <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
           </div>
