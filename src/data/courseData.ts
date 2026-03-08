@@ -41,6 +41,9 @@ For most Skills — including the one you'll build in this course — all you ne
 2. **Composability** — Multiple Skills can work together. A meeting-notes Skill could work alongside a Skill that formats documents, or one that creates Slack messages.
 3. **Portability** — A Skill works in Claude.ai, Claude Code, and the API. Build once, use everywhere.
 
+> **"But can't Claude just build a Skill for me?"**
+> Sure — and it'll work fine for simple tasks. But when it doesn't trigger right, when it chokes on messy inputs, when you want something Claude's defaults can't handle — you'll wish you understood what's under the hood. This course gives you the ability to build, debug, and improve *any* Skill.
+
 **Let's see a real example.**
 
 Imagine a customer support lead named Raj who gets hundreds of feedback emails weekly. He built a Skill called \`feedback-categorizer\` that reads raw customer feedback and sorts it into categories: bug report, feature request, praise, or complaint — with severity and a suggested response template. He taught Claude once, and now it handles feedback consistently every time.

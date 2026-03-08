@@ -180,6 +180,34 @@ const Landing = () => {
         </motion.div>
       </section>
 
+      {/* "Why learn this?" callout */}
+      <section className="max-w-3xl mx-auto px-6 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-lg border border-primary/20 bg-card p-8 md:p-10"
+        >
+          <h2 className="text-xl md:text-2xl font-display font-bold text-foreground mb-4">
+            "But can't Claude just build a Skill for me?"
+          </h2>
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <p>Sure. And you can ask someone else to cook your dinner.</p>
+            <p>
+              Claude can generate a SKILL.md in 30 seconds. But when it{' '}
+              <span className="text-foreground font-medium">doesn't trigger right</span>, when it{' '}
+              <span className="text-foreground font-medium">chokes on messy inputs</span>, when you want to build something Claude's defaults can't handle — you'll wish you understood what's under the hood.
+            </p>
+            <p>
+              This course doesn't just give you a skill. It gives you the ability to{' '}
+              <span className="text-primary font-semibold">build, debug, and improve ANY skill</span>.
+              That's the difference between <em>using</em> AI and being <em>fluent</em> in AI.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-border/50 py-8">
         <p className="text-center text-sm text-muted-foreground">
