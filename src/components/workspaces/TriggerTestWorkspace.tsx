@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { CheckCircle2, XCircle, AlertTriangle, Lightbulb, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
@@ -57,7 +57,6 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [evalResult, setEvalResult] = useState<EvalResponse | null>(null);
   const [showResults, setShowResults] = useState(false);
-  const [visibleRows, setVisibleRows] = useState(0);
 
   // Get Module 3 description
   const module3Work = state.modules[2]?.userWork || '';
@@ -112,7 +111,7 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
     setError(null);
     setEvalResult(null);
     setShowResults(false);
-    setVisibleRows(0);
+    
 
     if (!validateLayer1()) return;
 
@@ -135,18 +134,9 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
       const result = data as EvalResponse;
       setEvalResult(result);
       setShowResults(true);
-
-      // Stagger row animations
-      result.results.forEach((_, i) => {
-        setTimeout(() => setVisibleRows(v => Math.max(v, i + 1)), (i + 1) * 100);
-      });
-
       onWorkUpdate(JSON.stringify({ shouldTrigger, shouldNotTrigger }));
 
-      const score = result.trigger_score;
-      if (score >= 5) {
-        onComplete(score, 10);
-      }
+      // Don't auto-complete — let user review results and click Continue
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
@@ -283,53 +273,82 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
 
         {/* Results */}
         {showResults && evalResult && (
-          <div className="space-y-4">
-            {/* Trigger Results */}
-            <div className="rounded-lg border border-border bg-card overflow-hidden">
-              <div className="px-4 py-3 border-b border-border">
-                <h4 className="text-sm font-semibold text-foreground">Trigger Results</h4>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-4"
+          >
+            {/* Should Trigger Results */}
+            <div className="rounded-lg border border-border bg-card p-5">
+              <div className="flex items-center justify-between mb-4">
+                <p className="font-semibold text-foreground text-sm">✅ Should Trigger (1–5)</p>
+                <span className={`text-sm font-bold font-mono ${
+                  evalResult.results.filter((r, i) => i < 5 && r.correct).length >= 4 ? 'text-primary' : 'text-destructive'
+                }`}>
+                  {evalResult.results.filter((r, i) => i < 5 && r.correct).length}/5 correct
+                </span>
               </div>
-              <div className="divide-y divide-border">
-                <AnimatePresence>
-                  {evalResult.results.map((r, i) => (
-                    i < visibleRows && (
-                      <motion.div
-                        key={r.query_number}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className={`px-4 py-3 text-sm ${
-                          r.correct ? 'bg-[hsl(142_71%_45%/0.05)]' : 'bg-[hsl(0_84%_60%/0.05)]'
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className="flex-shrink-0 mt-0.5">
-                            {r.correct ? (
-                              <CheckCircle2 className="h-4 w-4 text-[hsl(var(--success))]" />
-                            ) : (
-                              <XCircle className="h-4 w-4 text-destructive" />
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-foreground font-mono text-xs truncate">
-                              <span className="text-muted-foreground">#{r.query_number}</span>{' '}
-                              {r.query_text}
-                            </p>
-                            <div className="flex gap-4 mt-1 text-xs text-muted-foreground">
-                              <span>Expected: <span className={r.expected ? 'text-[hsl(var(--success))]' : 'text-destructive'}>{r.expected ? 'Should trigger' : 'Should NOT trigger'}</span></span>
-                              <span>Actual: <span className={r.triggered ? 'text-[hsl(var(--success))]' : 'text-destructive'}>{r.triggered ? 'Triggered' : 'Did not trigger'}</span></span>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )
-                  ))}
-                </AnimatePresence>
+              <div className="space-y-2">
+                {evalResult.results.filter((_, i) => i < 5).map((r, i) => (
+                  <motion.div
+                    key={r.query_number}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className={`flex items-start gap-2 text-sm rounded-md p-2 ${r.correct ? 'bg-primary/5' : 'bg-destructive/5'}`}
+                  >
+                    {r.correct ? (
+                      <CheckCircle2 className="h-4 w-4 text-[hsl(var(--success))] mt-0.5 flex-shrink-0" />
+                    ) : (
+                      <XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-foreground font-mono text-xs">{r.query_text}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        {r.correct
+                          ? 'Correctly triggered'
+                          : 'Expected to trigger, but didn\'t — your description may not cover this phrasing'}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-              <div className="px-4 py-3 border-t border-border bg-muted/30">
-                <p className="text-sm font-semibold text-foreground">
-                  {evalResult.trigger_score}/10 tests passed
-                </p>
+            </div>
+
+            {/* Should NOT Trigger Results */}
+            <div className="rounded-lg border border-border bg-card p-5">
+              <div className="flex items-center justify-between mb-4">
+                <p className="font-semibold text-foreground text-sm">❌ Should NOT Trigger (6–10)</p>
+                <span className={`text-sm font-bold font-mono ${
+                  evalResult.results.filter((r, i) => i >= 5 && r.correct).length >= 4 ? 'text-primary' : 'text-destructive'
+                }`}>
+                  {evalResult.results.filter((r, i) => i >= 5 && r.correct).length}/5 correct
+                </span>
+              </div>
+              <div className="space-y-2">
+                {evalResult.results.filter((_, i) => i >= 5).map((r, i) => (
+                  <motion.div
+                    key={r.query_number}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: (i + 5) * 0.1 }}
+                    className={`flex items-start gap-2 text-sm rounded-md p-2 ${r.correct ? 'bg-primary/5' : 'bg-destructive/5'}`}
+                  >
+                    {r.correct ? (
+                      <CheckCircle2 className="h-4 w-4 text-[hsl(var(--success))] mt-0.5 flex-shrink-0" />
+                    ) : (
+                      <XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-foreground font-mono text-xs">{r.query_text}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        {r.correct
+                          ? 'Correctly ignored'
+                          : 'Incorrectly triggered — your description is too broad for this query'}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
@@ -370,57 +389,55 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
               </div>
             </div>
 
-            {/* XP Summary */}
-            {(() => {
-              const score = evalResult.trigger_score;
-              const info = getXPInfo(score);
-              const passed = score >= 5;
-              return (
-                <div className="rounded-lg border border-border bg-card p-4 text-center space-y-3">
-                  {passed ? (
-                    <>
-                      <p className="text-sm text-muted-foreground">
-                        Score multiplier: <span className="text-primary font-bold">{info.multiplier}</span>
-                      </p>
-                      <p className="text-2xl font-display font-bold text-primary" style={{ textShadow: '0 0 20px hsl(18 100% 60% / 0.4)' }}>
-                        +{info.xp} XP
-                      </p>
-                    </>
-                  ) : (
-                    <p className="text-sm text-destructive font-semibold">
-                      Below 5/10 — must retry to advance
-                    </p>
+            {/* Score + Actions (matching Module 3 pattern) */}
+            <div className="rounded-lg border border-border bg-card p-5">
+              <div className="flex items-center justify-between mb-4">
+                <p className="font-semibold text-foreground text-sm">Overall Score</p>
+                <span className={`text-sm font-bold font-mono ${evalResult.trigger_score >= 5 ? 'text-primary' : 'text-destructive'}`}>
+                  {evalResult.trigger_score}/10 tests passed
+                </span>
+              </div>
+
+              {evalResult.trigger_score >= 5 ? (
+                <div className="space-y-2">
+                  <button
+                    onClick={() => onComplete(evalResult.trigger_score, 10)}
+                    className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+                  >
+                    Continue →
+                  </button>
+                  {evalResult.trigger_score < 10 && (
+                    <button
+                      onClick={() => {
+                        setEvalResult(null);
+                        setShowResults(false);
+                        setError(null);
+                      }}
+                      className="w-full px-4 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Try again for more XP
+                    </button>
                   )}
-                  <div className="flex gap-3 justify-center">
-                    {!passed && (
-                      <button
-                        onClick={() => {
-                          setEvalResult(null);
-                          setShowResults(false);
-                          setError(null);
-                        }}
-                        className="px-6 py-2 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
-                      >
-                        Try Again
-                      </button>
-                    )}
-                    {passed && score < 10 && (
-                      <button
-                        onClick={() => {
-                          setEvalResult(null);
-                          setShowResults(false);
-                          setError(null);
-                        }}
-                        className="px-4 py-2 rounded-lg border border-border text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        Try Again for More XP
-                      </button>
-                    )}
-                  </div>
                 </div>
-              );
-            })()}
-          </div>
+              ) : (
+                <div>
+                  <p className="text-destructive font-semibold text-sm mb-3">
+                    Need at least 5/10 to pass. Review the feedback above and revise your triggers.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setEvalResult(null);
+                      setShowResults(false);
+                      setError(null);
+                    }}
+                    className="px-6 py-2 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              )}
+            </div>
+          </motion.div>
         )}
       </div>
     </div>
