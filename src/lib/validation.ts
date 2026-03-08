@@ -30,8 +30,8 @@ export function validateFrontmatter(yaml: string): ValidationResult[] {
 
   results.push({
     check: 'Trigger phrases',
-    passed: /use when|use for|trigger|invoke|activate/i.test(fullDesc),
-    message: 'Description should include when to use the skill (e.g., "Use when...")'
+    passed: /use[ds]?\s*(when|for|to|if)|trigger(s|ed)?\s*(when|by|on|if)?|invok(e[ds]?|ing)\s*(when|by|on|if)?|activat(e[ds]?|ing)\s*(when|by|on|if)?|call(s|ed)?\s*(when|by|on|if)?|run(s)?\s*(when|if)|fires?\s*(when|on|if)/i.test(fullDesc),
+    message: 'Description should include when to use the skill (e.g., "Use when...", "Triggers when...", "Activated by...")'
   });
 
   results.push({
