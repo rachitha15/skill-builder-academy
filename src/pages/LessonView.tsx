@@ -158,6 +158,17 @@ const LessonView = () => {
       case 'folder_structure':
         return <FolderStructureWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} />;
       case 'code_editor':
+        if (moduleId === 4) {
+          return (
+            <InstructionTestWorkspace
+              initialCode={getInitialCode(moduleId)}
+              placeholder={getPlaceholder(moduleId)}
+              validate={getValidatorForModule(moduleId)}
+              onComplete={handleComplete}
+              onWorkUpdate={handleWorkUpdate}
+            />
+          );
+        }
         return (
           <CodeEditorWorkspace
             moduleId={moduleId}
