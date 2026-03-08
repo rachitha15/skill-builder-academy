@@ -34,10 +34,12 @@ export function validateFrontmatter(yaml: string): ValidationResult[] {
     message: 'Description should include when to use the skill (e.g., "Use when...", "Triggers when...", "Activated by...")'
   });
 
+  // Check for XML-like tags but allow YAML folding markers (> and |)
+  const yamlWithoutFolding = yaml.replace(/:\s*[>|]\s*$/gm, ': ');
   results.push({
     check: 'No XML tags',
-    passed: !yaml.includes('<') && !yaml.includes('>'),
-    message: 'YAML must not contain < or > characters'
+    passed: !yamlWithoutFolding.includes('<') && !/<[a-z/]/i.test(yamlWithoutFolding),
+    message: 'YAML must not contain XML tags'
   });
 
   results.push({
