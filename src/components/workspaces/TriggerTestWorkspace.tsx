@@ -57,7 +57,6 @@ export function TriggerTestWorkspace({ onComplete, onWorkUpdate }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [evalResult, setEvalResult] = useState<EvalResponse | null>(null);
   const [showResults, setShowResults] = useState(false);
-  const [visibleRows, setVisibleRows] = useState(0);
 
   // Get Module 3 description
   const module3Work = state.modules[2]?.userWork || '';
