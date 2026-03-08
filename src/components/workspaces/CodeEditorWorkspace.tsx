@@ -55,7 +55,21 @@ export function CodeEditorWorkspace({ initialCode, placeholder, validate, layer2
         }
         return prev + 1;
       });
-    }, 250);
+    }, 400);
+  };
+
+  const shouldActivateQueries = TEST_QUERIES.map((q, i) => ({ ...q, originalIndex: i })).filter(q => q.expected);
+  const shouldNotActivateQueries = TEST_QUERIES.map((q, i) => ({ ...q, originalIndex: i })).filter(q => !q.expected);
+
+  const getVerdict = (result: { correct: boolean; triggered: boolean }, expected: boolean) => {
+    if (result.correct) {
+      return expected
+        ? { label: 'Correctly activated', className: 'text-primary' }
+        : { label: 'Correctly skipped', className: 'text-primary' };
+    }
+    return expected
+      ? { label: 'Missed — should have activated', className: 'text-destructive' }
+      : { label: 'Over-triggered — should have skipped', className: 'text-destructive' };
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
