@@ -54,11 +54,10 @@ export function validateFrontmatter(yaml: string): ValidationResult[] {
 export function validateInstructions(content: string): ValidationResult[] {
   const lower = content.toLowerCase();
   return [
-    { check: 'Has context/overview', passed: /##\s*(context|overview|about)/i.test(content), message: 'Include a ## Context or ## Overview section' },
-    { check: 'Has input format', passed: /##\s*(input|what you|user provides)/i.test(content), message: 'Include a ## Input section' },
-    { check: 'Has steps/process', passed: /##\s*(steps|process|how|instructions)/i.test(content), message: 'Include a ## Steps section' },
-    { check: 'Has output format', passed: /##\s*(output|result|format)/i.test(content), message: 'Include a ## Output section' },
     { check: 'Sufficient detail', passed: content.length >= 200, message: 'Instructions should be at least 200 characters' },
+    { check: 'Structured instructions', passed: /\d+\.\s+|##\s*(steps|process|instructions|context|input|output)/i.test(content), message: 'Include numbered steps or structured sections (## Steps, ## Context, etc.)' },
+    { check: 'Handles missing info', passed: /unassigned|no deadline|not specified|if no|when missing|if missing|unknown|tbd/i.test(content), message: 'Include handling for missing info (e.g., "Unassigned", "No deadline", "If no owner...")' },
+    { check: 'Relevant to task', passed: /action|task|item|extract|owner|deadline|priority/i.test(content), message: 'Instructions should reference action items, tasks, owners, deadlines, or priorities' },
   ];
 }
 
