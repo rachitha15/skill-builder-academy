@@ -15,6 +15,7 @@ import { CodeEditorWorkspace } from '@/components/workspaces/CodeEditorWorkspace
 import { TriggerTestWorkspace } from '@/components/workspaces/TriggerTestWorkspace';
 import { FinalReviewWorkspace } from '@/components/workspaces/FinalReviewWorkspace';
 import { InstructionTestWorkspace } from '@/components/workspaces/InstructionTestWorkspace';
+import { MessyInputsWorkspace } from '@/components/workspaces/MessyInputsWorkspace';
 import confetti from 'canvas-confetti';
 
 const LessonView = () => {
@@ -158,6 +159,14 @@ const LessonView = () => {
       case 'folder_structure':
         return <FolderStructureWorkspace onComplete={handleComplete} onWorkUpdate={handleWorkUpdate} />;
       case 'code_editor':
+        if (moduleId === 6) {
+          return (
+            <MessyInputsWorkspace
+              onComplete={handleComplete}
+              onWorkUpdate={handleWorkUpdate}
+            />
+          );
+        }
         if (moduleId === 4) {
           return (
             <InstructionTestWorkspace
