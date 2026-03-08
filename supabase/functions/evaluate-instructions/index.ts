@@ -6,12 +6,13 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-const MESSY_NOTES = `standup recap 3/5
-- tom mentioned the homepage redesign is stuck waiting on copy from marketing. sarah said she'd have it by end of week but no promises
-- we talked about the Q2 planning doc, jake is supposed to have a draft ready but didn't say when exactly
-- oh also the onboarding flow has a bug where new users don't get the welcome email. seems important. nobody was assigned to fix it
-- priya asked if we could move standup to 10am starting next week. everyone seemed fine with it
-- IMPORTANT: client demo is Thursday. tom needs to prep the demo env by wednesday EOD`;
+const MESSY_NOTES = `tidepool standup - tues 3/5
+- T mentioned homepage redesign is stuck waiting on copy from mktg. S said she'd have it by end of week but no promises
+- discussed Q2 planning doc, J is supposed to have a draft but didn't commit to a date
+- onboarding flow bug: new users aren't getting welcome email. seems urgent. no owner yet
+- P asked if we can move standup to 10am starting next wk. everyone agreed
+- IMPORTANT: client demo thurs. T needs to prep demo env by wed EOD
+- quick note: we're switching from Jira to Linear next month, nothing to do right now just FYI`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -50,12 +51,12 @@ Respond in this exact JSON format:
 {
   "output": "The full output produced by following the instructions",
   "criteria": [
-    {"name": "At least 4 action items", "passed": true, "detail": "why"},
-    {"name": "Demo prep is high priority", "passed": true, "detail": "why"},
-    {"name": "Unassigned owner handled", "passed": true, "detail": "why"},
-    {"name": "Standup change excluded", "passed": true, "detail": "why"},
-    {"name": "Vague deadlines handled", "passed": true, "detail": "why"},
-    {"name": "Clean output format", "passed": true, "detail": "why"}
+     {"name": "At least 4 action items extracted", "passed": true, "detail": "why"},
+    {"name": "Demo prep marked high priority", "passed": true, "detail": "why"},
+    {"name": "Welcome email bug has Unassigned owner", "passed": true, "detail": "why"},
+    {"name": "Standup time change correctly excluded as decision", "passed": true, "detail": "why"},
+    {"name": "Jira-to-Linear note excluded as FYI", "passed": true, "detail": "why"},
+    {"name": "Clean readable output format", "passed": true, "detail": "why"}
   ],
   "score": 6,
   "feedback": "One specific suggestion to improve the instructions"

@@ -28,29 +28,41 @@ Here's the key insight: **a Skill is not code.** It's a markdown file. If you ca
 
 A Skill folder contains:
 
-- **SKILL.md** (required) — The instructions file
-- **scripts/** (optional) — Code Claude can run
-- **references/** (optional) — Extra documentation
-- **assets/** (optional) — Templates and files
+- **SKILL.md** (required) — The instructions file. Written in Markdown with some YAML metadata at the top.
+- **scripts/** (optional) — Code Claude can run to help with the task.
+- **references/** (optional) — Extra documentation Claude can look at when needed.
+- **assets/** (optional) — Templates, images, or other files used in the output.
 
-For most Skills — including the one you'll build — all you need is the SKILL.md file. One file.
+For most Skills — including the one you'll build in this course — all you need is the SKILL.md file. That's it. One file.
 
 **Three things that make Skills powerful:**
 
-1. **Progressive Disclosure** — Claude only loads the full Skill when needed
-2. **Composability** — Multiple Skills work together
-3. **Portability** — Works in Claude.ai, Claude Code, and the API
+1. **Progressive Disclosure** — Claude doesn't load the full Skill into memory until it's needed. First it reads a short description. Only if the task matches does it read the full instructions. This keeps things fast.
+2. **Composability** — Multiple Skills can work together. A meeting-notes Skill could work alongside a Skill that formats documents, or one that creates Slack messages.
+3. **Portability** — A Skill works in Claude.ai, Claude Code, and the API. Build once, use everywhere.
 
-**What you're building in this course:**
+**Let's see a real example.**
 
-By Module 7, you'll have a working Skill called \`meeting-action-extractor\`. Paste messy meeting notes into Claude, get clean action items with owners, deadlines, and priorities. No templates. No re-explaining.`,
+Imagine a customer support lead named Raj who gets hundreds of feedback emails weekly. He built a Skill called \`feedback-categorizer\` that reads raw customer feedback and sorts it into categories: bug report, feature request, praise, or complaint — with severity and a suggested response template. He taught Claude once, and now it handles feedback consistently every time.
+
+That's the power of Skills. You define the workflow once, and Claude executes it reliably.
+
+---
+
+> **Now meet Clara.**
+>
+> Clara is a programme manager at Tidepool, a 40-person startup. She runs 3 standups a week, has 1:1s with 6 reports, and sits in a weekly leadership sync. After every meeting, she has a Google Doc full of chaotic notes — abbreviations, half-sentences, implied tasks.
+>
+> She's been pasting her notes into Claude with "give me the action items" but the results are inconsistent. She wants a Skill that handles her messy notes reliably. **You're going to build it for her.**
+
+By Module 7, you'll have a working Skill called \`meeting-action-extractor\`. Clara will paste her messy notes, and the Skill will produce clean action items with owners, deadlines, and priority. Let's start.`,
     challengeInstructions: `### Challenge: Skill or Not a Skill?
 
-For each scenario, pick the best answer. You need **3/4 correct** to pass.`,
+You'll be shown 4 scenarios. For each one, identify whether a Claude Skill is the right solution. You need **3/4 correct** to pass.`,
     hints: [
-      "Think about whether the task is repetitive and follows a consistent pattern. Skills shine when you find yourself re-explaining the same instructions.",
-      "Consider what requires external system access (like monitoring Slack) versus what Claude can do with just text input. MCP connectors bridge the gap to external systems.",
-      "For Scenario 2: One-off factual questions don't need Skills. For Scenario 3: Real-time monitoring needs more than just instructions."
+      "Think about repetition. Skills shine when you do the same type of task regularly and want consistent results.",
+      "Scenario 3 involves real-time monitoring of an external service. A standalone Skill can't connect to Slack on its own — it would need something extra. (-25 XP)",
+      "Scenario 1: ✅ Skill (repetitive, same format every time). Scenario 2: ✅ Just ask Claude (one-off question). Scenario 3: ✅ Skill + MCP (needs external access). Scenario 4: ✅ Skill (same structure re-explained weekly). (-50 XP)"
     ],
     layer1Checks: ['At least 3 out of 4 correct answers'],
     completionSummary: [
@@ -66,40 +78,59 @@ For each scenario, pick the best answer. You need **3/4 correct** to pass.`,
     estimatedMinutes: 10,
     maxXP: 150,
     challengeType: 'folder_structure',
-    lessonContent: `Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`meeting-action-extractor\` is correct. \`Meeting Action Extractor\` is not.
+    lessonContent: `Now you know what a Skill is. Let's look at what one actually looks like on the inside.
 
-Inside the folder, one required file: \`SKILL.md\`. Note the exact casing — it must be exactly \`SKILL.md\`. Not \`skill.md\`. Not \`Skill.md\`.
+Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`feedback-categorizer\` is correct. \`Feedback Categorizer\` is not. \`feedback_categorizer\` is not.
+
+Inside the folder, there's one required file: \`SKILL.md\`. Note the exact casing — it must be exactly \`SKILL.md\`. Not \`skill.md\`. Not \`Skill.md\`. Exactly \`SKILL.md\`.
 
 This file has two parts:
 
-**Part 1: YAML Frontmatter** — Metadata at the top, wrapped in \`---\` delimiters. Claude reads this first to decide if it should load the full Skill.
+**Part 1: YAML Frontmatter** — This is metadata at the very top of the file, wrapped in \`---\` delimiters. It tells Claude the name of your Skill and when to use it.
+
+Here's what Raj's feedback categorizer looks like:
 
 \`\`\`yaml
 ---
-name: meeting-action-extractor
-description: Extracts structured action items from messy meeting notes. Use when user pastes meeting notes and asks for action items, to-dos, or follow-ups.
+name: feedback-categorizer
+description: Categorizes customer feedback into bug reports, feature requests, praise, or complaints with severity level. Use when user pastes customer emails, survey responses, or support tickets and asks to sort, categorize, or triage feedback.
 ---
 \`\`\`
 
-**Part 2: Markdown Body** — The actual instructions below the frontmatter.
+**Part 2: Markdown Body** — Everything below the frontmatter is the instructions Claude follows when the Skill is active.
 
-**Optional folders:**
+\`\`\`markdown
+# Feedback Categorizer
 
-- \`scripts/\` — Executable code (Python, Bash)
-- \`references/\` — Extra documentation
-- \`assets/\` — Templates, fonts, icons
+## Instructions
+1. Read the customer feedback provided
+2. Categorize into: Bug Report, Feature Request, Praise, or Complaint
+3. Assign severity: Critical, High, Medium, Low
+4. Write a 1-sentence summary
+5. Suggest a response template
 
-**Critical rule: No README.md** inside the Skill folder. Documentation goes in SKILL.md or references/.`,
-    challengeInstructions: `### Challenge: Build the Skeleton
+## Edge Cases
+- If feedback contains multiple categories, create separate entries
+- If sentiment is ambiguous, default to "Needs Review"
+\`\`\`
 
-Complete all 3 tasks to set up your Skill's folder structure:
+**The optional folders:**
 
-1. **Name the folder** for your meeting-notes-to-action-items Skill
+- \`scripts/\` — Python or Bash scripts Claude can run. Example: a validation script that checks output format.
+- \`references/\` — Extra documentation Claude reads for context.
+- \`assets/\` — Files used in the output, like report templates.
+
+**Critical rule: No README.md** inside the Skill folder. All documentation goes in SKILL.md or references/.`,
+    challengeInstructions: `### Challenge: Build Clara's Skeleton
+
+Clara wants a Skill for extracting action items from her meeting notes. Help her set up the structure.
+
+1. **Name the folder** for Clara's meeting-notes-to-action-items Skill
 2. **Identify the required files** — check only what's truly required
 3. **Write the opening frontmatter** with just the name field`,
     hints: [
-      "Folder names use kebab-case: all lowercase, words separated by hyphens.",
-      "Only one file is truly required. The others are optional. And remember — one of the options should definitely NOT be in a Skill folder. (-25 XP)",
+      "Folder names use kebab-case: all lowercase, words separated by hyphens. No spaces, no underscores, no capitals.",
+      "Only one file is truly required. The others are optional. And remember — there's one file that should NEVER be inside a Skill folder. (-25 XP)",
       "Here's the complete answer:\n- Folder name: meeting-action-extractor\n- Only SKILL.md is required (don't check README.md!)\n- Frontmatter:\n---\nname: meeting-action-extractor\n--- (-50 XP)"
     ],
     layer1Checks: ['Folder name is kebab-case', 'Only SKILL.md checked as required', 'README.md not checked', 'Valid YAML frontmatter delimiters', 'Name field is kebab-case'],
@@ -117,52 +148,48 @@ Complete all 3 tasks to set up your Skill's folder structure:
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'code_editor',
-    lessonContent: `Your frontmatter's \`description\` field has **two jobs** — and most people only do one of them.
+    lessonContent: `The YAML frontmatter is the most important thing you'll write. Here's why: Claude reads the frontmatter of every installed Skill at startup. It uses the \`description\` field to decide which Skills to load for any given task.
 
-**Job 1: WHAT does the Skill do?**
-This is the easy part. "Extracts action items from meeting notes." Done.
+**The description field has two jobs:**
 
-**Job 2: WHEN should Claude use it?**
-This is where most Skills fail. Without trigger language, Claude has to *guess* when to activate your Skill. And Claude's guesses aren't great.
+1. **What it does** — A clear statement of the Skill's purpose.
+2. **When to use it** — Specific trigger phrases or situations.
 
-### Good vs. Bad Descriptions
+Both are required. Missing either one is the #1 reason Skills fail.
 
-**✅ Good — clear WHAT + WHEN:**
-- *"Extracts structured action items from meeting notes. Use when a user pastes meeting notes, standup recaps, or 1:1 notes and asks for action items, to-dos, or follow-ups."*
-- *"Converts raw meeting transcripts into actionable task lists. Use when someone asks to pull out next steps, owners, or deadlines from meeting documentation."*
-- *"Identifies and structures follow-up tasks from meetings. Use for processing meeting notes, standup summaries, or any notes where action items need extraction."*
+**Let's look at how Raj wrote his description:**
 
-**❌ Bad — vague or missing trigger:**
-- *"Helps with meetings."* — Too vague, no trigger
-- *"An AI assistant for extracting information."* — What information? When?
-- *"meeting-action-extractor skill for Claude"* — Just repeats the name
+\`\`\`yaml
+description: Categorizes customer feedback into bug reports,
+  feature requests, praise, or complaints with severity level
+  and suggested response. Use when user pastes customer emails,
+  survey responses, support tickets, or NPS comments and asks
+  to sort, categorize, triage, or prioritize feedback.
+\`\`\`
 
-### Trigger Phrases Users Actually Say
-Think about what someone types before pasting their notes:
-- *"Here are my meeting notes, can you extract the action items?"*
-- *"Pull out the to-dos from this standup recap"*
-- *"What are the follow-ups from this meeting?"*
-- *"I pasted my 1:1 notes, find the next steps"*
+Why this works: It says WHAT (categorizes into specific types with severity) and WHEN (specific input types + specific trigger phrases like "sort", "categorize", "triage").
 
-Your description should contain the **keywords** from these phrases: action items, to-dos, follow-ups, next steps, meeting notes, standup.
+**Bad descriptions:**
 
-### Input Types to Mention
-Be specific about what your Skill processes:
-- Meeting notes (bullet points, free-form)
-- Standup recaps
-- 1:1 notes
-- Meeting transcripts
+❌ *"Helps with customer stuff."*
+Too vague. Claude has no idea when to use it.
 
-### Rules
-- Under **1024 characters** total
-- **No XML tags** (\`<\` or \`>\` characters)
-- Name can't contain "claude" or "anthropic"
-- Name must be **kebab-case**
+❌ *"An advanced NLP pipeline for multi-label sentiment classification with hierarchical taxonomy mapping."*
+Technically accurate but zero trigger phrases. Claude won't match this to "hey can you sort through these support emails?"
+
+**Pro tips for writing descriptions:**
+- **Include words users actually say** — Raj used "sort", "categorize", "triage"
+- **Mention input types** — Raj listed "customer emails", "survey responses", "support tickets"
+- Keep it under **1024 characters** total
+- **No XML tags** (\`<\` or \`>\` characters) — security restriction
+- Don't put "claude" or "anthropic" in the Skill name
 
 > **Pro tip:** "Use when" is your best friend. It's the clearest signal to Claude that what follows is trigger criteria.`,
-    challengeInstructions: `### Challenge: Write Your Frontmatter
+    challengeInstructions: `### Challenge: Write Clara's Frontmatter
 
-Write the complete YAML frontmatter for your meeting-action-extractor Skill. Your frontmatter needs both a \`name\` and a \`description\` field.
+Clara's Skill needs to trigger when she pastes standup notes, 1:1 notes, sprint retro summaries, or leadership sync notes. It should NOT trigger when she asks Claude to draft emails, write docs, or schedule meetings.
+
+Write the complete YAML frontmatter for Clara's \`meeting-action-extractor\` Skill. Your frontmatter needs both a \`name\` and a \`description\` field.
 
 **Layer 1** — Structural checks run instantly:
 - \`---\` delimiters present
@@ -176,9 +203,9 @@ Write the complete YAML frontmatter for your meeting-action-extractor Skill. You
 
 Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     hints: [
-      "Include both WHAT and WHEN. Use phrases like 'action items', 'to-dos', 'follow-ups', 'next steps'. Mention the input types: meeting notes, standup recaps, 1:1 notes.",
-      "To avoid over-triggering on scheduling queries, be specific about INPUT (meeting notes, transcripts) and OUTPUT (action items with owners and deadlines). Don't just say 'helps with meetings'. (-25 XP)",
-      "Here's an example that scores 7/7:\n\n---\nname: meeting-action-extractor\ndescription: >\n  Extracts structured action items with owners, deadlines,\n  and priorities from meeting notes. Use when a user pastes\n  meeting notes, standup recaps, or 1:1 notes and asks for\n  action items, to-dos, follow-ups, or next steps.\n--- (-50 XP)"
+      "Remember how Raj listed specific input types AND specific actions in his description? Clara's Skill needs the same — list the types of notes she pastes AND what she asks Claude to do with them.",
+      "To avoid triggering on email drafting or doc writing, be specific about what the Skill DOES (extracts action items) and what it DOESN'T do. Clara's Skill processes existing notes — it doesn't create new content. (-25 XP)",
+      "Here's an example that scores 7/7:\n\n---\nname: meeting-action-extractor\ndescription: >\n  Extracts structured action items with owners, deadlines,\n  and priorities from meeting notes. Use when a user pastes\n  standup notes, 1:1 notes, sprint retro summaries, or\n  leadership sync notes and asks for action items, to-dos,\n  follow-ups, or next steps.\n--- (-50 XP)"
     ],
     layer1Checks: ['YAML delimiters present', 'Name is kebab-case', 'Description 50+ chars', 'Trigger language present', 'No XML tags', 'No reserved names'],
     completionSummary: [
@@ -194,57 +221,74 @@ Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     estimatedMinutes: 30,
     maxXP: 400,
     challengeType: 'code_editor',
-    lessonContent: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail — not because the idea is bad, but because the instructions are vague.
+    lessonContent: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail.
 
 **The #1 rule: Write for a smart new hire, not for yourself.**
 
-You know what "good action items" look like. Claude doesn't — unless you tell it. Compare:
+Let's look at how Raj structured his feedback categorizer instructions:
 
-❌ **Vague:** "Extract action items from the notes."
+❌ **Vague:** "Categorize the feedback."
 
-✅ **Specific:** "For each action item found in the meeting notes, extract: (1) the task description in one clear sentence, (2) the owner — the person responsible, identified by name, (3) the deadline — the specific date or timeframe mentioned, or 'No deadline specified' if none, (4) priority — High if blocking other work or mentioned urgently, Medium if important but not blocking, Low if nice-to-have or minor."
+✅ **Specific:**
+\`\`\`
+For each piece of customer feedback:
+1. Read the full message
+2. Categorize as ONE of: Bug Report, Feature Request, Praise, Complaint
+3. Assign severity:
+   - Critical: service outage, data loss, security issue
+   - High: major feature broken, billing error
+   - Medium: minor bug, UX confusion
+   - Low: cosmetic issue, nice-to-have suggestion
+4. Write a 1-sentence summary (max 15 words)
+5. Suggest a response using the templates in references/
+\`\`\`
 
-The second version removes ambiguity. Claude doesn't have to guess what you mean by "priority" because you defined it.
+See the difference? Raj defined exactly what each severity level means. He didn't leave Claude guessing.
 
-**Structuring your instructions:**
+**Structuring your instructions — the pattern:**
 
-Use this pattern:
 1. **Context** — What is this Skill for? One sentence.
-2. **Input** — What will the user provide? Be specific about format.
-3. **Steps** — What should Claude do? Number them.
-4. **Output format** — What should the result look like? Show an example.
-5. **Edge cases** — What happens when things are messy? (Missing owners, vague deadlines, etc.)
+2. **Steps** — What should Claude do? Number them.
+3. **Output format** — What should the result look like? Show a template.
+4. **Edge cases** — What happens when things are messy?
+5. **Example** — Show an input/output pair. This is the most powerful thing you can include.
 
 **The power of examples:**
 
-Including an example input/output pair in your instructions is one of the most powerful things you can do. Claude learns patterns from examples faster than from rules.
+Raj included this in his Skill:
 
 \`\`\`
 ## Example
 
-Input:
-"Met with Sarah and Jake. Sarah will update the roadmap by Friday.
-Jake needs to review the API docs. Oh and someone should probably
-look at the billing bug eventually."
+Input: "Your app crashed three times today and I lost my
+draft. This is unacceptable for a paid product."
 
 Output:
-- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High
-- **Review API docs** | Owner: Jake | Deadline: No deadline specified | Priority: Medium
-- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline specified | Priority: Low
+- Category: Bug Report
+- Severity: Critical
+- Summary: App crashes causing data loss for paid user
+- Response: [Apology template + escalation to engineering]
 \`\`\`
+
+Claude learns patterns from examples faster than from rules. One good example is worth five paragraphs of instructions.
 
 **Handling messy reality:**
 
-Real meeting notes are messy. Your instructions should tell Claude how to handle this:
-- If no owner is mentioned → set to "Unassigned"
-- If deadline is vague → convert to nearest reasonable date or keep original phrasing
-- If an action item is implied but not explicit → extract it but note "(Implied)"
-- If notes contain non-action discussion → ignore it`,
-    challengeInstructions: `### Challenge: Write Your Skill Instructions
+Raj knew customer feedback is messy — sometimes a message is both a complaint AND a feature request. Sometimes the sentiment is unclear. So he added:
 
-Write the complete Markdown body (everything below the frontmatter) for your \`meeting-action-extractor\` Skill.
+\`\`\`
+## Edge Cases
+- If feedback contains multiple categories, create separate entries for each
+- If sentiment is ambiguous, categorize as "Needs Review" and flag for human
+- If the message is not customer feedback (e.g., spam, internal), skip it
+\`\`\`
 
-Your instructions will be tested against a sample of **messy meeting notes you haven't seen**. Claude will execute your Skill, and you'll see the actual output it produces.
+Now it's your turn to write instructions for Clara. Her meeting notes are different from customer feedback — messier, with abbreviations, vague deadlines, and non-action items mixed in. Apply the same structure you just saw from Raj: Context → Steps → Output Format → Edge Cases → Example.`,
+    challengeInstructions: `### Challenge: Write Clara's Instructions
+
+Clara's standup notes are chaotic. Names are sometimes full, sometimes just initials. Deadlines are vague ("end of week", "soonish"). Some things discussed aren't action items at all. Write instructions that handle Clara's reality.
+
+You'll write the SKILL.md body (everything below the frontmatter). **After you submit, we'll test your instructions against one of Clara's actual standups — one you haven't seen yet.**
 
 **Requirements:**
 - At least 200 characters
@@ -253,9 +297,9 @@ Your instructions will be tested against a sample of **messy meeting notes you h
 
 **After submit:** Claude runs your instructions against the test input and evaluates on 6 criteria. You need **3/6** to pass.`,
     hints: [
-      "Structure your instructions with: Context → Input → Steps → Output Format → Edge Cases. Don't forget to include an example input/output pair — Claude learns from examples faster than rules.",
-      "Make sure you define what to do when: (1) no owner is mentioned → 'Unassigned', (2) deadlines are vague like 'end of week', (3) something is discussed but isn't actually an action item (like changing the standup time). These edge cases are where most Skills fail. (-25 XP)",
-      "Here's a complete reference:\n\n# Meeting Action Extractor\n\n## Context\nThis Skill extracts structured action items from messy meeting notes.\n\n## Input\nUnstructured meeting notes, standup recaps, or 1:1 notes.\n\n## Steps\n1. Read through all notes carefully\n2. Identify each action item (task someone needs to do)\n3. For each action item, extract: task description, owner, deadline, priority\n4. Skip non-action items (decisions, general discussion)\n5. Format as a clean list\n\n## Output Format\n- **Task** | Owner: name | Deadline: date | Priority: High/Medium/Low\n\n## Edge Cases\n- No owner → \"Unassigned\"\n- Vague deadline → keep original phrasing\n- Implied task → extract with \"(Implied)\" note\n- Non-action discussion → skip entirely\n\n## Example\nInput: \"Sarah will update the roadmap by Friday. Someone should look at the billing bug.\"\nOutput:\n- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High\n- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline | Priority: Low (-50 XP)"
+      "Look at how Raj structured his feedback categorizer: Context → Steps → Output Format → Edge Cases → Example. Clara's Skill needs the same structure, but for meeting notes. And don't skip the example — it's the most powerful part.",
+      "Clara's notes use abbreviations (T, S, J, P, mktg) and have two non-action items mixed in: the standup time change (that's a decision) and the Jira migration FYI. Your instructions need to tell Claude how to handle both. (-25 XP)",
+      "Here's a complete reference:\n\n# Meeting Action Extractor\n\n## Context\nThis Skill extracts structured action items from Clara's messy meeting notes at Tidepool.\n\n## Steps\n1. Read through all notes carefully\n2. Identify each action item (task someone needs to do)\n3. For each action item, extract: task description, owner, deadline, priority\n4. Skip non-action items (decisions, FYIs, general discussion)\n5. Format as a clean list\n\n## Output Format\n- **Task** | Owner: name | Deadline: date | Priority: High/Medium/Low\n\n## Edge Cases\n- No owner mentioned → \"Unassigned\"\n- Abbreviations/initials → expand if possible, keep as-is if not\n- Vague deadline → keep original phrasing (\"end of week\")\n- Decisions (e.g., schedule changes) → exclude, note as decision\n- FYI items (no action needed) → exclude, note as FYI\n\n## Example\nInput: \"Sarah will update the roadmap by Friday. Someone should look at the billing bug.\"\nOutput:\n- **Update roadmap** | Owner: Sarah | Deadline: Friday | Priority: High\n- **Look at billing bug** | Owner: Unassigned | Deadline: No deadline | Priority: Low (-50 XP)"
     ],
     layer1Checks: ['Content is 200+ characters', 'Has structured instructions', 'Handles missing info', 'Contains relevant task keywords'],
     completionSummary: [
@@ -379,7 +423,7 @@ Review your complete SKILL.md below. Make any final edits, then run the final te
 export const SCENARIOS = [
   {
     id: 1,
-    text: 'Every Monday, I paste our team\'s meeting notes into Claude and ask it to extract action items with owners and deadlines. I always have to remind it to use bullet points and sort by priority.',
+    text: 'Every Monday, Clara pastes her standup notes into Claude and asks for action items. She always has to remind it to use bullet points, flag overdue items, and sort by priority.',
     options: [
       { label: 'A', text: 'Good use case for a Skill', correct: true },
       { label: 'B', text: 'A saved prompt template would be better', correct: false },
@@ -388,7 +432,7 @@ export const SCENARIOS = [
   },
   {
     id: 2,
-    text: 'I need to ask Claude what the capital of France is.',
+    text: 'Clara needs to ask Claude what time the London office opens.',
     options: [
       { label: 'A', text: 'Good use case for a Skill', correct: false },
       { label: 'B', text: 'Just ask Claude directly', correct: true },
@@ -397,7 +441,7 @@ export const SCENARIOS = [
   },
   {
     id: 3,
-    text: 'I want Claude to automatically monitor my Slack channels and alert me when a decision is made.',
+    text: 'Clara wants Claude to automatically monitor the #engineering Slack channel and flag whenever a launch blocker is mentioned.',
     options: [
       { label: 'A', text: 'Good use case for a standalone Skill', correct: false },
       { label: 'B', text: 'This needs a Skill + MCP connector', correct: true },
@@ -406,7 +450,7 @@ export const SCENARIOS = [
   },
   {
     id: 4,
-    text: 'I write competitive analysis reports every quarter. The format is always the same. I always have to re-explain the structure.',
+    text: 'Raj (the support lead) writes the same weekly summary for leadership every Friday. Same structure, same sections, same format. He re-explains the template to Claude every time.',
     options: [
       { label: 'A', text: 'Good use case for a Skill', correct: true },
       { label: 'B', text: 'A Word template would be better', correct: false },

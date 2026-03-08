@@ -7,13 +7,13 @@ const corsHeaders = {
 };
 
 const TEST_QUERIES = [
-  { text: "Here are my meeting notes from today, can you extract the action items?", expected: true },
-  { text: "Pull out the to-dos from this standup recap", expected: true },
-  { text: "What are the follow-ups from this meeting?", expected: true },
-  { text: "I pasted my 1:1 notes, can you find the next steps?", expected: true },
-  { text: "Extract action items and owners from these notes", expected: true },
-  { text: "Help me schedule a meeting with the design team", expected: false },
-  { text: "Write an agenda for tomorrow's sprint planning", expected: false },
+  { text: "Here are my standup notes from today, can you pull out the action items?", expected: true },
+  { text: "What are the follow-ups from my 1:1 with Jake?", expected: true },
+  { text: "Extract the to-dos from this sprint retro", expected: true },
+  { text: "I pasted the leadership sync notes, what did we commit to doing?", expected: true },
+  { text: "Go through these meeting notes and find everything that needs an owner", expected: true },
+  { text: "Draft an email to the marketing team about the product launch", expected: false },
+  { text: "Write a project brief for the new onboarding flow", expected: false },
 ];
 
 serve(async (req) => {
