@@ -107,6 +107,30 @@ const LessonView = () => {
     return `${m3}\n\n${m4}\n\n${m6}`;
   };
 
+  // Build accumulated content from previous code_editor modules
+  const getAccumulatedCode = (currentModuleId: number): string => {
+    // Order of code_editor modules: 3 → 4 → 6 → 7(final_review)
+    const codeModuleOrder = [3, 4, 6];
+    const previousModules = codeModuleOrder.filter(id => id < currentModuleId);
+    const previousWork = previousModules
+      .map(id => state.modules[id - 1]?.userWork || '')
+      .filter(w => w.trim().length > 0)
+      .join('\n\n');
+    return previousWork;
+  };
+
+  const getInitialCode = (currentModuleId: number): string => {
+    if (moduleState.userWork && moduleState.userWork.trim().length > 0) {
+      return moduleState.userWork;
+    }
+    const accumulated = getAccumulatedCode(currentModuleId);
+    const placeholder = getPlaceholder(currentModuleId);
+    if (accumulated) {
+      return accumulated + '\n\n' + placeholder;
+    }
+    return '';
+  };
+
   const hintLabel = () => {
     const next = revealedHints.length;
     if (next === 0) return '💡 Hint (Free)';
@@ -136,7 +160,7 @@ const LessonView = () => {
         return (
           <CodeEditorWorkspace
             moduleId={moduleId}
-            initialCode={moduleState.userWork}
+            initialCode={getInitialCode(moduleId)}
             placeholder={getPlaceholder(moduleId)}
             validate={getValidatorForModule(moduleId)}
             layer2Evaluate={moduleId === 3 ? (code: string) => {
