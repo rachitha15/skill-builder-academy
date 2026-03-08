@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.evaluate-triggers]
 verify_jwt = false
+
+[functions.evaluate-messy-inputs]
+verify_jwt = false
