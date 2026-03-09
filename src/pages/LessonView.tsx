@@ -242,51 +242,104 @@ const LessonView = () => {
         </div>
       </div>
 
-      {/* Split panel */}
-      <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
-        {/* Left panel - lesson */}
-        <div className="max-h-[35vh] md:max-h-none md:w-[40%] border-r border-border border-l-4 border-l-primary overflow-y-auto p-6 flex-shrink-0">
-          <div className="lesson-content">
-            <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
-          </div>
-
-          {/* Challenge instructions */}
-          <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5">
+      {/* Mobile: Tab layout */}
+      {isMobile ? (
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0">
+          <TabsList className="sticky top-0 z-10 h-11 w-full rounded-none border-b border-border bg-background shrink-0">
+            <TabsTrigger value="lesson" className="flex-1 text-sm">📖 Lesson</TabsTrigger>
+            <TabsTrigger value="challenge" className="flex-1 text-sm">🛠️ Challenge</TabsTrigger>
+          </TabsList>
+          <TabsContent value="lesson" className="flex-1 overflow-y-auto p-6 mt-0 border-l-4 border-l-primary">
             <div className="lesson-content">
-              <ReactMarkdown>{moduleData.challengeInstructions}</ReactMarkdown>
+              <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
+            </div>
+            <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5">
+              <div className="lesson-content">
+                <ReactMarkdown>{moduleData.challengeInstructions}</ReactMarkdown>
+              </div>
+            </div>
+            <div className="mt-4 space-y-2">
+              <AnimatePresence>
+                {revealedHints.map(idx => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="rounded-lg border border-secondary/30 bg-secondary/10 p-4"
+                  >
+                    <p className="text-sm text-foreground">{moduleData.hints[idx]}</p>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+              {hintLabel() && revealedHints.length < moduleData.hints.length && (
+                <button
+                  onClick={revealHint}
+                  className="flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
+                >
+                  <Lightbulb className="h-4 w-4" /> {hintLabel()}
+                </button>
+              )}
+            </div>
+            {/* Sentinel + Ready prompt */}
+            <div ref={lessonEndRef} className="h-1" />
+            <AnimatePresence>
+              {showReadyPrompt && activeTab === 'lesson' && (
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setActiveTab('challenge')}
+                  className="mt-4 mb-6 w-full py-3 rounded-md border border-primary/30 bg-primary/10 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
+                >
+                  Ready? Switch to the Challenge tab →
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </TabsContent>
+          <TabsContent value="challenge" className="flex-1 overflow-y-auto mt-0">
+            {renderWorkspace()}
+          </TabsContent>
+        </Tabs>
+      ) : (
+        /* Desktop: Split panel */
+        <div className="flex-1 flex flex-row overflow-hidden min-h-0">
+          <div className="w-[40%] border-r border-border border-l-4 border-l-primary overflow-y-auto p-6 flex-shrink-0">
+            <div className="lesson-content">
+              <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
+            </div>
+            <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5">
+              <div className="lesson-content">
+                <ReactMarkdown>{moduleData.challengeInstructions}</ReactMarkdown>
+              </div>
+            </div>
+            <div className="mt-4 space-y-2">
+              <AnimatePresence>
+                {revealedHints.map(idx => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="rounded-lg border border-secondary/30 bg-secondary/10 p-4"
+                  >
+                    <p className="text-sm text-foreground">{moduleData.hints[idx]}</p>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+              {hintLabel() && revealedHints.length < moduleData.hints.length && (
+                <button
+                  onClick={revealHint}
+                  className="flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
+                >
+                  <Lightbulb className="h-4 w-4" /> {hintLabel()}
+                </button>
+              )}
             </div>
           </div>
-
-          {/* Hints */}
-          <div className="mt-4 space-y-2">
-            <AnimatePresence>
-              {revealedHints.map(idx => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  className="rounded-lg border border-secondary/30 bg-secondary/10 p-4"
-                >
-                  <p className="text-sm text-foreground">{moduleData.hints[idx]}</p>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-            {hintLabel() && revealedHints.length < moduleData.hints.length && (
-              <button
-                onClick={revealHint}
-                className="flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
-              >
-                <Lightbulb className="h-4 w-4" /> {hintLabel()}
-              </button>
-            )}
+          <div className="flex-1 w-[60%] overflow-y-auto">
+            {renderWorkspace()}
           </div>
         </div>
-
-        {/* Right panel - workspace */}
-        <div className="flex-1 md:w-[60%] min-h-[50vh] md:min-h-0 overflow-y-auto">
-          {renderWorkspace()}
-        </div>
-      </div>
+      )}
     </div>
   );
 };
