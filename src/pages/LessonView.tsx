@@ -31,6 +31,7 @@ const LessonView = () => {
   const [showReadyPrompt, setShowReadyPrompt] = useState(false);
   const isMobile = useIsMobile();
   const lessonEndRef = useRef<HTMLDivElement>(null);
+  const lessonScrollRef = useRef<HTMLDivElement>(null);
 
   // Reset local state when navigating between modules
   useEffect(() => {
