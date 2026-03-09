@@ -31,6 +31,7 @@ const LessonView = () => {
   const [showReadyPrompt, setShowReadyPrompt] = useState(false);
   const isMobile = useIsMobile();
   const lessonEndRef = useRef<HTMLDivElement>(null);
+  const lessonScrollRef = useRef<HTMLDivElement>(null);
 
   // Reset local state when navigating between modules
   useEffect(() => {
@@ -45,7 +46,7 @@ const LessonView = () => {
     if (!isMobile || !lessonEndRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => setShowReadyPrompt(entry.isIntersecting),
-      { threshold: 0.5 }
+      { threshold: 0.1, root: lessonScrollRef.current }
     );
     observer.observe(lessonEndRef.current);
     return () => observer.disconnect();
@@ -249,7 +250,7 @@ const LessonView = () => {
             <TabsTrigger value="lesson" className="flex-1 text-sm">📖 Lesson</TabsTrigger>
             <TabsTrigger value="challenge" className="flex-1 text-sm">🛠️ Challenge</TabsTrigger>
           </TabsList>
-          <TabsContent value="lesson" className="flex-1 overflow-y-auto p-6 mt-0 border-l-4 border-l-primary">
+          <TabsContent value="lesson" ref={lessonScrollRef} className="flex-1 overflow-y-auto p-6 mt-0 border-l-4 border-l-primary">
             <div className="lesson-content">
               <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
             </div>
