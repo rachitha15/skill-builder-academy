@@ -250,7 +250,7 @@ const LessonView = () => {
             <TabsTrigger value="lesson" className="flex-1 text-sm">📖 Lesson</TabsTrigger>
             <TabsTrigger value="challenge" className="flex-1 text-sm">🛠️ Challenge</TabsTrigger>
           </TabsList>
-          <TabsContent value="lesson" className="flex-1 overflow-y-auto p-6 mt-0 border-l-4 border-l-primary">
+          <TabsContent value="lesson" ref={lessonScrollRef} className="flex-1 overflow-y-auto p-6 mt-0 border-l-4 border-l-primary">
             <div className="lesson-content">
               <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
             </div>
