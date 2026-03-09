@@ -100,6 +100,10 @@ const LessonView = () => {
     if (isMobile) setActiveTab('challenge');
   };
 
+  const handleWorkUpdate = (work: string) => {
+    dispatch({ type: 'UPDATE_WORK', moduleId, work });
+  };
+
   const getValidatorForModule = (id: number) => {
     switch (id) {
       case 3: return validateFrontmatter;
