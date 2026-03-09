@@ -97,10 +97,7 @@ const LessonView = () => {
     const { total } = calculateXP(moduleId, score, maxScore, currentAttempts, effectiveHintsUsed);
     dispatch({ type: 'COMPLETE_MODULE', moduleId, xpEarned: total });
     setCompleted(true);
-  };
-
-  const handleWorkUpdate = (work: string) => {
-    dispatch({ type: 'UPDATE_WORK', moduleId, work });
+    if (isMobile) setActiveTab('challenge');
   };
 
   const getValidatorForModule = (id: number) => {
