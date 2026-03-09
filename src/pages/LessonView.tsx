@@ -46,7 +46,7 @@ const LessonView = () => {
     if (!isMobile || !lessonEndRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => setShowReadyPrompt(entry.isIntersecting),
-      { threshold: 0.5 }
+      { threshold: 0.1, root: lessonScrollRef.current }
     );
     observer.observe(lessonEndRef.current);
     return () => observer.disconnect();
