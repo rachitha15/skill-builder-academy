@@ -27,6 +27,10 @@ const LessonView = () => {
   const { state, dispatch } = useCourse();
   const [revealedHints, setRevealedHints] = useState<number[]>([]);
   const [completed, setCompleted] = useState(false);
+  const [activeTab, setActiveTab] = useState('lesson');
+  const [showReadyPrompt, setShowReadyPrompt] = useState(false);
+  const isMobile = useIsMobile();
+  const lessonEndRef = useRef<HTMLDivElement>(null);
 
   // Reset local state when navigating between modules
   useEffect(() => {
