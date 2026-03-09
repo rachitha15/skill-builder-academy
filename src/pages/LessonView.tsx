@@ -36,7 +36,20 @@ const LessonView = () => {
   useEffect(() => {
     setCompleted(false);
     setRevealedHints([]);
+    setActiveTab('lesson');
+    setShowReadyPrompt(false);
   }, [moduleId]);
+
+  // Intersection observer for "Ready?" prompt on mobile
+  useEffect(() => {
+    if (!isMobile || !lessonEndRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowReadyPrompt(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    observer.observe(lessonEndRef.current);
+    return () => observer.disconnect();
+  }, [isMobile, moduleId]);
 
   // Auto-start module on first visit
   useEffect(() => {
