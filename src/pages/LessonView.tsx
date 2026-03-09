@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Lightbulb } from 'lucide-react';
@@ -8,6 +8,8 @@ import { MODULE_DATA } from '@/data/courseData';
 import { XPCounter } from '@/components/XPCounter';
 import { calculateXP } from '@/lib/validation';
 import { validateFrontmatter, validateInstructions, validateEdgeCases } from '@/lib/validation';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { evaluateDescription } from '@/lib/layer2Evaluator';
 import { MultipleChoiceWorkspace } from '@/components/workspaces/MultipleChoiceWorkspace';
 import { FolderStructureWorkspace } from '@/components/workspaces/FolderStructureWorkspace';
