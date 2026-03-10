@@ -748,6 +748,55 @@ Your instructions from Module 4 are pre-loaded in the editor. Above the editor, 
     estimatedMinutes: 10,
     maxXP: 250,
     challengeType: 'final_review',
+    lessonSteps: [
+      {
+        title: "Your complete Skill",
+        content: `Clara's Skill is ready. You built it, tested it, broke it on her worst notes, and fixed it. Now let's package it.
+
+**Your complete \`meeting-action-extractor\` Skill:**
+
+\`\`\`
+meeting-action-extractor/
+└── SKILL.md
+\`\`\`
+
+One folder, one file. Simple by design.
+
+The SKILL.md contains:
+1. Your YAML frontmatter (from Module 3)
+2. Your instructions body (from Module 4, refined in Module 6)`
+      },
+      {
+        title: "Installing your Skill",
+        content: `**Installing your Skill in Claude:**
+
+1. Download the .zip file (button on the right →)
+2. Open Claude.ai → Settings → Capabilities → Skills
+3. Click "Upload skill"
+4. Select the .zip file
+5. Toggle the Skill on
+6. Test it: paste meeting notes and ask for action items
+
+Clara's Skill will now trigger automatically whenever she (or you!) pastes meeting notes and asks for action items. No more re-explaining. No more templates. Just results.`
+      },
+      {
+        title: "The framework you've learned",
+        content: `**What you've learned — the framework:**
+
+1. Define the use case (Clara's repeatable workflow)
+2. Write clear frontmatter (what + when)
+3. Write specific instructions (steps + examples + edge cases)
+4. Test triggers (obvious + paraphrased + negative)
+5. Break it with messy inputs and fix it
+6. Ship it
+
+This framework works for ANY Skill — competitive analysis, customer research synthesis, OKR drafting, sprint planning, or whatever your workflow needs. The meeting-action-extractor was the vehicle. The skill-building framework is what you take with you.
+
+**One more thing before you ship:**
+
+Your Skill needs to pass one final test — a set of Clara's notes you haven't seen yet. Think of it as the final boss. Review your SKILL.md, make any last edits, and run the test.`
+      }
+    ],
     lessonContent: `Clara's Skill is ready. You built it, tested it, broke it on her worst notes, and fixed it. Now let's package it.
 
 **Your complete \`meeting-action-extractor\` Skill:**
