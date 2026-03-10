@@ -135,6 +135,58 @@ You'll be shown 4 scenarios. For each one, identify whether a Claude Skill is th
     estimatedMinutes: 10,
     maxXP: 150,
     challengeType: 'folder_structure',
+    lessonSteps: [
+      {
+        title: "The folder structure",
+        content: `Now you know what a Skill is. Let's look at what one actually looks like on the inside.
+
+Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`feedback-categorizer\` is correct. \`Feedback Categorizer\` is not. \`feedback_categorizer\` is not.
+
+Inside the folder, there's one required file: \`SKILL.md\`. Note the exact casing — it must be exactly \`SKILL.md\`. Not \`skill.md\`. Not \`Skill.md\`. Exactly \`SKILL.md\`.`
+      },
+      {
+        title: "Inside SKILL.md",
+        content: `This file has two parts:
+
+**Part 1: YAML Frontmatter** — This is metadata at the very top of the file, wrapped in \`---\` delimiters. It tells Claude the name of your Skill and when to use it.
+
+Here's what Raj's feedback categorizer looks like:
+
+\`\`\`yaml
+---
+name: feedback-categorizer
+description: Categorizes customer feedback into bug reports, feature requests, praise, or complaints with severity level. Use when user pastes customer emails, survey responses, or support tickets and asks to sort, categorize, or triage feedback.
+---
+\`\`\`
+
+**Part 2: Markdown Body** — Everything below the frontmatter is the instructions Claude follows when the Skill is active.
+
+\`\`\`markdown
+# Feedback Categorizer
+
+## Instructions
+1. Read the customer feedback provided
+2. Categorize into: Bug Report, Feature Request, Praise, or Complaint
+3. Assign severity: Critical, High, Medium, Low
+4. Write a 1-sentence summary
+5. Suggest a response template
+
+## Edge Cases
+- If feedback contains multiple categories, create separate entries
+- If sentiment is ambiguous, default to "Needs Review"
+\`\`\``
+      },
+      {
+        title: "Optional folders and the README rule",
+        content: `**The optional folders:**
+
+- \`scripts/\` — Python or Bash scripts Claude can run. Example: a validation script that checks output format.
+- \`references/\` — Extra documentation Claude reads for context.
+- \`assets/\` — Files used in the output, like report templates.
+
+**Critical rule: No README.md** inside the Skill folder. All documentation goes in SKILL.md or references/.`
+      }
+    ],
     lessonContent: `Now you know what a Skill is. Let's look at what one actually looks like on the inside.
 
 Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`feedback-categorizer\` is correct. \`Feedback Categorizer\` is not. \`feedback_categorizer\` is not.
