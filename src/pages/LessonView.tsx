@@ -32,6 +32,10 @@ const LessonView = () => {
   const [challengeUnlocked, setChallengeUnlocked] = useState(false);
   const isMobile = useIsMobile();
 
+  // Get module data and state first
+  const moduleData = MODULE_DATA.find(m => m.id === moduleId);
+  const moduleState = state.modules.find(m => m.id === moduleId);
+
   // Reset local state when navigating between modules
   useEffect(() => {
     setCompleted(false);
@@ -63,9 +67,6 @@ const LessonView = () => {
       }
     }
   }, [moduleId, state.modules, dispatch]);
-
-  const moduleData = MODULE_DATA.find(m => m.id === moduleId);
-  const moduleState = state.modules.find(m => m.id === moduleId);
 
   if (!moduleData || !moduleState) {
     navigate('/course');
