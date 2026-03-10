@@ -42,9 +42,11 @@ const LessonView = () => {
     setRevealedHints([]);
     setActiveTab('lesson');
     // If module is already completed, unlock challenge
-    const mod = state.modules.find(m => m.id === moduleId);
-    setChallengeUnlocked(mod?.status === 'completed');
-  }, [moduleId, state.modules]);
+    // Read current moduleState when effect runs, but don't make it reactive
+    const currentModule = state.modules.find(m => m.id === moduleId);
+    setChallengeUnlocked(currentModule?.status === 'completed');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moduleId]); // Only reset when moduleId changes, ignore other state updates
 
   // Update meta description for module pages
   useEffect(() => {
@@ -66,7 +68,8 @@ const LessonView = () => {
         dispatch({ type: 'START_MODULE', moduleId });
       }
     }
-  }, [moduleId, state.modules, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moduleId]); // Only check on module change, not on every state update
 
   if (!moduleData || !moduleState) {
     navigate('/course');
