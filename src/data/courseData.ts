@@ -376,6 +376,78 @@ Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     estimatedMinutes: 30,
     maxXP: 400,
     challengeType: 'code_editor',
+    lessonSteps: [
+      {
+        title: "Write for a new hire, not yourself",
+        content: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail.
+
+**The #1 rule: Write for a smart new hire, not for yourself.**
+
+Let's look at how Raj structured his feedback categorizer instructions:
+
+❌ **Vague:** "Categorize the feedback."
+
+✅ **Specific:**
+\`\`\`
+For each piece of customer feedback:
+1. Read the full message
+2. Categorize as ONE of: Bug Report, Feature Request, Praise, Complaint
+3. Assign severity:
+   - Critical: service outage, data loss, security issue
+   - High: major feature broken, billing error
+   - Medium: minor bug, UX confusion
+   - Low: cosmetic issue, nice-to-have suggestion
+4. Write a 1-sentence summary (max 15 words)
+5. Suggest a response using the templates in references/
+\`\`\`
+
+See the difference? Raj defined exactly what each severity level means. He didn't leave Claude guessing.`
+      },
+      {
+        title: "Structure your instructions",
+        content: `**Structuring your instructions — the pattern:**
+
+1. **Context** — What is this Skill for? One sentence.
+2. **Steps** — What should Claude do? Number them.
+3. **Output format** — What should the result look like? Show a template.
+4. **Edge cases** — What happens when things are messy?
+5. **Example** — Show an input/output pair. This is the most powerful thing you can include.`
+      },
+      {
+        title: "The power of examples",
+        content: `Raj included this in his Skill:
+
+\`\`\`
+## Example
+
+Input: "Your app crashed three times today and I lost my
+draft. This is unacceptable for a paid product."
+
+Output:
+- Category: Bug Report
+- Severity: Critical
+- Summary: App crashes causing data loss for paid user
+- Response: [Apology template + escalation to engineering]
+\`\`\`
+
+Claude learns patterns from examples faster than from rules. One good example is worth five paragraphs of instructions.`
+      },
+      {
+        title: "Handling messy reality",
+        content: `Raj knew customer feedback is messy — sometimes a message is both a complaint AND a feature request. Sometimes the sentiment is unclear. So he added:
+
+\`\`\`
+## Edge Cases
+- If feedback contains multiple categories, create separate entries for each
+- If sentiment is ambiguous, categorize as "Needs Review" and flag for human
+- If the message is not customer feedback (e.g., spam, internal), skip it
+\`\`\``
+      },
+      {
+        title: "Now it's your turn — Clara's notes are different",
+        content: `Now it's your turn to write instructions for Clara. Her meeting notes are different from customer feedback — messier, with abbreviations, vague deadlines, and non-action items mixed in. Apply the same structure you just saw from Raj: Context → Steps → Output Format → Edge Cases → Example.`
+      }
+    ],
     lessonContent: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail.
 
 **The #1 rule: Write for a smart new hire, not for yourself.**
