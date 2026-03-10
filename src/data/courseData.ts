@@ -543,6 +543,42 @@ You'll write the SKILL.md body (everything below the frontmatter). **After you s
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'trigger_test',
+    lessonSteps: [
+      {
+        title: "The triggering problem",
+        content: `You've built Clara's Skill and it works. But how do you know it triggers at the right times?
+
+Clara shares the Claude workspace with 3 other PMs at Tidepool. If her Skill's description is too broad, it will hijack their unrelated queries — imagine a colleague asking Claude to draft a product brief and getting back a list of action items instead. That's **over-triggering**.
+
+If the description is too narrow, Clara's own queries will miss — she pastes her 1:1 notes and says "what did we agree to do?" but the Skill doesn't activate because it only recognizes "extract action items." That's **under-triggering**.`
+      },
+      {
+        title: "The testing framework",
+        content: `Professional Skill builders test three types of queries:
+
+**1. Obvious triggers** — Queries that should clearly activate the Skill.
+
+Raj tested his feedback-categorizer with: "Categorize these support tickets"
+
+**2. Paraphrased triggers** — Same intent, completely different words. This tests whether the description is robust.
+
+Raj tested with: "Which of these customer emails are complaints vs feature requests?" — same intent as categorizing, but phrased as a question, not a command.
+
+**3. Negative triggers** — Queries that *seem* related but should NOT activate the Skill. These are the hardest to get right.
+
+Raj tested with: "Write a response to this angry customer" — this is about customer feedback, but it's drafting a response, not categorizing. His Skill should NOT trigger.`
+      },
+      {
+        title: "Diagnosing trigger problems",
+        content: `If your Skill **under-triggers** (misses queries it should catch), your description is missing keyword coverage. Add more trigger phrases and synonyms — "to-dos", "follow-ups", "next steps", "action items" are all ways people ask for the same thing.
+
+If your Skill **over-triggers** (fires on unrelated queries), your description is too generic. Add specificity about the input type and output, or add negative guidance like "Do NOT use for meeting scheduling or agenda creation."
+
+**The debugging trick:**
+
+Ask Claude directly: "When would you use the meeting-action-extractor skill?" Claude will quote the description back and explain when it would trigger. If the answer doesn't match your intent, revise the description.`
+      }
+    ],
     lessonContent: `You've built Clara's Skill and it works. But how do you know it triggers at the right times?
 
 Clara shares the Claude workspace with 3 other PMs at Tidepool. If her Skill's description is too broad, it will hijack their unrelated queries — imagine a colleague asking Claude to draft a product brief and getting back a list of action items instead. That's **over-triggering**.
