@@ -23,10 +23,10 @@ export function LessonStepper({ steps, moduleId, onAllStepsViewed, allViewed }: 
 
   // If already viewed (e.g. returning to completed module), show all
   useEffect(() => {
-    if (allViewed) {
+    if (allViewed && steps && steps.length > 0) {
       setCurrentStep(steps.length - 1);
     }
-  }, [allViewed, steps.length]);
+  }, [allViewed, steps?.length]);
 
   const handleContinue = () => {
     if (currentStep < steps.length - 1) {
@@ -42,7 +42,25 @@ export function LessonStepper({ steps, moduleId, onAllStepsViewed, allViewed }: 
     );
   };
 
+  // Safety checks after hooks
+  if (!steps || steps.length === 0) {
+    return (
+      <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-6 text-center">
+        <p className="text-sm text-destructive">No lesson steps found for this module.</p>
+      </div>
+    );
+  }
+
   const isLastStep = currentStep === steps.length - 1;
+  const currentStepData = steps[currentStep];
+
+  if (!currentStepData) {
+    return (
+      <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-6 text-center">
+        <p className="text-sm text-destructive">Error loading step {currentStep + 1}.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-3">
@@ -93,11 +111,11 @@ export function LessonStepper({ steps, moduleId, onAllStepsViewed, allViewed }: 
           <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
             <span className="text-xs font-bold text-primary">{currentStep + 1}</span>
           </div>
-          <span className="text-sm font-display font-semibold text-foreground">{steps[currentStep].title}</span>
+          <span className="text-sm font-display font-semibold text-foreground">{currentStepData.title}</span>
           <span className="ml-auto text-xs text-muted-foreground">{currentStep + 1}/{steps.length}</span>
         </div>
         <div className="px-4 py-4 lesson-content">
-          <ReactMarkdown>{steps[currentStep].content}</ReactMarkdown>
+          <ReactMarkdown>{currentStepData.content}</ReactMarkdown>
         </div>
         {!allViewed && (
           <div className="px-4 pb-4">
