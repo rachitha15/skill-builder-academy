@@ -7,6 +7,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import confetti from 'canvas-confetti';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { supabase } from '@/integrations/supabase/client';
 
 const CourseComplete = () => {
   const { state } = useCourse();
@@ -42,12 +43,33 @@ const CourseComplete = () => {
     saveAs(blob, 'meeting-action-extractor.zip');
   };
 
-  const handleJoinWaitlist = () => {
+  const handleJoinWaitlist = async () => {
     if (!email.trim()) return;
-    const existing = JSON.parse(localStorage.getItem('untutorial-waitlist') || '[]');
-    existing.push({ email, date: new Date().toISOString() });
-    localStorage.setItem('untutorial-waitlist', JSON.stringify(existing));
-    setJoined(true);
+
+    try {
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([
+          {
+            email: email.trim().toLowerCase(),
+            total_xp: state.totalXP
+          }
+        ]);
+
+      if (error) {
+        // If error is duplicate email, still show success (already on waitlist)
+        if (error.code === '23505') {
+          console.log('Email already on waitlist');
+        } else {
+          console.error('Error joining waitlist:', error);
+          return;
+        }
+      }
+
+      setJoined(true);
+    } catch (err) {
+      console.error('Unexpected error:', err);
+    }
   };
 
   const tweetText = encodeURIComponent(`I just built my first Claude Skill on Untutorial! 🛠️ ${state.totalXP} XP earned. Stop watching tutorials. Start building. #ClaudeSkills #BuildWithAI`);
