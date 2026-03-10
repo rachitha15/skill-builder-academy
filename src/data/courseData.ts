@@ -641,6 +641,46 @@ Score multipliers: 10/10 = 2.0×, 8-9/10 = 1.7×, 6-7/10 = 1.4×, 5/10 = 1.1×`,
     estimatedMinutes: 25,
     maxXP: 400,
     challengeType: 'code_editor',
+    lessonSteps: [
+      {
+        title: "When Skills break",
+        content: `Your Skill works on Clara's Tuesday standup. But Clara doesn't only have standups — she has 1:1s, retros, and leadership syncs. Each produces a different kind of mess.
+
+**Common ways Skills break on messy inputs:**
+
+Raj discovered this with his feedback categorizer. It worked great on standard English emails, but then:
+
+- A customer wrote in Spanglish: *"The app es terrible, siempre crashing"* — Raj's Skill couldn't categorize it
+- Another sent just *"????"* with zero context — the Skill crashed trying to extract sentiment from nothing
+- A third wrote a 2000-word essay mixing praise, complaints, AND feature requests in one message — the Skill picked one category and missed the rest`
+      },
+      {
+        title: "Examples beat rules",
+        content: `Each failure taught Raj something his instructions didn't cover. He fixed them not by adding more rules, but by **adding more examples.** Examples beat rules because rules can conflict, but examples show Claude exactly what you mean.
+
+Here's what Raj added after the Spanglish failure:
+
+\`\`\`
+Example: Mixed Language Input
+
+Input: "The app es terrible, siempre crashing when I try to upload files"
+
+Output:
+Category: Bug Report
+Severity: High
+Summary: App crashes on file upload (reported in Spanish/English)
+Note: Non-English content — interpret intent, don't skip
+\`\`\`
+
+One example fixed the entire class of problems. That's the power of examples over rules.`
+      },
+      {
+        title: "The iteration mindset",
+        content: `The best Skills aren't written in one pass. They're written, broken, and rewritten. This module is about building that muscle.
+
+Clara just sent you three meeting dumps from this week. They're her worst ones. Your Skill is going to break. **That's the point.**`
+      }
+    ],
     lessonContent: `Your Skill works on Clara's Tuesday standup. But Clara doesn't only have standups — she has 1:1s, retros, and leadership syncs. Each produces a different kind of mess.
 
 **Common ways Skills break on messy inputs:**
