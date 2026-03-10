@@ -257,6 +257,52 @@ Clara wants a Skill for extracting action items from her meeting notes. Help her
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'code_editor',
+    lessonSteps: [
+      {
+        title: "Why the description matters",
+        content: `The YAML frontmatter is the most important thing you'll write. Here's why: Claude reads the frontmatter of every installed Skill at startup. It uses the \`description\` field to decide which Skills to load for any given task.
+
+**The description field has two jobs:**
+
+1. **What it does** — A clear statement of the Skill's purpose.
+2. **When to use it** — Specific trigger phrases or situations.
+
+Both are required. Missing either one is the #1 reason Skills fail.`
+      },
+      {
+        title: "Good vs bad descriptions",
+        content: `**Let's look at how Raj wrote his description:**
+
+\`\`\`yaml
+description: Categorizes customer feedback into bug reports,
+  feature requests, praise, or complaints with severity level
+  and suggested response. Use when user pastes customer emails,
+  survey responses, support tickets, or NPS comments and asks
+  to sort, categorize, triage, or prioritize feedback.
+\`\`\`
+
+Why this works: It says WHAT (categorizes into specific types with severity) and WHEN (specific input types + specific trigger phrases like "sort", "categorize", "triage").
+
+**Bad descriptions:**
+
+❌ *"Helps with customer stuff."*
+Too vague. Claude has no idea when to use it.
+
+❌ *"An advanced NLP pipeline for multi-label sentiment classification with hierarchical taxonomy mapping."*
+Technically accurate but zero trigger phrases. Claude won't match this to "hey can you sort through these support emails?"`
+      },
+      {
+        title: "Pro tips for descriptions",
+        content: `**Pro tips for writing descriptions:**
+- **Include words users actually say** — Raj used "sort", "categorize", "triage"
+- **Mention input types** — Raj listed "customer emails", "survey responses", "support tickets"
+- Keep it under **1024 characters** total
+- **No XML tags** (\`<\` or \`>\` characters) — security restriction
+- Don't put "claude" or "anthropic" in the Skill name
+
+> **Pro tip:** "Use when" is your best friend. It's the clearest signal to Claude that what follows is trigger criteria.`
+      }
+    ],
     lessonContent: `The YAML frontmatter is the most important thing you'll write. Here's why: Claude reads the frontmatter of every installed Skill at startup. It uses the \`description\` field to decide which Skills to load for any given task.
 
 **The description field has two jobs:**
