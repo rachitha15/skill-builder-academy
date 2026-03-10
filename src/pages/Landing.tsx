@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Terminal, Sparkles, ArrowRight } from 'lucide-react';
+import { BookOpen, Terminal, Sparkles, ArrowRight, Quote } from 'lucide-react';
+import { useEffect } from 'react';
 
 const Landing = () => {
+  // Update meta description for landing page
+  useEffect(() => {
+    document.title = 'Untutorial — Build Your First Claude Skill';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Stop watching tutorials. Start building. Learn to build Claude Skills through 7 hands-on modules with AI-powered feedback.');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-background noise-bg">
       {/* Nav */}
@@ -50,6 +60,7 @@ const Landing = () => {
               Start Building <ArrowRight className="h-5 w-5" />
             </Link>
             <p className="text-sm text-muted-foreground mt-3">Free · No sign-up required</p>
+            <p className="text-sm text-muted-foreground/80 mt-2">Earn XP as you build. Lose some when you ask for hints.</p>
           </motion.div>
 
           {/* Right — mock screenshot */}
@@ -93,6 +104,49 @@ const Landing = () => {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      {/* Social Proof / Testimonials */}
+      <section className="max-w-5xl mx-auto px-6 pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Featured testimonial */}
+          <div className="max-w-3xl mx-auto mb-12 text-center">
+            <div className="relative">
+              <Quote className="absolute -top-4 -left-4 h-12 w-12 text-primary/20" />
+              <blockquote className="text-xl md:text-2xl text-slate-300 leading-relaxed border-l-4 border-primary pl-6 py-4">
+                "The DIY model is brilliant — I finished all 7 modules and walked away with a real Skill I actually use."
+              </blockquote>
+            </div>
+            <p className="text-sm text-gray-400 mt-4">
+              — Amritha, Product Manager
+            </p>
+          </div>
+
+          {/* Two-column testimonials */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="bg-[#111111] border border-[#222222] rounded-xl p-6">
+              <p className="text-base text-gray-300 mb-4">
+                "You break things on purpose, then learn to fix them properly. The gamification keeps you hooked."
+              </p>
+              <p className="text-sm text-gray-400">
+                — Keerthan, Deep Learning Engineer
+              </p>
+            </div>
+            <div className="bg-[#111111] border border-[#222222] rounded-xl p-6">
+              <p className="text-base text-gray-300 mb-4">
+                "Finally, an AI course where I actually built something instead of just watching someone else do it."
+              </p>
+              <p className="text-sm text-gray-400">
+                — Pratibha, Early-stage Founder
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* What you'll build */}
@@ -151,6 +205,30 @@ const Landing = () => {
         </motion.div>
       </section>
 
+      {/* "But can't Claude just build a Skill for me?" callout */}
+      <section className="max-w-3xl mx-auto px-6 pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-lg border border-border bg-[#0a0a0a] p-8 md:p-10"
+        >
+          <h2 className="text-xl md:text-2xl font-display font-bold text-foreground mb-4">
+            "But can't Claude just build a Skill for me?"
+          </h2>
+          <div className="space-y-4 leading-relaxed">
+            <p className="text-lg text-foreground">Sure. And you can ask someone else to cook your dinner.</p>
+            <p className="text-gray-300">
+              Claude can generate a SKILL.md in 30 seconds. But when it doesn't trigger right, when it chokes on messy inputs, when you want something Claude's defaults can't handle — you'll wish you understood what's under the hood.
+            </p>
+            <p className="text-gray-300">
+              This course doesn't just give you a Skill. It gives you the ability to build, debug, and improve <em>any</em> Skill. That's the difference between using AI and being fluent in AI.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* How it works */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
         <motion.div
@@ -166,7 +244,7 @@ const Landing = () => {
             {[
               { icon: BookOpen, title: 'Learn the concept', desc: 'Short, focused lessons with zero fluff' },
               { icon: Terminal, title: 'Build in the sandbox', desc: 'Write real Skill code in the browser' },
-              { icon: Sparkles, title: 'Get AI feedback', desc: 'Claude evaluates your work and guides you' },
+              { icon: Sparkles, title: 'Get AI feedback', desc: 'Claude reads your SKILL.md, tests it against messy meeting notes, flags weak triggers, and tells you exactly what to fix.' },
             ].map(({ icon: Icon, title, desc }, i) => (
               <div key={i} className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 mb-4">
@@ -180,40 +258,79 @@ const Landing = () => {
         </motion.div>
       </section>
 
-      {/* "Why learn this?" callout */}
+      {/* The Curriculum / Module List */}
       <section className="max-w-3xl mx-auto px-6 pb-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-lg border border-primary/20 bg-card p-8 md:p-10"
         >
-          <h2 className="text-xl md:text-2xl font-display font-bold text-foreground mb-4">
-            "But can't Claude just build a Skill for me?"
+          <h2 className="text-2xl font-display font-bold text-foreground text-center mb-8">
+            7 Modules. ~2 Hours.
           </h2>
-          <div className="space-y-4 text-muted-foreground leading-relaxed">
-            <p>Sure. And you can ask someone else to cook your dinner.</p>
-            <p>
-              Claude can generate a SKILL.md in 30 seconds. But when it{' '}
-              <span className="text-foreground font-medium">doesn't trigger right</span>, when it{' '}
-              <span className="text-foreground font-medium">chokes on messy inputs</span>, when you want to build something Claude's defaults can't handle — you'll wish you understood what's under the hood.
-            </p>
-            <p>
-              This course doesn't just give you a skill. It gives you the ability to{' '}
-              <span className="text-primary font-semibold">build, debug, and improve ANY skill</span>.
-              That's the difference between <em>using</em> AI and being <em>fluent</em> in AI.
-            </p>
+          <div className="border border-border rounded-lg bg-card overflow-hidden">
+            {[
+              { num: 1, title: 'What Even Is a Skill?', time: '10 min' },
+              { num: 2, title: 'The Anatomy of a Skill', time: '10 min' },
+              { num: 3, title: 'Frontmatter is Everything', time: '20 min' },
+              { num: 4, title: 'Writing Instructions That Work', time: '30 min' },
+              { num: 5, title: 'Make It Trigger Right', time: '20 min' },
+              { num: 6, title: 'Break It and Fix It', time: '25 min' },
+              { num: 7, title: 'Ship It', time: '10 min' },
+            ].map(({ num, title, time }, i) => (
+              <div
+                key={num}
+                className={`flex items-center justify-between px-6 py-4 ${
+                  i !== 6 ? 'border-b border-[#222222]' : ''
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <span className="text-primary font-bold font-mono text-lg">{num}</span>
+                  <span className="text-foreground">{title}</span>
+                </div>
+                <span className="text-muted-foreground text-sm">{time}</span>
+              </div>
+            ))}
+            <div className="px-6 py-4 bg-[#0a0a0a] border-t border-[#222222]">
+              <p className="text-sm text-muted-foreground text-center">
+                Total: ~2 hours · 1 working Claude Skill
+              </p>
+            </div>
           </div>
         </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 py-8">
-        <p className="text-center text-sm text-muted-foreground">
-          Stop watching tutorials. Start untutorialing.{' '}
-          <span className="text-foreground font-medium">untutorial.in</span>
-        </p>
+      <footer className="border-t border-border/50 py-12">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <Link
+            to="/course"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-lg font-semibold mb-4"
+          >
+            → Start Module 1 — Free, no sign-up
+          </Link>
+          <p className="text-sm text-muted-foreground">
+            Built by{' '}
+            <a
+              href="https://rachithasuresh.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Rachitha
+            </a>
+            {' · '}Powered by{' '}
+            <a
+              href="https://anthropic.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Claude
+            </a>
+          </p>
+        </div>
       </footer>
     </div>
   );

@@ -25,6 +25,14 @@ const CourseComplete = () => {
     frame();
   }, []);
 
+  useEffect(() => {
+    document.title = 'Course Complete — You built your first Claude Skill on Untutorial';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Course Complete — You built your first Claude Skill on Untutorial');
+    }
+  }, []);
+
   const handleDownload = async () => {
     const content = state.modules[6]?.userWork || state.modules[5]?.userWork || state.modules[2]?.userWork || '# SKILL.md';
     const zip = new JSZip();

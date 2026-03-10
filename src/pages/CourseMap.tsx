@@ -4,6 +4,7 @@ import { Lock, Play, CheckCircle2, Clock, ArrowLeft } from 'lucide-react';
 import { useCourse } from '@/context/CourseContext';
 import { MODULE_DATA } from '@/data/courseData';
 import { XPCounter } from '@/components/XPCounter';
+import { useEffect } from 'react';
 
 const CourseMap = () => {
   const { state } = useCourse();
@@ -14,6 +15,14 @@ const CourseMap = () => {
     if (mod?.status === 'completed') return acc;
     return acc + m.estimatedMinutes;
   }, 0);
+
+  useEffect(() => {
+    document.title = 'Build Your First Claude Skill — Untutorial';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Build Your First Claude Skill — 7 modules, ~2 hours, one real AI workflow you can download and use.');
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-background noise-bg">

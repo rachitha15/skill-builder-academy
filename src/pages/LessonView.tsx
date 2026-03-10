@@ -42,6 +42,17 @@ const LessonView = () => {
     setChallengeUnlocked(mod?.status === 'completed');
   }, [moduleId, state.modules]);
 
+  // Update meta description for module pages
+  useEffect(() => {
+    if (moduleData) {
+      document.title = `Module ${moduleId}: ${moduleData.title} — Untutorial`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', `Module ${moduleId}: ${moduleData.title} — ${moduleData.subtitle}`);
+      }
+    }
+  }, [moduleId, moduleData]);
+
   // Auto-start module on first visit
   useEffect(() => {
     const mod = state.modules.find(m => m.id === moduleId);
