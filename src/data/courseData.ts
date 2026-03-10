@@ -1,3 +1,8 @@
+export interface LessonStep {
+  title: string;
+  content: string;
+}
+
 export interface ModuleData {
   id: number;
   title: string;
@@ -5,6 +10,7 @@ export interface ModuleData {
   estimatedMinutes: number;
   maxXP: number;
   lessonContent: string;
+  lessonSteps: LessonStep[];
   challengeType: 'multiple_choice' | 'folder_structure' | 'code_editor' | 'trigger_test' | 'final_review';
   challengeInstructions: string;
   hints: string[];
