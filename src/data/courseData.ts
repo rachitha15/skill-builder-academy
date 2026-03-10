@@ -1,3 +1,8 @@
+export interface LessonStep {
+  title: string;
+  content: string;
+}
+
 export interface ModuleData {
   id: number;
   title: string;
@@ -5,6 +10,7 @@ export interface ModuleData {
   estimatedMinutes: number;
   maxXP: number;
   lessonContent: string;
+  lessonSteps: LessonStep[];
   challengeType: 'multiple_choice' | 'folder_structure' | 'code_editor' | 'trigger_test' | 'final_review';
   challengeInstructions: string;
   hints: string[];
@@ -20,6 +26,54 @@ export const MODULE_DATA: ModuleData[] = [
     estimatedMinutes: 10,
     maxXP: 150,
     challengeType: 'multiple_choice',
+    lessonSteps: [
+      {
+        title: "What is a Skill?",
+        content: `Most people use Claude the same way every time — they type a request, get a response, and start from scratch next conversation. If you've ever found yourself typing "You are a PM who..." for the fifth time this week, you already feel the problem.
+
+A **Claude Skill** is a set of instructions — packaged as a simple folder — that teaches Claude how to handle a specific task or workflow. Instead of re-explaining what you want every time, you teach Claude once, and it remembers.
+
+Here's the key insight: **a Skill is not code.** It's a markdown file. If you can write a clear set of instructions for a new hire, you can write a Skill. That's the bar.
+
+A Skill folder contains:
+
+- **SKILL.md** (required) — The instructions file. Written in Markdown with some YAML metadata at the top.
+- **scripts/** (optional) — Code Claude can run to help with the task.
+- **references/** (optional) — Extra documentation Claude can look at when needed.
+- **assets/** (optional) — Templates, images, or other files used in the output.
+
+For most Skills — including the one you'll build in this course — all you need is the SKILL.md file. That's it. One file.`
+      },
+      {
+        title: "Why Skills are powerful",
+        content: `**Three things that make Skills powerful:**
+
+1. **Progressive Disclosure** — Claude doesn't load the full Skill into memory until it's needed. First it reads a short description. Only if the task matches does it read the full instructions. This keeps things fast.
+2. **Composability** — Multiple Skills can work together. A meeting-notes Skill could work alongside a Skill that formats documents, or one that creates Slack messages.
+3. **Portability** — A Skill works in Claude.ai, Claude Code, and the API. Build once, use everywhere.
+
+> **"But can't Claude just build a Skill for me?"**
+> Sure — and it'll work fine for simple tasks. But when it doesn't trigger right, when it chokes on messy inputs, when you want something Claude's defaults can't handle — you'll wish you understood what's under the hood. This course gives you the ability to build, debug, and improve *any* Skill.`
+      },
+      {
+        title: "Raj's example",
+        content: `**Let's see a real example.**
+
+Imagine a customer support lead named Raj who gets hundreds of feedback emails weekly. He built a Skill called \`feedback-categorizer\` that reads raw customer feedback and sorts it into categories: bug report, feature request, praise, or complaint — with severity and a suggested response template. He taught Claude once, and now it handles feedback consistently every time.
+
+That's the power of Skills. You define the workflow once, and Claude executes it reliably.`
+      },
+      {
+        title: "Meet Clara — your project",
+        content: `> **Now meet Clara.**
+>
+> Clara is a programme manager at Tidepool, a 40-person startup. She runs 3 standups a week, has 1:1s with 6 reports, and sits in a weekly leadership sync. After every meeting, she has a Google Doc full of chaotic notes — abbreviations, half-sentences, implied tasks.
+>
+> She's been pasting her notes into Claude with "give me the action items" but the results are inconsistent. She wants a Skill that handles her messy notes reliably. **You're going to build it for her.**
+
+By Module 7, you'll have a working Skill called \`meeting-action-extractor\`. Clara will paste her messy notes, and the Skill will produce clean action items with owners, deadlines, and priority. Let's start.`
+      }
+    ],
     lessonContent: `Most people use Claude the same way every time — they type a request, get a response, and start from scratch next conversation. If you've ever found yourself typing "You are a PM who..." for the fifth time this week, you already feel the problem.
 
 A **Claude Skill** is a set of instructions — packaged as a simple folder — that teaches Claude how to handle a specific task or workflow. Instead of re-explaining what you want every time, you teach Claude once, and it remembers.
@@ -81,6 +135,58 @@ You'll be shown 4 scenarios. For each one, identify whether a Claude Skill is th
     estimatedMinutes: 10,
     maxXP: 150,
     challengeType: 'folder_structure',
+    lessonSteps: [
+      {
+        title: "The folder structure",
+        content: `Now you know what a Skill is. Let's look at what one actually looks like on the inside.
+
+Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`feedback-categorizer\` is correct. \`Feedback Categorizer\` is not. \`feedback_categorizer\` is not.
+
+Inside the folder, there's one required file: \`SKILL.md\`. Note the exact casing — it must be exactly \`SKILL.md\`. Not \`skill.md\`. Not \`Skill.md\`. Exactly \`SKILL.md\`.`
+      },
+      {
+        title: "Inside SKILL.md",
+        content: `This file has two parts:
+
+**Part 1: YAML Frontmatter** — This is metadata at the very top of the file, wrapped in \`---\` delimiters. It tells Claude the name of your Skill and when to use it.
+
+Here's what Raj's feedback categorizer looks like:
+
+\`\`\`yaml
+---
+name: feedback-categorizer
+description: Categorizes customer feedback into bug reports, feature requests, praise, or complaints with severity level. Use when user pastes customer emails, survey responses, or support tickets and asks to sort, categorize, or triage feedback.
+---
+\`\`\`
+
+**Part 2: Markdown Body** — Everything below the frontmatter is the instructions Claude follows when the Skill is active.
+
+\`\`\`markdown
+# Feedback Categorizer
+
+## Instructions
+1. Read the customer feedback provided
+2. Categorize into: Bug Report, Feature Request, Praise, or Complaint
+3. Assign severity: Critical, High, Medium, Low
+4. Write a 1-sentence summary
+5. Suggest a response template
+
+## Edge Cases
+- If feedback contains multiple categories, create separate entries
+- If sentiment is ambiguous, default to "Needs Review"
+\`\`\``
+      },
+      {
+        title: "Optional folders and the README rule",
+        content: `**The optional folders:**
+
+- \`scripts/\` — Python or Bash scripts Claude can run. Example: a validation script that checks output format.
+- \`references/\` — Extra documentation Claude reads for context.
+- \`assets/\` — Files used in the output, like report templates.
+
+**Critical rule: No README.md** inside the Skill folder. All documentation goes in SKILL.md or references/.`
+      }
+    ],
     lessonContent: `Now you know what a Skill is. Let's look at what one actually looks like on the inside.
 
 Every Skill is a folder. The folder name matters — it must be in **kebab-case** (lowercase words separated by hyphens). So \`feedback-categorizer\` is correct. \`Feedback Categorizer\` is not. \`feedback_categorizer\` is not.
@@ -151,6 +257,52 @@ Clara wants a Skill for extracting action items from her meeting notes. Help her
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'code_editor',
+    lessonSteps: [
+      {
+        title: "Why the description matters",
+        content: `The YAML frontmatter is the most important thing you'll write. Here's why: Claude reads the frontmatter of every installed Skill at startup. It uses the \`description\` field to decide which Skills to load for any given task.
+
+**The description field has two jobs:**
+
+1. **What it does** — A clear statement of the Skill's purpose.
+2. **When to use it** — Specific trigger phrases or situations.
+
+Both are required. Missing either one is the #1 reason Skills fail.`
+      },
+      {
+        title: "Good vs bad descriptions",
+        content: `**Let's look at how Raj wrote his description:**
+
+\`\`\`yaml
+description: Categorizes customer feedback into bug reports,
+  feature requests, praise, or complaints with severity level
+  and suggested response. Use when user pastes customer emails,
+  survey responses, support tickets, or NPS comments and asks
+  to sort, categorize, triage, or prioritize feedback.
+\`\`\`
+
+Why this works: It says WHAT (categorizes into specific types with severity) and WHEN (specific input types + specific trigger phrases like "sort", "categorize", "triage").
+
+**Bad descriptions:**
+
+❌ *"Helps with customer stuff."*
+Too vague. Claude has no idea when to use it.
+
+❌ *"An advanced NLP pipeline for multi-label sentiment classification with hierarchical taxonomy mapping."*
+Technically accurate but zero trigger phrases. Claude won't match this to "hey can you sort through these support emails?"`
+      },
+      {
+        title: "Pro tips for descriptions",
+        content: `**Pro tips for writing descriptions:**
+- **Include words users actually say** — Raj used "sort", "categorize", "triage"
+- **Mention input types** — Raj listed "customer emails", "survey responses", "support tickets"
+- Keep it under **1024 characters** total
+- **No XML tags** (\`<\` or \`>\` characters) — security restriction
+- Don't put "claude" or "anthropic" in the Skill name
+
+> **Pro tip:** "Use when" is your best friend. It's the clearest signal to Claude that what follows is trigger criteria.`
+      }
+    ],
     lessonContent: `The YAML frontmatter is the most important thing you'll write. Here's why: Claude reads the frontmatter of every installed Skill at startup. It uses the \`description\` field to decide which Skills to load for any given task.
 
 **The description field has two jobs:**
@@ -224,6 +376,78 @@ Score multipliers: 7/7 = 2.0×, 6/7 = 1.7×, 5/7 = 1.4×, 4/7 = 1.1×`,
     estimatedMinutes: 30,
     maxXP: 400,
     challengeType: 'code_editor',
+    lessonSteps: [
+      {
+        title: "Write for a new hire, not yourself",
+        content: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail.
+
+**The #1 rule: Write for a smart new hire, not for yourself.**
+
+Let's look at how Raj structured his feedback categorizer instructions:
+
+❌ **Vague:** "Categorize the feedback."
+
+✅ **Specific:**
+\`\`\`
+For each piece of customer feedback:
+1. Read the full message
+2. Categorize as ONE of: Bug Report, Feature Request, Praise, Complaint
+3. Assign severity:
+   - Critical: service outage, data loss, security issue
+   - High: major feature broken, billing error
+   - Medium: minor bug, UX confusion
+   - Low: cosmetic issue, nice-to-have suggestion
+4. Write a 1-sentence summary (max 15 words)
+5. Suggest a response using the templates in references/
+\`\`\`
+
+See the difference? Raj defined exactly what each severity level means. He didn't leave Claude guessing.`
+      },
+      {
+        title: "Structure your instructions",
+        content: `**Structuring your instructions — the pattern:**
+
+1. **Context** — What is this Skill for? One sentence.
+2. **Steps** — What should Claude do? Number them.
+3. **Output format** — What should the result look like? Show a template.
+4. **Edge cases** — What happens when things are messy?
+5. **Example** — Show an input/output pair. This is the most powerful thing you can include.`
+      },
+      {
+        title: "The power of examples",
+        content: `Raj included this in his Skill:
+
+\`\`\`
+## Example
+
+Input: "Your app crashed three times today and I lost my
+draft. This is unacceptable for a paid product."
+
+Output:
+- Category: Bug Report
+- Severity: Critical
+- Summary: App crashes causing data loss for paid user
+- Response: [Apology template + escalation to engineering]
+\`\`\`
+
+Claude learns patterns from examples faster than from rules. One good example is worth five paragraphs of instructions.`
+      },
+      {
+        title: "Handling messy reality",
+        content: `Raj knew customer feedback is messy — sometimes a message is both a complaint AND a feature request. Sometimes the sentiment is unclear. So he added:
+
+\`\`\`
+## Edge Cases
+- If feedback contains multiple categories, create separate entries for each
+- If sentiment is ambiguous, categorize as "Needs Review" and flag for human
+- If the message is not customer feedback (e.g., spam, internal), skip it
+\`\`\``
+      },
+      {
+        title: "Now it's your turn — Clara's notes are different",
+        content: `Now it's your turn to write instructions for Clara. Her meeting notes are different from customer feedback — messier, with abbreviations, vague deadlines, and non-action items mixed in. Apply the same structure you just saw from Raj: Context → Steps → Output Format → Edge Cases → Example.`
+      }
+    ],
     lessonContent: `Your frontmatter gets Claude to load the Skill. The instructions body tells Claude what to actually DO. This is where most Skills succeed or fail.
 
 **The #1 rule: Write for a smart new hire, not for yourself.**
@@ -319,6 +543,42 @@ You'll write the SKILL.md body (everything below the frontmatter). **After you s
     estimatedMinutes: 20,
     maxXP: 300,
     challengeType: 'trigger_test',
+    lessonSteps: [
+      {
+        title: "The triggering problem",
+        content: `You've built Clara's Skill and it works. But how do you know it triggers at the right times?
+
+Clara shares the Claude workspace with 3 other PMs at Tidepool. If her Skill's description is too broad, it will hijack their unrelated queries — imagine a colleague asking Claude to draft a product brief and getting back a list of action items instead. That's **over-triggering**.
+
+If the description is too narrow, Clara's own queries will miss — she pastes her 1:1 notes and says "what did we agree to do?" but the Skill doesn't activate because it only recognizes "extract action items." That's **under-triggering**.`
+      },
+      {
+        title: "The testing framework",
+        content: `Professional Skill builders test three types of queries:
+
+**1. Obvious triggers** — Queries that should clearly activate the Skill.
+
+Raj tested his feedback-categorizer with: "Categorize these support tickets"
+
+**2. Paraphrased triggers** — Same intent, completely different words. This tests whether the description is robust.
+
+Raj tested with: "Which of these customer emails are complaints vs feature requests?" — same intent as categorizing, but phrased as a question, not a command.
+
+**3. Negative triggers** — Queries that *seem* related but should NOT activate the Skill. These are the hardest to get right.
+
+Raj tested with: "Write a response to this angry customer" — this is about customer feedback, but it's drafting a response, not categorizing. His Skill should NOT trigger.`
+      },
+      {
+        title: "Diagnosing trigger problems",
+        content: `If your Skill **under-triggers** (misses queries it should catch), your description is missing keyword coverage. Add more trigger phrases and synonyms — "to-dos", "follow-ups", "next steps", "action items" are all ways people ask for the same thing.
+
+If your Skill **over-triggers** (fires on unrelated queries), your description is too generic. Add specificity about the input type and output, or add negative guidance like "Do NOT use for meeting scheduling or agenda creation."
+
+**The debugging trick:**
+
+Ask Claude directly: "When would you use the meeting-action-extractor skill?" Claude will quote the description back and explain when it would trigger. If the answer doesn't match your intent, revise the description.`
+      }
+    ],
     lessonContent: `You've built Clara's Skill and it works. But how do you know it triggers at the right times?
 
 Clara shares the Claude workspace with 3 other PMs at Tidepool. If her Skill's description is too broad, it will hijack their unrelated queries — imagine a colleague asking Claude to draft a product brief and getting back a list of action items instead. That's **over-triggering**.
@@ -381,6 +641,46 @@ Score multipliers: 10/10 = 2.0×, 8-9/10 = 1.7×, 6-7/10 = 1.4×, 5/10 = 1.1×`,
     estimatedMinutes: 25,
     maxXP: 400,
     challengeType: 'code_editor',
+    lessonSteps: [
+      {
+        title: "When Skills break",
+        content: `Your Skill works on Clara's Tuesday standup. But Clara doesn't only have standups — she has 1:1s, retros, and leadership syncs. Each produces a different kind of mess.
+
+**Common ways Skills break on messy inputs:**
+
+Raj discovered this with his feedback categorizer. It worked great on standard English emails, but then:
+
+- A customer wrote in Spanglish: *"The app es terrible, siempre crashing"* — Raj's Skill couldn't categorize it
+- Another sent just *"????"* with zero context — the Skill crashed trying to extract sentiment from nothing
+- A third wrote a 2000-word essay mixing praise, complaints, AND feature requests in one message — the Skill picked one category and missed the rest`
+      },
+      {
+        title: "Examples beat rules",
+        content: `Each failure taught Raj something his instructions didn't cover. He fixed them not by adding more rules, but by **adding more examples.** Examples beat rules because rules can conflict, but examples show Claude exactly what you mean.
+
+Here's what Raj added after the Spanglish failure:
+
+\`\`\`
+Example: Mixed Language Input
+
+Input: "The app es terrible, siempre crashing when I try to upload files"
+
+Output:
+Category: Bug Report
+Severity: High
+Summary: App crashes on file upload (reported in Spanish/English)
+Note: Non-English content — interpret intent, don't skip
+\`\`\`
+
+One example fixed the entire class of problems. That's the power of examples over rules.`
+      },
+      {
+        title: "The iteration mindset",
+        content: `The best Skills aren't written in one pass. They're written, broken, and rewritten. This module is about building that muscle.
+
+Clara just sent you three meeting dumps from this week. They're her worst ones. Your Skill is going to break. **That's the point.**`
+      }
+    ],
     lessonContent: `Your Skill works on Clara's Tuesday standup. But Clara doesn't only have standups — she has 1:1s, retros, and leadership syncs. Each produces a different kind of mess.
 
 **Common ways Skills break on messy inputs:**
@@ -448,6 +748,55 @@ Your instructions from Module 4 are pre-loaded in the editor. Above the editor, 
     estimatedMinutes: 10,
     maxXP: 250,
     challengeType: 'final_review',
+    lessonSteps: [
+      {
+        title: "Your complete Skill",
+        content: `Clara's Skill is ready. You built it, tested it, broke it on her worst notes, and fixed it. Now let's package it.
+
+**Your complete \`meeting-action-extractor\` Skill:**
+
+\`\`\`
+meeting-action-extractor/
+└── SKILL.md
+\`\`\`
+
+One folder, one file. Simple by design.
+
+The SKILL.md contains:
+1. Your YAML frontmatter (from Module 3)
+2. Your instructions body (from Module 4, refined in Module 6)`
+      },
+      {
+        title: "Installing your Skill",
+        content: `**Installing your Skill in Claude:**
+
+1. Download the .zip file (button on the right →)
+2. Open Claude.ai → Settings → Capabilities → Skills
+3. Click "Upload skill"
+4. Select the .zip file
+5. Toggle the Skill on
+6. Test it: paste meeting notes and ask for action items
+
+Clara's Skill will now trigger automatically whenever she (or you!) pastes meeting notes and asks for action items. No more re-explaining. No more templates. Just results.`
+      },
+      {
+        title: "The framework you've learned",
+        content: `**What you've learned — the framework:**
+
+1. Define the use case (Clara's repeatable workflow)
+2. Write clear frontmatter (what + when)
+3. Write specific instructions (steps + examples + edge cases)
+4. Test triggers (obvious + paraphrased + negative)
+5. Break it with messy inputs and fix it
+6. Ship it
+
+This framework works for ANY Skill — competitive analysis, customer research synthesis, OKR drafting, sprint planning, or whatever your workflow needs. The meeting-action-extractor was the vehicle. The skill-building framework is what you take with you.
+
+**One more thing before you ship:**
+
+Your Skill needs to pass one final test — a set of Clara's notes you haven't seen yet. Think of it as the final boss. Review your SKILL.md, make any last edits, and run the test.`
+      }
+    ],
     lessonContent: `Clara's Skill is ready. You built it, tested it, broke it on her worst notes, and fixed it. Now let's package it.
 
 **Your complete \`meeting-action-extractor\` Skill:**

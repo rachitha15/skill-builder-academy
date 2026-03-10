@@ -1,8 +1,8 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Lightbulb } from 'lucide-react';
+import { ArrowLeft, Lightbulb, Lock } from 'lucide-react';
 import { useCourse } from '@/context/CourseContext';
 import { MODULE_DATA } from '@/data/courseData';
 import { XPCounter } from '@/components/XPCounter';
@@ -18,6 +18,7 @@ import { TriggerTestWorkspace } from '@/components/workspaces/TriggerTestWorkspa
 import { InstructionTestWorkspace } from '@/components/workspaces/InstructionTestWorkspace';
 import { MessyInputsWorkspace } from '@/components/workspaces/MessyInputsWorkspace';
 import { ShipItWorkspace } from '@/components/workspaces/ShipItWorkspace';
+import { LessonStepper } from '@/components/LessonStepper';
 import confetti from 'canvas-confetti';
 
 const LessonView = () => {
@@ -28,35 +29,23 @@ const LessonView = () => {
   const [revealedHints, setRevealedHints] = useState<number[]>([]);
   const [completed, setCompleted] = useState(false);
   const [activeTab, setActiveTab] = useState('lesson');
-  const [showReadyPrompt, setShowReadyPrompt] = useState(false);
+  const [challengeUnlocked, setChallengeUnlocked] = useState(false);
   const isMobile = useIsMobile();
-  const lessonEndRef = useRef<HTMLDivElement>(null);
-  const lessonScrollRef = useRef<HTMLDivElement>(null);
 
   // Reset local state when navigating between modules
   useEffect(() => {
     setCompleted(false);
     setRevealedHints([]);
     setActiveTab('lesson');
-    setShowReadyPrompt(false);
-  }, [moduleId]);
-
-  // Intersection observer for "Ready?" prompt on mobile
-  useEffect(() => {
-    if (!isMobile || !lessonEndRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setShowReadyPrompt(entry.isIntersecting),
-      { threshold: 0.1, root: lessonScrollRef.current }
-    );
-    observer.observe(lessonEndRef.current);
-    return () => observer.disconnect();
-  }, [isMobile, moduleId]);
+    // If module is already completed, unlock challenge
+    const mod = state.modules.find(m => m.id === moduleId);
+    setChallengeUnlocked(mod?.status === 'completed');
+  }, [moduleId, state.modules]);
 
   // Auto-start module on first visit
   useEffect(() => {
     const mod = state.modules.find(m => m.id === moduleId);
     if (mod && mod.status === 'locked') {
-      // Allow module 1 to always be startable, others only if previous is completed
       const canStart = moduleId === 1 || state.modules.find(m => m.id === moduleId - 1)?.status === 'completed';
       if (canStart) {
         dispatch({ type: 'START_MODULE', moduleId });
@@ -79,6 +68,13 @@ const LessonView = () => {
       return null;
     }
   }
+
+  const handleAllStepsViewed = () => {
+    setChallengeUnlocked(true);
+    if (isMobile) {
+      setActiveTab('challenge');
+    }
+  };
 
   const revealHint = () => {
     const next = revealedHints.length;
@@ -123,16 +119,8 @@ const LessonView = () => {
     }
   };
 
-  const getAssembledContent = () => {
-    const m3 = state.modules[2]?.userWork || '---\nname: meeting-action-extractor\ndescription: >\n  ...\n---';
-    const m4 = state.modules[3]?.userWork || '';
-    const m6 = state.modules[5]?.userWork || '';
-    return `${m3}\n\n${m4}\n\n${m6}`;
-  };
-
   // Build accumulated content from previous code_editor modules
   const getAccumulatedCode = (currentModuleId: number): string => {
-    // Order of code_editor modules: 3 → 4 → 6 → 7(final_review)
     const codeModuleOrder = [3, 4, 6];
     const previousModules = codeModuleOrder.filter(id => id < currentModuleId);
     const previousWork = previousModules
@@ -172,6 +160,10 @@ const LessonView = () => {
           isLast={moduleId >= 7}
         />
       );
+    }
+
+    if (!challengeUnlocked) {
+      return <LockedChallenge />;
     }
 
     switch (moduleData.challengeType) {
@@ -226,6 +218,48 @@ const LessonView = () => {
     }
   };
 
+  const renderLessonPanel = () => (
+    <>
+      <LessonStepper
+        steps={moduleData.lessonSteps}
+        moduleId={moduleId}
+        onAllStepsViewed={handleAllStepsViewed}
+        allViewed={challengeUnlocked}
+      />
+      {challengeUnlocked && (
+        <>
+          <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5">
+            <div className="lesson-content">
+              <ReactMarkdown>{moduleData.challengeInstructions}</ReactMarkdown>
+            </div>
+          </div>
+          <div className="mt-4 space-y-2">
+            <AnimatePresence>
+              {revealedHints.map(idx => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  className="rounded-lg border border-secondary/30 bg-secondary/10 p-4"
+                >
+                  <p className="text-sm text-foreground">{moduleData.hints[idx]}</p>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+            {hintLabel() && revealedHints.length < moduleData.hints.length && (
+              <button
+                onClick={revealHint}
+                className="flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
+              >
+                <Lightbulb className="h-4 w-4" /> {hintLabel()}
+              </button>
+            )}
+          </div>
+        </>
+      )}
+    </>
+  );
+
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Top bar */}
@@ -248,54 +282,12 @@ const LessonView = () => {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0">
           <TabsList className="sticky top-0 z-10 h-11 w-full rounded-none border-b border-border bg-background shrink-0">
             <TabsTrigger value="lesson" className="flex-1 text-sm">📖 Lesson</TabsTrigger>
-            <TabsTrigger value="challenge" className="flex-1 text-sm">🛠️ Challenge</TabsTrigger>
+            <TabsTrigger value="challenge" className="flex-1 text-sm">
+              {challengeUnlocked ? '🛠️ Challenge' : '🔒 Challenge'}
+            </TabsTrigger>
           </TabsList>
-          <TabsContent value="lesson" ref={lessonScrollRef} className="flex-1 overflow-y-auto p-6 mt-0 border-l-4 border-l-primary">
-            <div className="lesson-content">
-              <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
-            </div>
-            <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5">
-              <div className="lesson-content">
-                <ReactMarkdown>{moduleData.challengeInstructions}</ReactMarkdown>
-              </div>
-            </div>
-            <div className="mt-4 space-y-2">
-              <AnimatePresence>
-                {revealedHints.map(idx => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    className="rounded-lg border border-secondary/30 bg-secondary/10 p-4"
-                  >
-                    <p className="text-sm text-foreground">{moduleData.hints[idx]}</p>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-              {hintLabel() && revealedHints.length < moduleData.hints.length && (
-                <button
-                  onClick={revealHint}
-                  className="flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
-                >
-                  <Lightbulb className="h-4 w-4" /> {hintLabel()}
-                </button>
-              )}
-            </div>
-            {/* Sentinel + Ready prompt */}
-            <div ref={lessonEndRef} className="h-1" />
-            <AnimatePresence>
-              {showReadyPrompt && activeTab === 'lesson' && (
-                <motion.button
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  onClick={() => setActiveTab('challenge')}
-                  className="mt-4 mb-6 w-full py-3 rounded-md border border-primary/30 bg-primary/10 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
-                >
-                  Ready? Switch to the Challenge tab →
-                </motion.button>
-              )}
-            </AnimatePresence>
+          <TabsContent value="lesson" className="flex-1 overflow-y-auto p-6 mt-0 border-l-4 border-l-primary">
+            {renderLessonPanel()}
           </TabsContent>
           <TabsContent value="challenge" className="flex-1 overflow-y-auto mt-0">
             {renderWorkspace()}
@@ -305,36 +297,7 @@ const LessonView = () => {
         /* Desktop: Split panel */
         <div className="flex-1 flex flex-row overflow-hidden min-h-0">
           <div className="w-[40%] border-r border-border border-l-4 border-l-primary overflow-y-auto p-6 flex-shrink-0">
-            <div className="lesson-content">
-              <ReactMarkdown>{moduleData.lessonContent}</ReactMarkdown>
-            </div>
-            <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5">
-              <div className="lesson-content">
-                <ReactMarkdown>{moduleData.challengeInstructions}</ReactMarkdown>
-              </div>
-            </div>
-            <div className="mt-4 space-y-2">
-              <AnimatePresence>
-                {revealedHints.map(idx => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    className="rounded-lg border border-secondary/30 bg-secondary/10 p-4"
-                  >
-                    <p className="text-sm text-foreground">{moduleData.hints[idx]}</p>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-              {hintLabel() && revealedHints.length < moduleData.hints.length && (
-                <button
-                  onClick={revealHint}
-                  className="flex items-center gap-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
-                >
-                  <Lightbulb className="h-4 w-4" /> {hintLabel()}
-                </button>
-              )}
-            </div>
+            {renderLessonPanel()}
           </div>
           <div className="flex-1 w-[60%] overflow-y-auto">
             {renderWorkspace()}
@@ -345,6 +308,21 @@ const LessonView = () => {
   );
 };
 
+/* Locked challenge state */
+function LockedChallenge() {
+  return (
+    <div className="flex flex-col items-center justify-center h-full gap-4 p-8 text-center">
+      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+        <Lock className="h-7 w-7 text-muted-foreground" />
+      </div>
+      <h3 className="text-lg font-display font-semibold text-foreground">Complete the lesson first</h3>
+      <p className="text-sm text-muted-foreground max-w-xs">
+        Read through all lesson steps to unlock the challenge. Use the Continue buttons to progress.
+      </p>
+    </div>
+  );
+}
+
 /* Completion state with confetti + burst */
 function CompletionState({ moduleId, xpEarned, onNext, isLast }: { moduleId: number; xpEarned: number; onNext: () => void; isLast: boolean }) {
   useEffect(() => {
@@ -353,7 +331,6 @@ function CompletionState({ moduleId, xpEarned, onNext, isLast }: { moduleId: num
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-5 p-8 text-center">
-      {/* Burst ring behind checkmark */}
       <div className="relative">
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-20 h-20 rounded-full border-2 border-primary/40 burst-ring" />
