@@ -134,7 +134,7 @@ const Landing = () => {
                 "You break things on purpose, then learn to fix them properly. The gamification keeps you hooked."
               </p>
               <p className="text-sm text-gray-400">
-                — Keerthan, Deep Learning Engineer
+                — Keerthan, ML Engineer
               </p>
             </div>
             <div className="bg-[#111111] border border-[#222222] rounded-xl p-6">
