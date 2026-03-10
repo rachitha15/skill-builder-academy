@@ -15,18 +15,20 @@ export function LessonStepper({ steps, moduleId, onAllStepsViewed, allViewed }: 
   const [currentStep, setCurrentStep] = useState(0);
   const [expandedPrevious, setExpandedPrevious] = useState<number[]>([]);
 
-  // Reset when module changes
+  // Reset when module changes OR when allViewed changes to false
   useEffect(() => {
-    setCurrentStep(0);
-    setExpandedPrevious([]);
-  }, [moduleId]);
+    if (!allViewed) {
+      setCurrentStep(0);
+      setExpandedPrevious([]);
+    }
+  }, [moduleId, allViewed]);
 
   // If already viewed (e.g. returning to completed module), show all
   useEffect(() => {
     if (allViewed && steps && steps.length > 0) {
       setCurrentStep(steps.length - 1);
     }
-  }, [allViewed, steps?.length]);
+  }, [allViewed]);
 
   const handleContinue = () => {
     if (currentStep < steps.length - 1) {
