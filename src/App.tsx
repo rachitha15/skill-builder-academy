@@ -10,6 +10,7 @@ import Landing from "./pages/Landing";
 import CourseMap from "./pages/CourseMap";
 import LessonView from "./pages/LessonView";
 import CourseComplete from "./pages/CourseComplete";
+import Survey from "./pages/Survey";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/course" element={<CourseMap />} />
             <Route path="/course/module/:id" element={<LessonView />} />
             <Route path="/course/complete" element={<CourseComplete />} />
+            <Route path="/survey" element={<Survey />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
