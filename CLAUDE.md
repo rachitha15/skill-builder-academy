@@ -76,3 +76,25 @@ Untutorial is a hands-on learning platform at **untutorial.in**. Learners build 
 - Added `/course` → `/course/skills` redirect and `/course/module/:id` → `/course/skills/:id` redirect
 - Created `course_interest_waitlist` Supabase table for homepage waitlist
 - Updated all internal navigation in `LessonView.tsx` and `CourseComplete.tsx` to use `/course/skills`
+- Hardened all 5 edge functions: CORS locked to `https://untutorial.in`, input length caps added
+
+---
+
+## Security setup
+
+### Claude API protection
+- `ANTHROPIC_API_KEY` stored as Supabase secret — never in browser or JS bundle
+- All Claude calls go through Supabase edge functions (server-side only)
+
+### Edge function hardening (all 5 functions)
+- CORS: `Access-Control-Allow-Origin` restricted to `https://untutorial.in` (was `*`)
+- Input length caps to prevent token abuse:
+  - `evaluate-description`: description ≤ 3,000 chars
+  - `evaluate-instructions`: instructions ≤ 8,000 chars
+  - `evaluate-triggers`: description ≤ 3,000 chars, each query ≤ 500 chars
+  - `evaluate-messy-inputs`: instructions ≤ 8,000 chars
+  - `evaluate-final`: skillmd ≤ 15,000 chars, userNotes ≤ 5,000 chars
+
+### Known gaps
+- No per-IP rate limiting on edge functions (curl bypasses CORS)
+- Recommended: set a monthly spend cap at console.anthropic.com → Billing
