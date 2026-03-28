@@ -2,7 +2,7 @@ import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://untutorial.in',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
@@ -23,6 +23,21 @@ serve(async (req) => {
 
     if (!Array.isArray(shouldTrigger) || !Array.isArray(shouldNotTrigger) || shouldTrigger.length !== 5 || shouldNotTrigger.length !== 5) {
       return new Response(JSON.stringify({ error: 'Must provide exactly 5 positive and 5 negative queries' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (description.length > 3000) {
+      return new Response(JSON.stringify({ error: 'Input too long' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const allQueries = [...shouldTrigger, ...shouldNotTrigger];
+    if (allQueries.some(q => typeof q !== 'string' || q.length > 500)) {
+      return new Response(JSON.stringify({ error: 'Query too long' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });

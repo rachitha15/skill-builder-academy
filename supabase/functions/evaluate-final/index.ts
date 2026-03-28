@@ -2,7 +2,7 @@ import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://untutorial.in',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
@@ -26,6 +26,20 @@ serve(async (req) => {
 
     if (!skillmd || typeof skillmd !== 'string') {
       return new Response(JSON.stringify({ error: 'Missing skillmd' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (skillmd.length > 15000) {
+      return new Response(JSON.stringify({ error: 'Input too long' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (userNotes && typeof userNotes === 'string' && userNotes.length > 5000) {
+      return new Response(JSON.stringify({ error: 'Notes too long' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
