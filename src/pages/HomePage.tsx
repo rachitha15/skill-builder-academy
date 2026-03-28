@@ -9,13 +9,13 @@ const COMING_SOON_COURSES = [
     id: 'ai-workflows',
     title: 'Build Reusable AI Workflows',
     subtitle: 'For professionals who use AI daily but feel stuck at the basics',
-    badge: 'Coming Soon · ~45 min',
+    badge: 'Coming Soon · ~2 hours',
   },
   {
     id: 'product-thinking',
     title: 'Product Thinking for Engineers',
     subtitle: 'For engineers who want to think beyond code',
-    badge: 'Coming Soon · ~45 min',
+    badge: 'Coming Soon · ~2 hours',
   },
 ];
 
