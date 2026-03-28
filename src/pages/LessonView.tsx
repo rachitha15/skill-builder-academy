@@ -72,14 +72,14 @@ const LessonView = () => {
   }, [moduleId]); // Only check on module change, not on every state update
 
   if (!moduleData || !moduleState) {
-    navigate('/course');
+    navigate('/course/skills');
     return null;
   }
 
   if (moduleState.status === 'locked' && moduleId !== 1) {
     const prevCompleted = state.modules.find(m => m.id === moduleId - 1)?.status === 'completed';
     if (!prevCompleted) {
-      navigate('/course');
+      navigate('/course/skills');
       return null;
     }
   }
@@ -171,7 +171,7 @@ const LessonView = () => {
         <CompletionState
           moduleId={moduleId}
           xpEarned={moduleState.xpEarned}
-          onNext={() => moduleId < 7 ? navigate(`/course/module/${moduleId + 1}`) : navigate('/course/complete')}
+          onNext={() => moduleId < 7 ? navigate(`/course/skills/${moduleId + 1}`) : navigate('/course/complete')}
           isLast={moduleId >= 7}
         />
       );
@@ -280,7 +280,7 @@ const LessonView = () => {
       {/* Top bar */}
       <div className="flex-shrink-0 border-b border-border bg-background px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link to="/course" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/course/skills" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" /> Course Map
           </Link>
           <div className="h-4 w-px bg-border" />
@@ -366,7 +366,7 @@ function CompletionState({ moduleId, xpEarned, onNext, isLast }: { moduleId: num
       >
         {isLast ? 'View Certificate 🎉' : 'Next Module →'}
       </button>
-      <Link to="/course" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <Link to="/course/skills" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
         Back to Course Map
       </Link>
     </div>

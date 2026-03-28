@@ -189,7 +189,7 @@ const CourseComplete = () => {
           )}
         </div>
 
-        <Link to="/course" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <Link to="/course/skills" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
           ← Back to Course Map
         </Link>
 
