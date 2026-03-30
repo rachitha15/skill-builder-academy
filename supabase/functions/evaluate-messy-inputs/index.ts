@@ -1,10 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': 'https://untutorial.in',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
-};
+const ALLOWED_ORIGINS = ['https://untutorial.in', 'https://www.untutorial.in', 'http://localhost:8080'];
 
 const INPUT_1 = `talked to marketing today. they want to redo the landing page AND the pricing page but cant agree on timeline. lisa thinks 2 weeks, dev says 4. probably should figure that out. oh and compliance needs the privacy policy updated before we launch anything public-facing. thats probably most urgent actually. also someone remind me to cancel the old analytics subscription its costing us like $500/mo for nothing.`;
 
@@ -21,6 +18,12 @@ const INPUT_3 = `Product review meeting 3/7:
 - Analytics dashboard: "Would be nice to have real-time data" per J. Not a priority. Or actually, if the client demo goes well Thursday it might become urgent. Let's revisit after the demo.`;
 
 serve(async (req) => {
+  const origin = req.headers.get('origin') || '';
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': ALLOWED_ORIGINS.includes(origin) ? origin : 'https://untutorial.in',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+  };
+
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
