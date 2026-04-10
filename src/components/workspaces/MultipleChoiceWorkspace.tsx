@@ -55,7 +55,6 @@ export function MultipleChoiceWorkspace({ onComplete }: Props) {
               let borderClass = 'border-border';
               if (showResult && isSelected && opt.correct) borderClass = 'border-success bg-success/10';
               else if (showResult && isSelected && !opt.correct) borderClass = 'border-destructive bg-destructive/10';
-              else if (showResult && opt.correct) borderClass = 'border-success/50';
               else if (isSelected) borderClass = 'border-primary';
 
               return (
@@ -71,7 +70,7 @@ export function MultipleChoiceWorkspace({ onComplete }: Props) {
                     {opt.label}
                   </span>
                   <span className="text-sm text-foreground">{opt.text}</span>
-                  {showResult && opt.correct && (
+                  {showResult && isSelected && opt.correct && (
                     <CheckCircle2 className="ml-auto h-4 w-4 text-success pop-in" />
                   )}
                   {showResult && isSelected && !opt.correct && (

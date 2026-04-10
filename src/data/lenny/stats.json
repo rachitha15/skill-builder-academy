@@ -1,0 +1,145 @@
+{
+  "total_chunks": 38847,
+  "newsletter_chunks": 3579,
+  "podcast_chunks": 35268,
+  "total_unique_guests": 299,
+  "total_newsletters": 339,
+  "total_content_pieces": 638,
+  "per_topic": {
+    "product_strategy": {
+      "display_name": "Product Strategy & Roadmap",
+      "chunk_count": 2616,
+      "unique_guest_count": 282,
+      "top_guests": [
+        {
+          "guest": "Chandra Janakiraman",
+          "chunk_count": 50
+        },
+        {
+          "guest": "Mihika Kapoor",
+          "chunk_count": 32
+        },
+        {
+          "guest": "Ebi Atawodi",
+          "chunk_count": 29
+        },
+        {
+          "guest": "Roger Martin",
+          "chunk_count": 28
+        },
+        {
+          "guest": "Richard Rumelt",
+          "chunk_count": 22
+        }
+      ]
+    },
+    "user_research": {
+      "display_name": "User Research & Customer Discovery",
+      "chunk_count": 1244,
+      "unique_guest_count": 242,
+      "top_guests": [
+        {
+          "guest": "Jessica Livingston",
+          "chunk_count": 20
+        },
+        {
+          "guest": "Bob Moesta 2.0",
+          "chunk_count": 18
+        },
+        {
+          "guest": "Jules Walter",
+          "chunk_count": 15
+        },
+        {
+          "guest": "Andy Raskin",
+          "chunk_count": 14
+        },
+        {
+          "guest": "Adam Fishman",
+          "chunk_count": 14
+        }
+      ]
+    },
+    "plg": {
+      "display_name": "Product-Led Growth",
+      "chunk_count": 312,
+      "unique_guest_count": 56,
+      "top_guests": [
+        {
+          "guest": "Elena Verna 2.0",
+          "chunk_count": 27
+        },
+        {
+          "guest": "Hila Qu",
+          "chunk_count": 24
+        },
+        {
+          "guest": "Merci Grace",
+          "chunk_count": 12
+        },
+        {
+          "guest": "Julian Shapiro",
+          "chunk_count": 11
+        },
+        {
+          "guest": "Christopher Miller",
+          "chunk_count": 11
+        }
+      ]
+    },
+    "metrics": {
+      "display_name": "Metrics and KPIs",
+      "chunk_count": 939,
+      "unique_guest_count": 172,
+      "top_guests": [
+        {
+          "guest": "Archie Abrams",
+          "chunk_count": 22
+        },
+        {
+          "guest": "Ronny Kohavi",
+          "chunk_count": 20
+        },
+        {
+          "guest": "Sri Batchu",
+          "chunk_count": 18
+        },
+        {
+          "guest": "Gia Laudi",
+          "chunk_count": 17
+        },
+        {
+          "guest": "Lauryn Isford",
+          "chunk_count": 17
+        }
+      ]
+    },
+    "onboarding": {
+      "display_name": "Onboarding and Activation",
+      "chunk_count": 578,
+      "unique_guest_count": 108,
+      "top_guests": [
+        {
+          "guest": "Lauryn Isford",
+          "chunk_count": 28
+        },
+        {
+          "guest": "Adam Fishman",
+          "chunk_count": 18
+        },
+        {
+          "guest": "Sean Ellis",
+          "chunk_count": 17
+        },
+        {
+          "guest": "Hila Qu",
+          "chunk_count": 16
+        },
+        {
+          "guest": "Elena Verna",
+          "chunk_count": 10
+        }
+      ]
+    }
+  }
+}

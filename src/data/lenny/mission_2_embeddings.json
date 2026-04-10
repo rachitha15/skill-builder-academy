@@ -1,0 +1,304 @@
+{
+  "topics": {
+    "product_strategy": {
+      "query": "How do I build a product vision and roadmap?",
+      "keyword_matches": [
+        {
+          "text": "Q: Okay, awesome. So before we get to that, just again reminding people what we just talked about, which is just like here's all these ways of framing your vision, and there's a lot of ways to do it. It's not like you need to make a beautiful deck that you can just write it out. You could write a press release, you could write a tweet or you could get a designer help you mock it up or just mock it up yourself. Awesome. Okay, so let's talk about your suggestions of how to actually go about developing and figuring out the vision for your product. A: Yeah. There are three pieces if you think about it. So one...",
+          "source": "Ebi Atawodi — Crafting a compelling product vision | Ebi Atawodi (YouTube, Netflix, Uber)",
+          "similarity": 0.621,
+          "why_matched": "contains keyword \"vision\""
+        },
+        {
+          "text": "### Building product 1. [Mission → Vision → Strategy → Goals → Roadmap → Task](https://www.lennysnewsletter.com/p/mission-vision-strategy-goals-roadmap) 2. [My favorite product management templates](https://www.lennysnewsletter.com/p/my-favorite-templates-issue-37) 3. [How Figma builds product](https://www.lennysnewsletter.com/p/how-figma-builds-product) 4. [How to develop product sense](https://www.lennysnewsletter.com/p/product-sense) 5. [Prioritizing a roadmap](https://www.lennysnewsletter.com/p/prioritizing) 6. [Getting better at product strategy](https://www.lennysnewsletter.com/p/getting-better-at-product-strategy) 7. [How to get better at influence](https://www.lennysnewsletter.com/p/how-to-get-better-at-influence) 8. [The Minto Pyramid Principle and the SCR framework](https://www.lennysnewsletter.com/p/minto-pyramid-principle-scr) 9. [The top 5 things PMs should know about engineering](https://www.lennysnewsletter.com/p/the-top-5-things-pms-should-know) 10. [The nature of product, with Marty Cagan (Silicon Valley Product Group)](https://www.lennysnewsletter.com/p/the-nature-of-product-marty-cagan#details) 11. [Five big ideas, with Shreyas Doshi (Stripe, Twitter, Google)](https://www.lennysnewsletter.com/p/episode-3-shreyas-doshi#details)",
+          "source": "The Best of Lenny’s Newsletter 2022",
+          "similarity": 0.612,
+          "why_matched": "contains keyword \"vision\""
+        },
+        {
+          "text": "Q: It's my pleasure. First, I just want to give a big thank you to Andre Albuquerque, who is the founder of One Month PM, who actually posted on LinkedIn about how much of a fan of yours he is and that I need to have you on this podcast. And so here we are. I want to start by talking about vision. Every product manager I've ever worked with and managed vision has always been this development area for every single one. It's always this like, \"You need to get better at crafting a vision, telling your story.\" It's also this very powerful tool. The product managers have to align teams to be more successful in the products they're...",
+          "source": "Ebi Atawodi — Crafting a compelling product vision | Ebi Atawodi (YouTube, Netflix, Uber)",
+          "similarity": 0.597,
+          "why_matched": "contains keyword \"vision\""
+        }
+      ],
+      "semantic_only_matches": [
+        {
+          "text": "### Examples of articulating solutions #### **Question 1: Tell me about a product you love and how you would improve it.** > *I’d prioritize **smart document synthesis** for the following reasons:* > > - *Has high impact with moderate effort* > - *Directly addresses the core problem by creating connective tissue between documents* > - *Leverages Claude’s existing strengths in summarization and understanding* > - *Provides a good balance of automation and user control* > - *Creates immediate value without requiring users to learn complex new interfaces* #### **Question 2: You’re a PM at Meta. Design a product for gardening.** > *I’d prioritize the **plant match AI assistant** for the following reasons:* > > - *Has high impact with moderate...",
+          "source": "The definitive guide to mastering product sense interviews",
+          "similarity": 0.544,
+          "why_relevant": "Explains how to prioritize product features, which is essential for building a product vision and roadmap."
+        },
+        {
+          "text": "Q: I think the other benefit, just one of the benefits of working backwards in Amazon's whole written-down memo approach is it forces you to crystallize ideas and not stay superficial because there's so many good ideas in theory. But then, when you have to get really concrete, that's actually a terrible idea. Basically, it's the same benefit in a lot of ways of get very concrete. What are you actually going to do? That will help you identify, \"Okay. This isn't going to work. What are we even thinking?\" So I like that. Awesome. Okay. Another framework that you have is something that you call the four BB framework for product strategy. Can you talk about what that's all...",
+          "source": "Anuj Rathi — The full-stack PM | Anuj Rathi (Swiggy, Jupiter Money, Flipkart)",
+          "similarity": 0.538,
+          "why_relevant": "Explains the importance of crystallizing ideas and developing concrete plans when building a product vision and roadmap."
+        },
+        {
+          "text": "### Step 1: Preparation (3-5 weeks) The preparation step is a foundational effort where a lot of the groundwork and due diligence is done to inform the strategy selection process. The work here is not full-time and can run alongside other projects for the people involved. Let’s go through the steps and action items. 1. **Strategy working group:** The product leader should assemble a core strategy working group, at a minimum, consisting of an engineering lead, a design lead, and a data lead, besides the product lead themselves. Other functions could be added depending on availability/resourcing (e.g. product marketing, user research, content design, etc.). The product leader should set the stage through a kickoff meeting and explain the upcoming 8-to-12-week...",
+          "source": "Strategy Blocks: An operator’s guide to product strategy",
+          "similarity": 0.534,
+          "why_relevant": "Describes the initial preparation phase essential for developing a product vision and roadmap through strategic collaboration."
+        }
+      ],
+      "guess_the_pair": {
+        "snippets": [
+          "Q: Okay, awesome. So before we get to that, just again reminding people what we just talked about, which is just like here's all these ways of framing your vision, and there's a lot of ways to do it. It's not like you need to make a beautiful deck that you can just write it out. You could write a...",
+          "Q: Yeah. Awesome. So what is a vision concretely as a document in your experience? So we've talked about vision so far, mostly as this tagline, like a sentence, is that usually all you need when you're thinking about a vision, your experience? Do you often suggest going further into dock-deck, storyboards along those lines? A: So I have a...",
+          "#### **3. Satisfaction is only moderately correlated with the total compensation package** Does money buy happiness, as the old adage goes? In our data, the correlation between total compensation package (salary, equity, and bonus) and satisfaction is 0.31, indicating a moderate positive relationship. This suggests that **as compensation increases, satisfaction with total compensation also tends to increase, but the relationship..."
+        ],
+        "correct_pair": [
+          0,
+          1
+        ],
+        "scores": {
+          "A-B": 0.767,
+          "A-C": 0.158,
+          "B-C": 0.208
+        },
+        "explanation": "Snippets A and B both discuss related concepts and score 0.77 cosine similarity — they embed close together. Snippet C (from: 'How much do U.S. product managers really make?') covers a different PM domain and scores only 0.21 to the pair."
+      }
+    },
+    "user_research": {
+      "query": "How do I run effective customer discovery interviews?",
+      "keyword_matches": [
+        {
+          "text": "Q: Speaking of talking to customers, another one of your big bullet points in the book is around continuous customer discovery, and I'm curious what you found to be successful in actually doing that. A lot of people talk about it when you keep talking to customers, get feedback constantly. What actually works in your experience? A: Yeah, I feel like all of park management is about discovery these days. Everyone talks about it, and I want to make a distinction. I think discovery is when you use customer conversations to understand a very specific thing that you want to optimize further workflow that you want to optimize further. And then you call the people who are most likely to...",
+          "source": "Oji Udezue — Picking sharp problems, increasing virality, and unique product frameworks | Oji Udezue (Typeform)",
+          "similarity": 0.603,
+          "why_matched": "contains keyword \"customer discovery\""
+        },
+        {
+          "text": "And I was talking a little bit about we think of it as dollar-driven customer discovery. And I think a lot of founders are familiar with customer discovery. I think they at least talk to customers, which is good. I don't think most of them do it in the highest signal way because again, the customers, they're people, they're nice, they're going to be polite. They're also not good at predicting things that they will use or buy or want.",
+          "source": "Todd Jackson — A framework for finding product-market fit | Todd Jackson (First Round Capital)",
+          "similarity": 0.594,
+          "why_matched": "contains keyword \"customer discovery\""
+        },
+        {
+          "text": "In the weeks that followed, we brought our vision to prospective customers to validate the market need. At first, we received excitement and validation. However, we realized our first several “interviews” were actually sales pitches (e.g. “here’s this cool new thing, what do you think?”). Far too biased to get any real signal. After reading up on customer interview best practices, we tried again, this time [with an unbiased script](https://www.momtestbook.com/). Not one person brought up health debit cards as a problem they needed to solve. We concluded that our vision, which we had spent many painstaking hours developing, was off the mark. Back to the drawing board—or in our case, the dining table!",
+          "source": "Startup to exit: Lessons from a first-time founder",
+          "similarity": 0.549,
+          "why_matched": "contains keyword \"customer interview\""
+        }
+      ],
+      "semantic_only_matches": [
+        {
+          "text": "Q: In terms of knowing the insight and knowing thy customer, putting the time, I imagine, is a big element of that. Is that how you do that, or is there anything else along those lines that's just like, \"Here's how I get really good at this?\" A: When you take a new role, become best friends with a researcher, and spend time watching customers use the product firsthand because what they maybe report on or are trying to do a study about might be very different from what you observe, but you really just need that front row seat with customers, and so asking, \"How do I actually set up time with customers? How do I compensate them? How...",
+          "source": "Paige Costello — How to ask the right questions, project confidence, and win over skeptics | Paige Costello (Asana)",
+          "similarity": 0.597,
+          "why_relevant": "Describes the importance of firsthand observation and customer interaction for effective customer discovery and understanding."
+        },
+        {
+          "text": "I want to come back to one more thread and then I'm going to go in a different direction. You talked a bit about talking to customers, finding innovative ideas, not just listening to what they're telling you. There's this whole skill of user research and interviewing customers and finding the pain point, figuring out what to build. Do you have any just, I don't know, tips or tactics or lessons you've learned about just how to do this well, how to uncover the pain point and then figure out what to actually build when you're interviewing customers?",
+          "source": "Jag Duggal — Be fundamentally different, not incrementally better | Jag Duggal (Nubank, Facebook, Google)",
+          "similarity": 0.59,
+          "why_relevant": "Addresses effective techniques for conducting customer interviews to uncover pain points and inform product development."
+        },
+        {
+          "text": "### 7. Customer insights > **Tell me about a time you did user research on a product/feature, and that research had a big impact on the product.** What to look for: - Examples of them talking to customers before launch - These conversations impacting what they launch - Experience using different modes of research (e.g. survey, 1:1 conversations) Flags: - Haven’t spent time talking to customers - It’s hard for them to think of an example",
+          "source": "My favorite PM interview questions",
+          "similarity": 0.576,
+          "why_relevant": "Describes the importance of user research and customer conversations in shaping product development, relevant to effective discovery interviews."
+        }
+      ],
+      "guess_the_pair": {
+        "snippets": [
+          "Q: Speaking of talking to customers, another one of your big bullet points in the book is around continuous customer discovery, and I'm curious what you found to be successful in actually doing that. A lot of people talk about it when you keep talking to customers, get feedback constantly. What actually works in your experience? A: Yeah, I feel...",
+          "Q: This touches on advice that Teresa Torres teaches around continuous customer discovery. And she actually had a really good tactic, that I'll share here that stuck with me, about how to actually do this. So the way she recommends companies do this is have a little popup on your site asking visitors like we'd love to talk to you...",
+          "Yeah, I think there's some nuance to that where if you look at how North Korea makes a significant fraction of its economy revenue, it's from hacking crypto exchanges. And if you look at, there's this Ben Buchanan book called The Hacker in The State that shows Russia did, it's almost like a live fire exercise where they just decided..."
+        ],
+        "correct_pair": [
+          0,
+          1
+        ],
+        "scores": {
+          "A-B": 0.717,
+          "A-C": 0.227,
+          "B-C": 0.158
+        },
+        "explanation": "Snippets A and B both discuss related concepts and score 0.72 cosine similarity — they embed close together. Snippet C (from: 'Benjamin Mann — How marketplaces win: Liquidity, growth') covers a different PM domain and scores only 0.23 to the pair."
+      }
+    },
+    "plg": {
+      "query": "What does it take to add a PLG motion to our product?",
+      "keyword_matches": [
+        {
+          "text": "### [The first step to adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1492s) The first step in understanding the difference between the PLG funnel and the sales-led funnel (SLG) **Sales-Led Funnel (SLG):** The sales-led funnel begins with the marketing team attracting visitors and turning them into leads. Leads are assessed based on how much they interact with marketing campaigns, like opening emails or attending webinars. A scoring system is employed, and those who reach a certain score become marketing-qualified leads and are handed over to the sales team. **Product-Led Funnel (PLG):** This approach mirrors the B2C model more closely. Visitors sign up for a free version, account, or trial of the product, and the aim is to encourage product usage. This becomes the...",
+          "source": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+          "similarity": 0.627,
+          "why_matched": "contains keyword \"PLG motion\""
+        },
+        {
+          "text": "## **Step 3. Anticipate the most common pitfalls** Before going further, I want to spend some time sharing the most common pitfalls you’re likely to face when adding a PLG motion, to help you avoid them. Here’s an overview of the most common challenges, how to identify them, and how to address them: #### **Pitfall #1: Lack of commitment and investment** I often see companies wanting to do PLG but not committing any meaningful resources to give it a chance to be successful. You need to think deeply about why you want to add a PLG motion. What is the problem you are trying to solve, and what is the goal you are trying to achieve, with PLG? Make sure...",
+          "source": "Five steps to starting your product-led growth motion",
+          "similarity": 0.623,
+          "why_matched": "contains keyword \"PLG motion\""
+        },
+        {
+          "text": "- **SLG** is your best bet if your product primarily targets enterprise accounts with a high price point and requires a lot of customization and configuration before anyone can use it successfully. Think Salesforce as an example. The average implementation takes three weeks to a few months, and larger enterprises even hire external consultants to assist. That level of product complexity makes time-to-value extremely long and PLG not a viable option. Although I would advise these SLG-native products to challenge their own status quo, because next-generation B2B startups may build many easy-to-use products in the same category that will unlock PLG. For any company in between—and that is the majority of B2B SaaS companies—for maximum reach with high efficiency, there...",
+          "source": "Five steps to starting your product-led growth motion",
+          "similarity": 0.614,
+          "why_matched": "contains keyword \"PLG motion\""
+        }
+      ],
+      "semantic_only_matches": [
+        {
+          "text": "### [Why companies should have PLG and sales ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=312s) The question is not either or but both and a matter of sequencing. PLG is perfect for lowering the barrier for more people to try the product and broaden the reach. Sales motion is for a very targeted list of big customer for big orders and having a clear hit list for revenue targets. If you are in a sales motion dominated traditional B2B software industry, you’ll will need to add PLG because competitors will be adding it and gaining an advantage. It is easier to have PLG from early on rather than trying to add it to a pure sales-led company",
+          "source": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+          "similarity": 0.618,
+          "why_relevant": "Explains the importance of integrating a PLG strategy alongside traditional sales motions for competitive advantage in B2B software."
+        },
+        {
+          "text": "### [The spectrum of when PLG makes sense ▶️](https://youtu.be/7l1fIxk7SnA?t=966) - **Don't equate launching a free version or trial with PLG:** Many companies assume that \"PLG equals launch of free version or launch of free trial.\" It's not enough to just open a free trial, you must also consider how to activate users, design an upgrade path, and how this growth team will collaborate with sales and marketing. - **Have a dedicated team:** If you're serious about PLG, then a dedicated team is necessary. Assigning just one person to manage all the different stakeholders and parts of PLG won't cut it. Hila notes, \"The person needs to be a magician in order to be successful.\" - **Consider the fit for your...",
+          "source": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+          "similarity": 0.524,
+          "why_relevant": "Explains the misconceptions and necessary team structure for effectively implementing a product-led growth (PLG) strategy."
+        },
+        {
+          "text": "Q: You kind of shared some of the attributes of what allows you to be product led, like quick time to value. If you have this in your head, what are some of those bullet points of what you need to figure out for it to be successful potentially as product led? A: The first thing is that have a... And you mentioned you are able to have a vehicle, have a free version, have a free trial. Sometimes it's a open source product. A lot of developer products start as a open source product. It has its constraints, but it is also a great kind of vehicle for PLG or if none of those are option, you can build...",
+          "source": "Hila Qu — The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+          "similarity": 0.524,
+          "why_relevant": "Explains key attributes necessary for implementing a product-led growth (PLG) strategy, including offering free versions or trials."
+        }
+      ],
+      "guess_the_pair": {
+        "snippets": [
+          "### [The first step to adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1492s) The first step in understanding the difference between the PLG funnel and the sales-led funnel (SLG) **Sales-Led Funnel (SLG):** The sales-led funnel begins with the marketing team attracting visitors and turning them into leads. Leads are assessed based on how much they interact with marketing campaigns, like opening emails or...",
+          "- **SLG** is your best bet if your product primarily targets enterprise accounts with a high price point and requires a lot of customization and configuration before anyone can use it successfully. Think Salesforce as an example. The average implementation takes three weeks to a few months, and larger enterprises even hire external consultants to assist. That level of product...",
+          "Let me take my most extreme example. My most extreme example is probably Derek Kan, K-A-N. And Derek Kan was a little bit older when he went through the MBA program. And in 2012, his Doing Power project was to get appointed to be Mitt Romney's, it was Mitt Romney was running for president, to be head of economic policy..."
+        ],
+        "correct_pair": [
+          0,
+          1
+        ],
+        "scores": {
+          "A-B": 0.825,
+          "A-C": 0.123,
+          "B-C": 0.186
+        },
+        "explanation": "Snippets A and B both discuss related concepts and score 0.82 cosine similarity — they embed close together. Snippet C (from: 'Jeffrey Pfeffer — The paths to power: How to grow your ') covers a different PM domain and scores only 0.19 to the pair."
+      }
+    },
+    "metrics": {
+      "query": "How do I choose the right KPIs for my product?",
+      "keyword_matches": [
+        {
+          "text": "We know we've done a good job when the conversion rate on whatever our primary CTA is on our website, whether or not it's start a trial or request a demo, something like that. Generally, the struggle phase is very straightforward in terms of measurement. That's like marketers' bread and butter, that's where they live and breathe all day long. Where things start to change though generally when we're working with companies is helping them figure out how should they be measuring first value or product activation and how should they be measuring actual product engagement. Generally, what we do there is, we can associate basically what they told us brings them the most amount of value with the product...",
+          "source": "Gia Laudi — Customer-led growth | Georgiana Laudi (Forget The Funnel)",
+          "similarity": 0.563,
+          "why_matched": "contains keyword \"KPI\""
+        },
+        {
+          "text": "A critical part of that process obviously is identifying we have to measure success along the way. There should be a KPI for each of those stages in that customer journey. And for the most part, they won't be a big surprise on the struggle side of things. People out in the world experience the problem, how are we going to know we're doing a good job reaching them? We bring in new unique website visitors. In general, that would be the measure of success for the problem milestone. And then next piece of the puzzle is like, okay, once they discover that we exist, even if they are visiting, reading product reviews and visiting competitor sites or whatever, we'll...",
+          "source": "Gia Laudi — Customer-led growth | Georgiana Laudi (Forget The Funnel)",
+          "similarity": 0.559,
+          "why_matched": "contains keyword \"KPI\""
+        },
+        {
+          "text": "### **4. Do you use OKRs in some form?** We don’t use OKRs on the product team. We tried using OKRs at Gong at some stage across the company, but we found out that the process of updating OKRs to align with reality was time-consuming and the framework did not provide us with enough benefits to justify the effort. However, we review this decision annually. We may decide to give OKRs another shot at a company level in the coming year or two, since we haven’t found a better mechanism to drive cross-functional goal alignment. Individual groups within the product team set up KPIs or metrics to track product progress. These are usually not managed top-down but serve as a...",
+          "source": "How Gong builds product",
+          "similarity": 0.538,
+          "why_matched": "contains keyword \"KPI\""
+        }
+      ],
+      "semantic_only_matches": [
+        {
+          "text": "I somewhat walk around with the belief that the product manager's responsibility is to produce product market fit. And okay, how do you know you have product market fit? Charts that showcase things are going up into the right on one hand, and then tweets on the other. So metrics like quantitative and qualitative, and I really see them as deep siblings and equals, you really need both. It's not oh, OKRs versus something. There are some things you want the texture of the person on video showing how complicated a thing was. And then also, we're trying to make an economically viable system that we can run at large scale and you can't keep all that stuff in your...",
+          "source": "Jeff Weinstein — Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead)",
+          "similarity": 0.581,
+          "why_relevant": "Explains the importance of both quantitative and qualitative metrics in assessing product market fit, relevant for choosing KPIs."
+        },
+        {
+          "text": "Let's talk about metrics, going in a different direction. Many people told me I need to ask you about picking metrics and the importance of metrics and how you think about metrics. So let me just maybe start with a question of, just why do you think picking the right metric and why are metrics so important in building successful products?",
+          "source": "Jeff Weinstein — Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead)",
+          "similarity": 0.574,
+          "why_relevant": "Explains the significance of selecting appropriate metrics for building successful products, which relates to choosing the right KPIs."
+        },
+        {
+          "text": "Well, what was the value that we're trying to produce for the customer and can we measure it from their perspective? And okay, how do you know you have product market fit? Charts that showcase things are going up into the right on one hand and then tweets on the other.",
+          "source": "Jeff Weinstein — Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead)",
+          "similarity": 0.527,
+          "why_relevant": "Explains the importance of measuring value from the customer's perspective when selecting KPIs for a product."
+        }
+      ],
+      "guess_the_pair": {
+        "snippets": [
+          "I somewhat walk around with the belief that the product manager's responsibility is to produce product market fit. And okay, how do you know you have product market fit? Charts that showcase things are going up into the right on one hand, and then tweets on the other. So metrics like quantitative and qualitative, and I really see them as...",
+          "Well, what was the value that we're trying to produce for the customer and can we measure it from their perspective? And okay, how do you know you have product market fit? Charts that showcase things are going up into the right on one hand and then tweets on the other.",
+          "The last movie I really loved was a Decision to Leave. It's a Korean movie. It's by the Director of Old Boy, which maybe some people have heard of. It's a great movie. I think it was released a couple years ago and the basic premise is, there's a detective who is investigating a woman who's accused of killing her..."
+        ],
+        "correct_pair": [
+          0,
+          1
+        ],
+        "scores": {
+          "A-B": 0.757,
+          "A-C": 0.094,
+          "B-C": 0.081
+        },
+        "explanation": "Snippets A and B both discuss related concepts and score 0.76 cosine similarity — they embed close together. Snippet C (from: 'Nabeel S. Qureshi — How Palantir built the ultimate fou') covers a different PM domain and scores only 0.09 to the pair."
+      }
+    },
+    "onboarding": {
+      "query": "How do I improve activation rates for new users?",
+      "keyword_matches": [
+        {
+          "text": "## 1. What is activation rate? Your activation rate is the percentage of your new users who hit your activation milestone. Concretely: `activation rate = [users who hit your activation milestone] / [users who completed your signup flow].` Your activation milestone (often referred to as your “aha moment”) is the earliest point in your onboarding flow that, by showing your product’s value, is predictive of long-term retention. A user is typically considered activated when they reach this milestone. A good activation event is often associated with the beginnings of a user forming a new habit inside the product, and since increasing activation rate is one of the best levers for increasing retention, it’s often a major focus for growth teams.",
+          "source": "What is a good activation rate",
+          "similarity": 0.648,
+          "why_matched": "contains keyword \"activation rate\""
+        },
+        {
+          "text": "## 4. What are the most common ways to increase activation? In our survey, we asked, “**If you’ve had success improving activation rate, what change has had the biggest impact?**” Here are the eight most commonly referenced tactics: 1. [Simpler onboarding UI/UX](https://www.lennysnewsletter.com/i/77646597/i-simpler-onboarding-uiux) 2. [Reducing onboarding friction](https://www.lennysnewsletter.com/i/77646597/ii-reducing-onboarding-friction) 3. [Emails and follow-up comms](https://www.lennysnewsletter.com/i/77646597/iii-emails-and-follow-up-comms) 4. [Optimizing copy](https://www.lennysnewsletter.com/i/77646597/iv-optimizing-copy) 5. [Smarter top-of-funnel targeting](https://www.lennysnewsletter.com/i/77646597/v-smarter-top-of-funnel-targeting) 6. [Sales outreach](https://www.lennysnewsletter.com/i/77646597/vi-sales-outreach) 7. [Adding incentives](https://www.lennysnewsletter.com/i/77646597/vii-adding-incentives) 8. [Showing value earlier](https://www.lennysnewsletter.com/i/77646597/viii-showing-value-earlier) Here are direct quotes from survey responders sharing what most helped them increase their activation rate: #### **i. Simpler onboarding UI/UX** 1. “Removing distracting CTAs between sign-up event and activation event” 2. “Hiding a confusing button on home page for new users” 3. “Simplifying the flow” 4. “Simplify setup process” 5. “Simplify...",
+          "source": "What is a good activation rate",
+          "similarity": 0.633,
+          "why_matched": "contains keyword \"activation rate\""
+        },
+        {
+          "text": "An activation rate that falls in a lower percentage range, maybe for most companies five to 15%, is better than one that falls in a higher percentage range because it means that there's likely much higher correlation with long-term retention and you're really working hard to get most of your users to reach a state that they're not reaching today.",
+          "source": "Lauryn Isford — Mastering onboarding | Lauryn Isford (Head of Growth at Airtable)",
+          "similarity": 0.623,
+          "why_matched": "contains keyword \"activation rate\""
+        }
+      ],
+      "semantic_only_matches": [
+        {
+          "text": "### [Activation and conversion ▶️](https://youtu.be/7l1fIxk7SnA?t=2851) - Focus on activation if users are confused on their first interaction with the product: Identify the ideal aha moment metric and design a product experience that leads users towards that goal. Use warm starts by providing templates or samples to reduce friction and engage them immediately. - Focus on activation: If you're finding that people are initially entering your product but don't know what to do next, then you have an activation problem. To solve this, you need to identify your \"aha moment metric and then, design a product experience to help more people together.\" - Improve conversion if the checkout process has friction: If your activation is in good shape but your conversion...",
+          "source": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+          "similarity": 0.618,
+          "why_relevant": "Explains strategies to improve user activation by identifying key metrics and enhancing the initial product experience."
+        },
+        {
+          "text": "### Tactic #20: Optimize activation 🥳 > When I think about the ROI of things that you can do in a business, make certain that your customer is safely handed from acquisition to the activation. Make certain that they are activated and you have done everything in your power in order to make certain they have found their “Aha” moment and they have began habit forming. > > — [Shaun Clowes](https://twitter.com/shaunmclowes?lang=en), CPO at Metromile **What:** Getting new users to a key milestone that you believe is important for long-term retention. This is sometimes called the “aha” moment. **Stage:** Early/Mid-stage **Cost:** Small **Impact on Airbnb supply growth:** Small/Medium **Examples**: - At Airbnb, an activation was getting a new listing to its...",
+          "source": "28 Ways to Grow Supply in a Marketplace 📈",
+          "similarity": 0.615,
+          "why_relevant": "Describes the importance of optimizing user activation to achieve long-term retention and facilitate users' \"aha\" moments."
+        },
+        {
+          "text": "### [Why you should start with activation, and who is doing it well ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3137s) - **Start with activation:** Historically, B2B software hasn't been designed for quick use, but that's changing with successful PLG companies. The speed at which a user can go from signing up to actually using the product (time-to-value) is critical. - \"Think about Miro, as an example. If you go through their activation experience and sign up to usage, they ask very limited questions, very targeted... they quickly gave you templates to get started**.\"** - **Improve the conversion process:** This means making the self-checkout flow as smooth and easy as possible. The goal is to make sure your users don't get confused about pricing or where to...",
+          "source": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+          "similarity": 0.572,
+          "why_relevant": "Discusses the importance of quick user activation and effective onboarding strategies to enhance new user engagement and usage."
+        }
+      ],
+      "guess_the_pair": {
+        "snippets": [
+          "## 1. What is activation rate? Your activation rate is the percentage of your new users who hit your activation milestone. Concretely: `activation rate = [users who hit your activation milestone] / [users who completed your signup flow].` Your activation milestone (often referred to as your “aha moment”) is the earliest point in your onboarding flow that, by showing your...",
+          "## 3. What is a good activation rate? Based on our survey results, broadly, the **average activation rate is 34%**, and the **median activation rate is 25%**. For just SaaS products (removing marketplaces, e-commerce, and DTC), the **average activation rate is 36%**, and the **median is 30%**. Here’s what activation rates look like by individual product types: #### Why such...",
+          "He's trying to talk me out of being an enterprise software executive. He's like, \"Now, Marc, what are you going to do? You're going to go home and tell your kids that you're working on enterprise software? Who do you sell to, CIOs? Have you had met them? How can you be doing this? I can't imagine a more horrible..."
+        ],
+        "correct_pair": [
+          0,
+          1
+        ],
+        "scores": {
+          "A-B": 0.743,
+          "A-C": 0.095,
+          "B-C": 0.165
+        },
+        "explanation": "Snippets A and B both discuss related concepts and score 0.74 cosine similarity — they embed close together. Snippet C (from: 'Marc Benioff — Behind the founder: Marc Benioff') covers a different PM domain and scores only 0.17 to the pair."
+      }
+    }
+  }
+}

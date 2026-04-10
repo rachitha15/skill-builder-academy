@@ -1,0 +1,614 @@
+{
+  "topics": {
+    "product_strategy": {
+      "newsletter": {
+        "title": "Strategy Blocks: An operator’s guide to product strategy",
+        "word_count": 4859,
+        "unchunked_preview": "Below, you’ll find what I believe is the most actionable, specific, and straightforward framework for crafting a strategy, for both your product and your company. [Chandra Janakiraman](https://www.linkedin.com/in/chandramohanj/) came on [my podcast](https://www.youtube.com/watch?v=WFLH8Af2f30) to share it, and afterward, we realized that it would be 10x more helpful as a newsletter post. So we teamed up to make that happen. As Chandra shares below, his framework sits on top of the best strategy wisdom out there (e.g. [Michael Porter](https://hbr.org/1996/11/what-is-strategy), *[Good Strategy Bad Strategy](https://a.co/d/ilE3kQq)*, *[Playing to Win](https://a.co/d/4NQzHmz)*), and turns that advice into a step-by-step guide that you and your leaders can put into practice immediately. The post includes plug-and-play strategy templates, recommended timelines, the stakeholders to involve at each step, and more 🔥 For more from Chandra, [follow him on LinkedIn](https://www.linkedin.com/in/chandramohanj/), and [VRChat is hiring](https://jobs.lever.co/vrchat)! ![Image from Strategy Blocks: An operator’s guide to product strategy](https://substack-post-media.s3.amazonaws.com/public/images/25acdc8f-9f25-4884-9946-213d4acea5cc_2912x2029.jpeg) At Headspace back in 2016, we had established our product roadmap and success metrics and our mission and vision, but teams were still confused about *why* we were working on the projects we chose. Without that clarity, teams weren’t able to get several projects off the ground and had unproductive debates on what to build. I worked closely with  ...4859 words total",
+        "chunked_sections": [
+          {
+            "heading": "(intro)",
+            "word_count": 386,
+            "preview": "Below, you’ll find what I believe is the most actionable, specific, and straightforward framework for crafting a strategy, for both your product and your company. [Chandra Janakiraman](https://www.linkedin.com/in/chandramohanj/) came on [my..."
+          },
+          {
+            "heading": "### Basic definitions",
+            "word_count": 323,
+            "preview": "### Basic definitions Strategy has benefited from several excellent foundational frameworks over the years, from [Michael Porter’s work](https://hbr.org/1996/11/what-is-strategy) to *[Good Strategy Bad Strategy](https://a.co/d/ilE3kQq)*, *[Playing to Win](https://a.co/d/4NQzHmz)*, and *[The Art of..."
+          },
+          {
+            "heading": "## Part 1: Crafting the 2-year strategy (small “s” strategy)",
+            "word_count": 78,
+            "preview": "## Part 1: Crafting the 2-year strategy (small “s” strategy) Crafting the small “s” strategy requires about 8 to 12 weeks to produce a **high-quality output** ([see output template](https://docs.google.com/document/d/1iNeYUaMnpicvkpVZO-gj9cCxLeHfWN0xtGm_QoxgemE/edit?usp=sharing)). The..."
+          },
+          {
+            "heading": "### Step 1: Preparation (3-5 weeks)",
+            "word_count": 714,
+            "preview": "### Step 1: Preparation (3-5 weeks) ![Image from Strategy Blocks: An operator’s guide to product strategy](https://substack-post-media.s3.amazonaws.com/public/images/8fc5d7c3-4dda-4f7d-8669-bc9eb35c5a24_1344x896.png) The preparation step is a foundational effort where a lot of the groundwork and..."
+          },
+          {
+            "heading": "### Step 2: Strategy sprint (1 week)",
+            "word_count": 664,
+            "preview": "### Step 2: Strategy sprint (1 week) ![Image from Strategy Blocks: An operator’s guide to product strategy](https://substack-post-media.s3.amazonaws.com/public/images/9187a478-d334-44be-b60d-2f0286fff24a_1456x970.png) The strategy sprint is the heart of the strategy process. This is where..."
+          },
+          {
+            "heading": "### Step 3: Design sprint (1 week)",
+            "word_count": 174,
+            "preview": "### Step 3: Design sprint (1 week) The design sprint builds on the strategy sprint. It takes the three strategic pillars and the “how might we’s” as its primary input..."
+          },
+          {
+            "heading": "### Step 4: Document writing (1-2 weeks)",
+            "word_count": 114,
+            "preview": "### Step 4: Document writing (1-2 weeks) At this point, the product leader has significant leverage built up from steps 1 to 3. Let us recall everything that is now..."
+          },
+          {
+            "heading": "### Step 5: Roll-out (2-3 weeks)",
+            "word_count": 296,
+            "preview": "### Step 5: Roll-out (2-3 weeks) The final step is to roll out and operationalize the strategy. A few key steps are recommended for this step: 1. **Review the strategy..."
+          },
+          {
+            "heading": "## Part 2: Crafting the 3/5/10-year strategy (Big “S” strategy)",
+            "word_count": 128,
+            "preview": "## Part 2: Crafting the 3/5/10-year strategy (Big “S” strategy) *“Life has to be about more than just solving problems.” —Elon Musk* There needs to be an aspirational and exciting..."
+          },
+          {
+            "heading": "### Step 1: Preparation",
+            "word_count": 151,
+            "preview": "### Step 1: Preparation 1. Form a small working group with a senior design leader, one or two designers, and a UX researcher. 2. Start with the company mission and..."
+          },
+          {
+            "heading": "### Step 2: Distinct futures",
+            "word_count": 187,
+            "preview": "### Step 2: Distinct futures 1. Synthesize all of the above information by clustering related ideas into cohesive narratives and fiction pieces. Generate at least three fairly distinct descriptions of..."
+          },
+          {
+            "heading": "### Step 3: Prototypes",
+            "word_count": 71,
+            "preview": "### Step 3: Prototypes Once these distinct futures and the associated key learning goals are verbally articulated, the team should generate prototypes to help with discovery and deeper understanding. Think..."
+          },
+          {
+            "heading": "### Step 4: Convergence",
+            "word_count": 73,
+            "preview": "### Step 4: Convergence UX research should then test these prototypes with a set of carefully selected users to answer the key learning goals previously established. Through this process, a..."
+          },
+          {
+            "heading": "### Step 5: Roadmap/testing",
+            "word_count": 44,
+            "preview": "### Step 5: Roadmap/testing The winning components are then pushed into the active roadmap so that they can be tested live with a broader set of users. And this process..."
+          },
+          {
+            "heading": "## Combining the two",
+            "word_count": 76,
+            "preview": "## Combining the two The product roadmap and plan is built through a combination of small “s” (present-forward) and big “S” (future-backward) work, which can run in parallel. This is..."
+          },
+          {
+            "heading": "### **Do we need so much time?**",
+            "word_count": 264,
+            "preview": "### **Do we need so much time?** One of the most common challenges with any strategy effort is justifying the time to do it properly. Here are some tools and..."
+          },
+          {
+            "heading": "### **Strategy vs. execution**",
+            "word_count": 222,
+            "preview": "### **Strategy vs. execution** You might run into vociferous debates on the importance of strategy vs. execution, and tensions can run high on both sides of the argument. I think..."
+          },
+          {
+            "heading": "### **Process vs. content**",
+            "word_count": 138,
+            "preview": "### **Process vs. content** You might also run into tensions around the importance of process (people who embrace process as the recipe for success) versus content (people with strong opinions..."
+          },
+          {
+            "heading": "### **Managing energy**",
+            "word_count": 53,
+            "preview": "### **Managing energy** The strategy working group can feel fatigued through the process, given some of the more intensive team exercises. It’s important to manage the team’s energy by pacing..."
+          },
+          {
+            "heading": "### **Dead ends, entropy, and hopelessness**",
+            "word_count": 100,
+            "preview": "### **Dead ends, entropy, and hopelessness** While this is a deeply satisfying exercise at the end, expect a healthy dose of difficulties, frustrations, and dead ends along the way. Furthermore,..."
+          },
+          {
+            "heading": "## Results and business impact",
+            "word_count": 56,
+            "preview": "## Results and business impact Ultimately, strategy in itself has no intrinsic business value and is only as good as the results it can produce. Test and iterate the strategy..."
+          },
+          {
+            "heading": "## Recap",
+            "word_count": 52,
+            "preview": "## Recap ![Image from Strategy Blocks: An operator’s guide to product strategy](https://substack-post-media.s3.amazonaws.com/public/images/4cfde755-47be-4e3b-8cfa-3916887fdf3f_1486x1621.jpeg) Also refer to the [podcast episode](https://youtu.be/WFLH8Af2f30?si=aJ60o7DGhQOa7J1Y) for additional commentary and support. All the best with your strategy work,..."
+          },
+          {
+            "heading": "## 🏅 Featured role of the week",
+            "word_count": 218,
+            "preview": "## 🏅 Featured role of the week [Halo Science](https://www.halo.science/) is hiring for a Head of Product. In this role, you’ll: - Be hands-on executing, while also helping craft strategy for..."
+          }
+        ]
+      },
+      "podcast": {
+        "guest": "Mihika Kapoor",
+        "episode_title": "Vision, conviction, and hype: How to build 0 to 1 inside a company | Mihika Kapoor (Product at Figma)",
+        "word_count": 18312,
+        "unchunked_preview": "**Lenny Rachitsky** (00:00:00): I asked on Twitter, \"Who's the best product manager you've worked with?\" You were the most mentioned. **Mihika Kapoor** (00:00:04): My take is that your scope is the world. Nothing should ever perceive as being out of bounds. **Lenny Rachitsky** (00:00:10): VP of product at Figma told me, \"Mahika is really great at creating a vision and getting people to see what she sees.\" **Mihika Kapoor** (00:00:16): We lean heavily into designing and prototyping even before a project gets a green light. If you and your team do your job correctly, what does the world look like? **Lenny Rachitsky** (00:00:26): Say somebody wants to make their culture more entrepreneurial, what does it take? **Mihika Kapoor** (00:00:31): We have this concept called Maker Week, which is our internal hackathon, giving people the breathing space to see ahead into the horizon and be wildly ambitious. **Lenny Rachitsky** (00:00:43): Today, my guest is Mahika Kapoor. Mahika is a design engineering PM hybrid at Figma, where she was an early PM on FigJam, and is now spearheading development of a new product that the company's going to launch in June. She's known as the go-to person at Figma for leading new  ...18312 words total",
+        "chunked_samples": [
+          {
+            "speaker": "Lenny Rachitsky",
+            "timestamp": "00:00:00",
+            "text": "I asked on Twitter, \"Who's the best product manager you've worked with?\" You were the most mentioned."
+          },
+          {
+            "speaker": "Lenny Rachitsky",
+            "timestamp": "00:37:58",
+            "text": "And this pitch and product you're describing is the one that's going to be launching this mysterious new product, right?"
+          },
+          {
+            "speaker": "Mihika Kapoor",
+            "timestamp": "01:16:37",
+            "text": "In order for a company to stay competitive, a company needs to stay entrepreneurial. If you are not constantly thinking about what's next, defining the industry standard, seeing around the corner from your competitors, you will get taken over. That is a reality. And so, consequently, I personally love to screen for very entrepreneurial companies and companies that have that..."
+          }
+        ]
+      },
+      "search_demo": {
+        "query": "How do I build a product vision and roadmap?",
+        "unchunked_result": "Below, you’ll find what I believe is the most actionable, specific, and straightforward framework for crafting a strategy, for both your product and your company. [Chandra Janakiraman](https://www.linkedin.com/in/chandramohanj/) came on [my podcast](https://www.youtube.com/watch?v=WFLH8Af2f30) to share it, and afterward, we realized that it would be 10x more helpful as a newsletter post. So we teamed up to make that happen. As Chandra shares below, his framework sits on top of the best strategy wisdom out there (e.g. [Michael Porter](https://hbr.org/1996/11/what-is-strategy), *[Good Strategy Bad Strategy](https://a.co/d/ilE3kQq)*, *[Playing to Win](https://a.co/d/4NQzHmz)*), and turns that advice into a step-by-step guide that you and your leaders can put into practice...",
+        "chunked_result": "Strategy has benefited from several excellent foundational frameworks over the years, from [Michael Porter’s work](https://hbr.org/1996/11/what-is-strategy) to *[Good Strategy Bad Strategy](https://a.co/d/ilE3kQq)*, *[Playing to Win](https://a.co/d/4NQzHmz)*, and *[The Art of War](https://a.co/d/dxzsLah)*, to name a few. Strategy Blocks uses concepts from many of these frameworks and converts them into bite-size steps to map out the future of your company. Let’s establish some basic definitions before diving into the details of Strategy Blocks: - **Product strategy sits in between the mission and vision and the plan, either at the company level or at the team level.** At the company level, the mission and vision is...  [from section: \"### Basic definitions\"]"
+      }
+    },
+    "user_research": {
+      "newsletter": {
+        "title": "How to validate your startup idea",
+        "word_count": 12953,
+        "unchunked_preview": "*👋 Hey, [Lenny](https://twitter.com/lennysan) here! Welcome to a ✨ **monthly free edition**✨ of my weekly newsletter. Each week I tackle reader questions about building product, driving growth, working with humans, and anything else that’s stressing you out about work.* *If you’re not a subscriber, here’s what you missed this month:* 1. *[What is a good growth rate](https://www.lennysnewsletter.com/p/what-is-a-good-growth-rate?s=w)* 2. *[Preparing for a PM interview](https://www.lennysnewsletter.com/p/preparing-for-a-pm-interview?s=w)* 3. *[Open thread: How is your product org organized?](https://www.lennysnewsletter.com/p/open-thread-how-is-your-product-org/comments?s=w)* > ## Q: I have an idea for a startup. How can I validate that it’s a good idea, and how will I know when an idea is promising enough to commit to? Committing to a startup idea is possibly the most consequential decision you’ll ever make. It’ll impact everything they do for the next 1 to 50 years, and either lead you to fame and fortune or a brick wall to endlessly bang your head against. No pressure. To help you navigate this critical time, [Todd Jackson](https://twitter.com/tjack) (partner at First Round Capital) spent 2+ months researching, interviewing, and synthesizing lessons from some of today’s most exciting companies to understand what gave them the confidence to commit to their idea. Below you’ll learn how these companies come up with  ...12953 words total",
+        "chunked_sections": [
+          {
+            "heading": "(intro)",
+            "word_count": 599,
+            "preview": "*👋 Hey, [Lenny](https://twitter.com/lennysan) here! Welcome to a ✨ **monthly free edition**✨ of my weekly newsletter. Each week I tackle reader questions about building product, driving growth, working with humans, and..."
+          },
+          {
+            "heading": "## How do I pick an idea and validate it?",
+            "word_count": 140,
+            "preview": "## How do I pick an idea and validate it? Based on my research, there are three common ways to come up with an idea: 1. **Market first**: Start with..."
+          },
+          {
+            "heading": "### Start with a market/space first and look for a problem.",
+            "word_count": 1707,
+            "preview": "### Start with a market/space first and look for a problem. If you already have a particular market in mind, talk to people in that space to more deeply understand..."
+          },
+          {
+            "heading": "### Start with an intuition about a better consumer experience and work your way to a winning idea",
+            "word_count": 4549,
+            "preview": "### Start with an intuition about a better consumer experience and work your way to a winning idea Other founders, particularly those building consumer or marketplace companies, start with an..."
+          },
+          {
+            "heading": "### Start with a problem you’re experiencing and figure out if other people or companies are experiencing it too",
+            "word_count": 3621,
+            "preview": "### Start with a problem you’re experiencing and figure out if other people or companies are experiencing it too You can also find a good idea by solving a problem..."
+          },
+          {
+            "heading": "## What traps should I look out for?",
+            "word_count": 842,
+            "preview": "## What traps should I look out for? No matter which method you use to validate a company idea, you’ll find no shortage of challenges. Here are six common traps:..."
+          },
+          {
+            "heading": "## What do I do once I’ve gotten some validation that this idea can win?",
+            "word_count": 333,
+            "preview": "## What do I do once I’ve gotten some validation that this idea can win? Celebrate ;) That seems trite, but I often hear founders say they wished they’d taken..."
+          },
+          {
+            "heading": "## Final thoughts",
+            "word_count": 405,
+            "preview": "## Final thoughts Founding a company sounds glamorous and exciting, and if all goes well, it can be—eventually. But the road there is filled with a lot of steps that..."
+          },
+          {
+            "heading": "## 📣 Join Lenny’s Talent Collective 📣",
+            "word_count": 142,
+            "preview": "## 📣 Join Lenny’s Talent Collective 📣 If you’re hiring, [join Lenny’s Talent Collective](https://www.lennysjobs.com/talent/welcome) to start getting bi-monthly drops of world-class hand-curated product and growth people who are open to..."
+          }
+        ]
+      },
+      "podcast": {
+        "guest": "Teresa Torres",
+        "episode_title": "Teresa Torres on how to interview customers, automating continuous discovery, the opportunity solution tree framework, making the case for user research, common interviewing mistakes, and much more",
+        "word_count": 9657,
+        "unchunked_preview": "Lenny (00:02): Teresa Torres is a speaker, a teacher, a consultant, a product coach, and also the author of Continuous Discovery Habits, which is the number one most recommended book in my newsletter Slack community. (00:13): I'm also pretty sure Teresa is in the top five people in the world when it comes to the number of product managers that she's worked with, taught, and impacted. In our chat, we get deep into two topics: the opportunity solution tree framework, which is a really simple but incredibly powerful framework once it, and, two, we go deep into how to create a system within your team where you're talking to customers regularly. (00:34): We talk about ways to make a case for spending more time talking to customers and doing news research, the most common mistakes people make with interviewing and generally how to interview customers better, how to automate this process so that you don't spend a bunch of time, and so many other ways to bring you and your organization closer to your customers. Teresa's amazing, and I can't wait for you to learn from her. (00:55): This episode is brought to you by Persona. Persona helps founders, product  ...9657 words total",
+        "chunked_samples": [
+          {
+            "speaker": "Lenny",
+            "timestamp": "00:00:02",
+            "text": "Teresa Torres is a speaker, a teacher, a consultant, a product coach, and also the author of Continuous Discovery Habits, which is the number one most recommended book in my newsletter Slack community."
+          },
+          {
+            "speaker": "Teresa Torres",
+            "timestamp": "00:21:22",
+            "text": "Yeah, let's just start at the beginning. So we often talk about discovery and contrast with delivery. Discovery is just used to describe the work we're doing to decide what to build. So everybody, every company is doing discovery. Everybody is making decisions about what to build."
+          },
+          {
+            "speaker": "Lenny",
+            "timestamp": "00:37:21",
+            "text": "Yeah, in the evenings. It's a good way to unwind and let my brain relax a little bit. Okay,"
+          }
+        ]
+      },
+      "search_demo": {
+        "query": "How do I run effective customer discovery interviews?",
+        "unchunked_result": "*👋 Hey, [Lenny](https://twitter.com/lennysan) here! Welcome to a ✨ **monthly free edition**✨ of my weekly newsletter. Each week I tackle reader questions about building product, driving growth, working with humans, and anything else that’s stressing you out about work.* *If you’re not a subscriber, here’s what you missed this month:* 1. *[What is a good growth rate](https://www.lennysnewsletter.com/p/what-is-a-good-growth-rate?s=w)* 2. *[Preparing for a PM interview](https://www.lennysnewsletter.com/p/preparing-for-a-pm-interview?s=w)* 3. *[Open thread: How is your product org organized?](https://www.lennysnewsletter.com/p/open-thread-how-is-your-product-org/comments?s=w)* > ## Q: I have an idea for a startup. How can I validate that it’s a good idea, and how will I know when an idea is promising...",
+        "chunked_result": "If you already have a particular market in mind, talk to people in that space to more deeply understand their experience and challenges. There’s no set number of conversations to have, but I’ll offer suggestions near the end of this article. You want to look for a burning pain that’s so bad, customers will literally try anything to solve it. ![Image from How to validate your startup idea](https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/04f66c7c-4053-4bbf-a93a-f882e180fda7_954x330.png) [Christina Cacioppo](https://www.linkedin.com/in/ccacioppo/) is the CEO and co-founder of [Vanta](https://www.vanta.com/), an automated security monitoring platform that helps companies get SOC 2, HIPAA, or ISO 27001 certified quickly. Launched in 2017, Vanta has over...  [from section: \"### Start with a market/space first and look for a problem.\"]"
+      }
+    },
+    "plg": {
+      "newsletter": {
+        "title": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+        "word_count": 4204,
+        "unchunked_preview": "Hila Qu is an Executive in Residence (EIR) at [Reforge](https://www.notion.so/WIP-The-ultimate-guide-to-adding-a-PLG-motion-Hila-Qu-Reforge-GitLab-311e0176f8d341ae80bdfe9e340eb7ed?pvs=21) as well as a renowned growth advisor, angel investor, and published [author](https://hilaqu.medium.com/) (her book about growth was named one of the top 10 business books of 2018 in China). Previously, she served as the Director of Growth at [GitLab](https://www.notion.so/WIP-The-ultimate-guide-to-adding-a-PLG-motion-Hila-Qu-Reforge-GitLab-311e0176f8d341ae80bdfe9e340eb7ed?pvs=21), where she implemented and scaled their PLG motion, and VP of Growth at Acorns, scaling them from 1 million to 5 million users. You can also see the episode [transcript](https://www.lennyspodcast.com/the-ultimate-guide-to-adding-a-plg-motion-hila-qu-reforge-gitlab/#transcript/) and Hila’s [references](https://www.lennyspodcast.com/leaving-big-tech-to-build-the-1-technology-newsletter-gergely-orosz-the-pragmatic-engineer/#show-notes). ### [What PLG is and why it’s so popular ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=478s) PLG is popular due to the shift from sales-driven B2B business models to user-focused, try-before-you-buy tactics: Consumers have become accustomed to testing products before committing, which has led to increased demand for similar experiences in the B2B space. Even if you think of Facebook, there is no one selling it to you to use it, its PLG in motion where your friend invites you. ### [Why companies should have PLG and sales ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=312s) The question is not either or but both and a matter of sequencing. PLG is perfect for lowering the barrier for more people to try the product and broaden the reach. Sales motion is for  ...4204 words total",
+        "chunked_sections": [
+          {
+            "heading": "(intro)",
+            "word_count": 82,
+            "preview": "Hila Qu is an Executive in Residence (EIR) at [Reforge](https://www.notion.so/WIP-The-ultimate-guide-to-adding-a-PLG-motion-Hila-Qu-Reforge-GitLab-311e0176f8d341ae80bdfe9e340eb7ed?pvs=21) as well as a renowned growth advisor, angel investor, and published [author](https://hilaqu.medium.com/) (her book about growth was named one of..."
+          },
+          {
+            "heading": "### [What PLG is and why it’s so popular ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=478s)",
+            "word_count": 74,
+            "preview": "### [What PLG is and why it’s so popular ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=478s) PLG is popular due to the shift from sales-driven B2B business models to user-focused, try-before-you-buy tactics: Consumers have become accustomed..."
+          },
+          {
+            "heading": "### [Why companies should have PLG and sales ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=312s)",
+            "word_count": 111,
+            "preview": "### [Why companies should have PLG and sales ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=312s) The question is not either or but both and a matter of sequencing. PLG is perfect for lowering the barrier for..."
+          },
+          {
+            "heading": "### [What makes a company product - led with Zoom as an eg ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=581s)",
+            "word_count": 120,
+            "preview": "### [What makes a company product - led with Zoom as an eg ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=581s) - **Low barrier to entry:** PLG products like Zoom often have a free version or free..."
+          },
+          {
+            "heading": "### [Common pitfalls in adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=684s)",
+            "word_count": 204,
+            "preview": "### [Common pitfalls in adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=684s) ![b19c92a7-0e44-4314-aa1e-6b2e336689d4_1624x1000.jpeg](https://substack-post-media.s3.amazonaws.com/public/images/1d80aa58-202f-40f4-82f7-1fb2c5918b79_1456x897.jpeg) - **Make your product more accessible:** A big pitfall for many B2B companies is that the entry point to product-led..."
+          },
+          {
+            "heading": "### [The spectrum of when PLG makes sense ▶️](https://youtu.be/7l1fIxk7SnA?t=966)",
+            "word_count": 235,
+            "preview": "### [The spectrum of when PLG makes sense ▶️](https://youtu.be/7l1fIxk7SnA?t=966) - **Don't equate launching a free version or trial with PLG:** Many companies assume that \"PLG equals launch of free version..."
+          },
+          {
+            "heading": "### [What you need to be successful in a product-led growth strategy ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1204s)",
+            "word_count": 144,
+            "preview": "### [What you need to be successful in a product-led growth strategy ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1204s) - **Have a Vehicle:** A company needs to have a free version, a free trial, an open-source..."
+          },
+          {
+            "heading": "### [The first step to adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1492s)",
+            "word_count": 250,
+            "preview": "### [The first step to adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1492s) The first step in understanding the difference between the PLG funnel and the sales-led funnel (SLG) ![8e8ca2af-f664-479c-aba3-fb3ed6cc1671_4000x2000.jpeg](https://substack-post-media.s3.amazonaws.com/public/images/7af16edc-67f3-449b-8c44-c838101dfab9_1456x728.jpeg) **Sales-Led Funnel (SLG):**..."
+          },
+          {
+            "heading": "### [What GitLab does and how the sales funnel and PLG funnel work there ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1811s)",
+            "word_count": 221,
+            "preview": "### [What GitLab does and how the sales funnel and PLG funnel work there ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1811s) **Sales-Led Funnel**: GitLab's marketing team works on attracting visitors to their website and getting them..."
+          },
+          {
+            "heading": "### [Mapping out the funnel ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=2047s)",
+            "word_count": 140,
+            "preview": "### [Mapping out the funnel ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=2047s) Start by mapping out the major steps of how users would interact with your product-led growth motion, such as marketing site, free version, and..."
+          },
+          {
+            "heading": "### [Finding leverage and other next steps ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=2129s)",
+            "word_count": 201,
+            "preview": "### [Finding leverage and other next steps ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=2129s) 1. **Establish the Fundamental Components:** After mapping out the product-led growth (PLG) funnel, the first step is to build the foundational components,..."
+          },
+          {
+            "heading": "### [What an aha moment is and conducting an audit ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=2304s)",
+            "word_count": 331,
+            "preview": "### [What an aha moment is and conducting an audit ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=2304s) ![efc79bec-eec8-45c6-bc51-f2af48b68951_4000x2000.jpeg](https://substack-post-media.s3.amazonaws.com/public/images/b7dbd5b9-0ab6-42b9-a34c-0350b83d593d_1456x728.jpeg) - **Data Analysis:** Pair the audit with data on how many people are on your website, how many..."
+          },
+          {
+            "heading": "### [Activation and conversion ▶️](https://youtu.be/7l1fIxk7SnA?t=2851)",
+            "word_count": 207,
+            "preview": "### [Activation and conversion ▶️](https://youtu.be/7l1fIxk7SnA?t=2851) - Focus on activation if users are confused on their first interaction with the product: Identify the ideal aha moment metric and design a product..."
+          },
+          {
+            "heading": "### [Why you should start with activation, and who is doing it well ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3137s)",
+            "word_count": 262,
+            "preview": "### [Why you should start with activation, and who is doing it well ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3137s) ![739ca6c8-df4c-4722-a3d0-76c0ef75d0cf_3624x1228.jpeg](https://substack-post-media.s3.amazonaws.com/public/images/f06104af-797b-48c6-828f-547607ab3267_1456x493.jpeg) - **Start with activation:** Historically, B2B software hasn't been designed for quick use, but that's..."
+          },
+          {
+            "heading": "### [How Hila made an impact on retention at Acorns](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3634s)",
+            "word_count": 96,
+            "preview": "### [How Hila made an impact on retention at Acorns](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3634s) - **Focus on activation for retention improvement:** Analyze features users need to experience early on for better retention. Hila Qu..."
+          },
+          {
+            "heading": "### [The two buckets of data](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3783s)",
+            "word_count": 127,
+            "preview": "### [The two buckets of data](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3783s) - **Product Usage Data:** It involves tracking and analyzing user behaviors, feature usage, and other similar details. In traditional B2B software sales (primarily sales-led),..."
+          },
+          {
+            "heading": "### [Tools for implementing a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3896s)",
+            "word_count": 258,
+            "preview": "### [Tools for implementing a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=3896s) In terms of tool recommendations for setting up an initial stack for product-led growth, Hila Qu mentions several key pieces: [Add links]..."
+          },
+          {
+            "heading": "### [Tips to get started, and why you need to have good data first ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4220s)",
+            "word_count": 156,
+            "preview": "### [Tips to get started, and why you need to have good data first ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4220s) 1. **Start with a Product Analytics Tool and a Data Hub:** Start with a product..."
+          },
+          {
+            "heading": "### [How to do a data audit ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4330s)",
+            "word_count": 162,
+            "preview": "### [How to do a data audit ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4330s) - **Establish a data dictionary for product analytics:** Identify key actions in your product experience and matching these to your data instrumentation..."
+          },
+          {
+            "heading": "### [Building a PLG team ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4504s)",
+            "word_count": 200,
+            "preview": "### [Building a PLG team ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4504s) - **Tiger Team vs Dedicated Team:** There are two different ways to start a growth team. The most common one is to create a..."
+          },
+          {
+            "heading": "### [The core growth squad ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4960s)",
+            "word_count": 177,
+            "preview": "### [The core growth squad ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=4960s) - **Initial Team Roles:** The most critical role for an MVP PLG team is the growth PM (Product Manager) who leads the team. A..."
+          },
+          {
+            "heading": "### [Lightning round ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=5271s)",
+            "word_count": 271,
+            "preview": "### [Lightning round ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=5271s) - Recommended Books: - \"[The Almanack of Naval](https://amzn.to/3DwLAR0),\" which she found life-changing and helped her understand the importance of leverage in life and business. - \"[How..."
+          }
+        ]
+      },
+      "podcast": {
+        "guest": "Hila Qu",
+        "episode_title": "The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+        "word_count": 15746,
+        "unchunked_preview": "**Hila Qu** (00:00:01): ... [inaudible 00:00:01]. Always say is actually fundamentally DLG, data led growth. So when you give away your free product, what you want to get in exchange are two things. One is a broader reach because free product spread itself is lower barrier to entry. Two, you want to understand you usage behavior of those free users, which features do they use and which features kind of correlates with a higher conversion rate, retention rate, all of that. If you don't have a foundation of data and understanding of how to analyze those data, you are giving a way of free product for nothing. **Lenny** (00:00:44): Welcome to Lenny's podcast where I interview world-class product leaders and growth experts to learn from their hard one experiences building and growing today's most successful products. Today my guest is Hila Qu. I've heard some listeners have been doing listening parties with this podcast where their team listens to an episode all at the same time over Zoom and shares their insights and lessons in a shared chat. And I would say that this episode is a great candidate for that. It's incredibly packed with advice on how to start  ...15746 words total",
+        "chunked_samples": [
+          {
+            "speaker": "Hila Qu",
+            "timestamp": "00:00:01",
+            "text": "... [inaudible 00:00:01]. Always say is actually fundamentally DLG, data led growth. So when you give away your free product, what you want to get in exchange are two things. One is a broader reach because free product spread itself is lower barrier to entry. Two, you want to understand you usage behavior of those free users, which features do..."
+          },
+          {
+            "speaker": "Lenny",
+            "timestamp": "00:41:24",
+            "text": "Aha moment and activation is often interchangeable, right?"
+          },
+          {
+            "speaker": "Lenny",
+            "timestamp": "01:17:00",
+            "text": "And the main difference between these two. One is dedicated, \"We are going to dedicate full-time people to helping us grow.\" Like I say we talked about earlier, let's say they're going to focus on activation and that's their whole job. Versus tiger team is basically they're borrowing resources from other teams and this is kind of a side project..."
+          }
+        ]
+      },
+      "search_demo": {
+        "query": "What does it take to add a PLG motion to our product?",
+        "unchunked_result": "Hila Qu is an Executive in Residence (EIR) at [Reforge](https://www.notion.so/WIP-The-ultimate-guide-to-adding-a-PLG-motion-Hila-Qu-Reforge-GitLab-311e0176f8d341ae80bdfe9e340eb7ed?pvs=21) as well as a renowned growth advisor, angel investor, and published [author](https://hilaqu.medium.com/) (her book about growth was named one of the top 10 business books of 2018 in China). Previously, she served as the Director of Growth at [GitLab](https://www.notion.so/WIP-The-ultimate-guide-to-adding-a-PLG-motion-Hila-Qu-Reforge-GitLab-311e0176f8d341ae80bdfe9e340eb7ed?pvs=21), where she implemented and scaled their PLG motion, and VP of Growth at Acorns, scaling them from 1 million to 5 million users. You can also see the episode [transcript](https://www.lennyspodcast.com/the-ultimate-guide-to-adding-a-plg-motion-hila-qu-reforge-gitlab/#transcript/) and Hila’s [references](https://www.lennyspodcast.com/leaving-big-tech-to-build-the-1-technology-newsletter-gergely-orosz-the-pragmatic-engineer/#show-notes). ### [What PLG is and why it’s so popular ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=478s) PLG is popular due to the shift from...",
+        "chunked_result": "![b19c92a7-0e44-4314-aa1e-6b2e336689d4_1624x1000.jpeg](https://substack-post-media.s3.amazonaws.com/public/images/1d80aa58-202f-40f4-82f7-1fb2c5918b79_1456x897.jpeg) - **Make your product more accessible:** A big pitfall for many B2B companies is that the entry point to product-led growth (PLG) is often cut off. Their \"biggest CTA is called book demo,\" which means you have to submit a form before even getting a taste of the product. - The first step is you need to either have a free product, free trial, some sort of a low barrier entry for anyone who stumble upon this product to give it a try. - **Commit to the process:** Some companies may think a simple three-month free trial will bring...  [from section: \"### [Common pitfalls in adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=684s)\"]"
+      }
+    },
+    "metrics": {
+      "newsletter": {
+        "title": "The definitive guide to mastering analytical thinking interviews",
+        "word_count": 5017,
+        "unchunked_preview": "In my ongoing efforts to help you land your dream job, I’m excited to bring you this truly epic guide by [Ben Erez](https://www.linkedin.com/in/benerez). Below you’ll find everything you need to know to nail your analytical thinking interview—a staple of most product interview loops. I’ve never seen a guide this in-depth, specific, and full of so many real-life examples. I hope this helps them see exactly why you’re the perfect fit for the role. *After a decade in product (at Facebook, as the first PM at three different startups, and as a founder), Ben is now a full-time interview coach, helping PMs land their dream roles. He teaches a [top-rated course on PM interviewing](https://bit.ly/4iQm5xq) (use code “LENNYSLIST” to get $100 off), and on July 9th, he’ll be hosting a free 30-minute lightning lesson where he’ll show you [how to use AI to practice for your analytical thinking interviews](https://maven.com/p/f6c75d/practice-for-analytical-thinking-pm-interviews-with-ai). Ben also co-hosts [Supra Insider](https://suprainsider.substack.com/), a weekly podcast for the product community.* *Bonus: You can now listen to this post in convenient podcast form: [Spotify](https://open.spotify.com/show/0IIunA06qMtrcQLfypTooj) / [Apple](https://podcasts.apple.com/us/podcast/lennys-reads/id1810314693) / [YouTube](https://www.youtube.com/@lennysreads).* ![Image from The definitive guide to mastering analytical thinking interviews](https://substack-post-media.s3.amazonaws.com/public/images/7b4623f5-4826-495f-b145-08183f374d19_2912x2394.jpeg) In part one of this comprehensive guide—**[The definitive guide to mastering product sense interviews](https://www.lennysnewsletter.com/p/the-definitive-guide-to-mastering)***—*I  ...5017 words total",
+        "chunked_sections": [
+          {
+            "heading": "(intro)",
+            "word_count": 334,
+            "preview": "In my ongoing efforts to help you land your dream job, I’m excited to bring you this truly epic guide by [Ben Erez](https://www.linkedin.com/in/benerez). Below you’ll find everything you need to..."
+          },
+          {
+            "heading": "## Understand the analytical thinking interview",
+            "word_count": 219,
+            "preview": "## Understand the analytical thinking interview Analytical thinking (AT) interviews assess a candidate’s ability to understand a product in the context of its broader company and its market, establish metrics..."
+          },
+          {
+            "heading": "## Step 1: Assumptions and game plan",
+            "word_count": 621,
+            "preview": "## Step 1: Assumptions and game plan The opening minutes of an analytical thinking interview can make or break your performance. I’ve watched countless candidates struggle because they jumped straight..."
+          },
+          {
+            "heading": "## Step 2: Product rationale",
+            "word_count": 274,
+            "preview": "## Step 2: Product rationale With the interviewer on board with your assumptions and game plan, the next step is articulating the product rationale. This is your opportunity to establish..."
+          },
+          {
+            "heading": "### Examples of articulating product rationale",
+            "word_count": 402,
+            "preview": "### Examples of articulating product rationale Let’s now apply our metric framework principles to our question: *How would you measure success for Spotify?* The rationale below articulates the core problem..."
+          },
+          {
+            "heading": "### How to practice product rationale",
+            "word_count": 91,
+            "preview": "### How to practice product rationale Get reps in with an exercise that develops both written and verbal muscles: - Write down the rationale for 3 of your favorite products..."
+          },
+          {
+            "heading": "## Step 3: Metric framework",
+            "word_count": 338,
+            "preview": "## Step 3: Metric framework Next, you’ll leverage the product rationale to **define concrete metrics that track ecosystem health**. This section is nuanced and often entails a decent amount of..."
+          },
+          {
+            "heading": "### Examples of metric frameworks",
+            "word_count": 253,
+            "preview": "### Examples of metric frameworks Let’s now apply our metric framework principles to our question: ***How would you measure success for Spotify?*** The framework below organizes metrics by players (listeners,..."
+          },
+          {
+            "heading": "### How to practice metrics frameworks",
+            "word_count": 138,
+            "preview": "### How to practice metrics frameworks With the products you chose earlier, spend about 10 minutes doing the following exercise with each: - Identify the ecosystem players, map out what..."
+          },
+          {
+            "heading": "## Step 4: Goal-setting",
+            "word_count": 318,
+            "preview": "## Step 4: Goal-setting After you’ve nailed down a solid metrics framework, here comes the critical transition that trips up a lot of candidates: making an “altitude shift” from company/product-level..."
+          },
+          {
+            "heading": "### Examples of goal-setting",
+            "word_count": 277,
+            "preview": "### Examples of goal-setting With our metrics framework established, let’s make that critical altitude shift from product-level metrics to specific team-level goals for the question ***How would you measure success..."
+          },
+          {
+            "heading": "### How to practice goal-setting",
+            "word_count": 157,
+            "preview": "### How to practice goal-setting To get solid reps translating ecosystem metrics into team goals, take each of the products you chose earlier and spend 10 minutes on the following..."
+          },
+          {
+            "heading": "## Step 5: Tradeoff evaluation",
+            "word_count": 213,
+            "preview": "## Step 5: Tradeoff evaluation With team goals established, the final step is to demonstrate how you navigate real-world tradeoffs by applying your strategic framework to tactical choices. Reserve 10..."
+          },
+          {
+            "heading": "### Examples of tradeoff evaluation",
+            "word_count": 229,
+            "preview": "### Examples of tradeoff evaluation Let’s examine a tradeoff scenario for the question ***How would you measure success for Spotify?*** The analysis below frames the core tension between user breadth..."
+          },
+          {
+            "heading": "### How to practice tradeoff evaluation",
+            "word_count": 139,
+            "preview": "### How to practice tradeoff evaluation Generate a tradeoff scenario for each of your practice products by drawing from the five types I mentioned above, and do the following exercise:..."
+          },
+          {
+            "heading": "## Other analytical questions: debugging and estimation",
+            "word_count": 86,
+            "preview": "## Other analytical questions: debugging and estimation While most analytical thinking interviews follow the five-part structure I’ve outlined, some companies assess analytical skills through alternative question formats. These questions evaluate..."
+          },
+          {
+            "heading": "### Debugging questions",
+            "word_count": 205,
+            "preview": "### Debugging questions Debugging questions (also known as “root cause” analysis) assess your ability to systematically diagnose problems and identify potential causes. These questions typically present a scenario where some..."
+          },
+          {
+            "heading": "### Estimation questions",
+            "word_count": 187,
+            "preview": "### Estimation questions Estimation questions, which historically are popular at Google, assess your ability to “ballpark” with limited information. These questions aren’t about arriving at the precise answer but, rather,..."
+          },
+          {
+            "heading": "## Now you’re ready to take on the analytical thinking interview",
+            "word_count": 134,
+            "preview": "## Now you’re ready to take on the analytical thinking interview The five-step framework we’ve explored—assumptions and game plan, product rationale, metrics framework, goal-setting, and tradeoff evaluation—creates a coherent structure..."
+          },
+          {
+            "heading": "## Resources to prepare for analytical thinking interviews",
+            "word_count": 206,
+            "preview": "## Resources to prepare for analytical thinking interviews The most effective preparation combines understanding the framework with extensive practice on real interview questions. No one “wings” these interviews successfully! Deliberate..."
+          }
+        ]
+      },
+      "podcast": {
+        "guest": "Sean Ellis",
+        "episode_title": "The original growth hacker reveals his secrets | Sean Ellis (author of “Hacking Growth”)",
+        "word_count": 18767,
+        "unchunked_preview": "**Lenny Rachitsky** (00:00:00): The Sean Ellis test, such a seemingly simple idea that has had such a profound impact on the startup world. **Sean Ellis** (00:00:07): The question is, how would you feel if you could no longer use this product? Once you got a high enough percentage of users saying they'd be very disappointed, most of those products did pretty well. If you felt too low, those products tended to suffer. **Lenny Rachitsky** (00:00:19): Say someone is listening and they're like, \"Okay. Man, I'm getting like 10%. I don't know what to do.\" What do you find often works? **Sean Ellis** (00:00:25): Just ignore the people who say they'd be somewhat disappointed. They're telling you it's a nice to have. If you start paying attention to what your somewhat disappointed users are telling you and then you start tweaking onboarding and product based on their feedback, maybe you're going to dilute it for your must have users. **Lenny Rachitsky** (00:00:41): Moving retention often is really hard, but I guess it sounds like there's often something you can do. **Sean Ellis** (00:00:45): It's usually much more function of onboarding to the right user experience than it is about the kind  ...18767 words total",
+        "chunked_samples": [
+          {
+            "speaker": "Lenny Rachitsky",
+            "timestamp": "00:00:00",
+            "text": "The Sean Ellis test, such a seemingly simple idea that has had such a profound impact on the startup world."
+          },
+          {
+            "speaker": "Sean Ellis",
+            "timestamp": "00:33:11",
+            "text": "It's really funny. So much of the stuff I self-learned, but I basically at one point said I need at least 30 responses, and I just thought I randomly made up a number and then I had people telling me, \"Yeah, 30 is the minimum that you want on stuff.\" Okay. And even when I first created this survey, I..."
+          },
+          {
+            "speaker": "Sean Ellis",
+            "timestamp": "01:19:50",
+            "text": "I start with the value that's uncovered through the [inaudible 01:21:02] test. So with a company, I'll say, \"Okay, this is what the must have value is according to our most passionate customers, and we want to think about a metric that reflects us delivering that value.\" And then I'll give them kind of a framework of ways to think..."
+          }
+        ]
+      },
+      "search_demo": {
+        "query": "How do I choose the right KPIs for my product?",
+        "unchunked_result": "In my ongoing efforts to help you land your dream job, I’m excited to bring you this truly epic guide by [Ben Erez](https://www.linkedin.com/in/benerez). Below you’ll find everything you need to know to nail your analytical thinking interview—a staple of most product interview loops. I’ve never seen a guide this in-depth, specific, and full of so many real-life examples. I hope this helps them see exactly why you’re the perfect fit for the role. *After a decade in product (at Facebook, as the first PM at three different startups, and as a founder), Ben is now a full-time interview coach, helping...",
+        "chunked_result": "Let’s now apply our metric framework principles to our question: *How would you measure success for Spotify?* The rationale below articulates the core problem Spotify solved (music piracy and limited access), establishing why the product exists beyond its features. Second, it positions Spotify within its competitive landscape, highlighting specific differentiators like recommendations and platform support. Most importantly, it concludes with a powerful mission statement that will serve as our North Star for all subsequent metrics and decisions. > *Spotify is a music and podcast streaming service offering millions of tracks through a freemium model, generating revenue via premium subscriptions and...  [from section: \"### Examples of articulating product rationale\"]"
+      }
+    },
+    "onboarding": {
+      "newsletter": {
+        "title": "What is a good activation rate",
+        "word_count": 3105,
+        "unchunked_preview": "*👋 Hey, [Lenny](https://twitter.com/lennysan) here! Welcome to this month’s ✨ **free edition**✨ of Lenny’s Newsletter. Each week I humbly tackle reader questions about product, growth, working with humans, and anything else that’s stressing you out about work.* *If you’re not a subscriber, here’s what you missed this month:* 1. *[Mission → Vision → Strategy → Goals → Roadmap → Task](https://www.lennysnewsletter.com/p/mission-vision-strategy-goals-roadmap)* 2. *[The Racecar Growth Framework—expanded and illustrated](https://www.lennysnewsletter.com/p/the-racecar-growth-frameworkexpanded)* *Subscribe to get access to these posts, and every post.* > ## Q: What is considered a good activation rate? Increasing activation rate is one of the highest-leverage growth levers across most products, and it’s often the single best way to increase your retention. But knowing what a *good* activation rate is, and how to improve it, has been difficult if not impossible. For that reason, it’s been one of the most frequent questions I’ve received from readers over the years. To finally get you an answer, I teamed up with [Yuriy Timen](https://www.linkedin.com/in/yuriytimen/) (growth advisor and [recent podcast guest](https://www.lennyspodcast.com/how-to-grow-a-subscription-business-yuriy-timen-grammarly-canva-airtable/)) to run a global benchmarking survey, asking readers to contribute their activation rate and what they’ve learned about increasing it. We exceeded our expectations and ended up with over 500 responses, which I believe is  ...3105 words total",
+        "chunked_sections": [
+          {
+            "heading": "(intro)",
+            "word_count": 392,
+            "preview": "*👋 Hey, [Lenny](https://twitter.com/lennysan) here! Welcome to this month’s ✨ **free edition**✨ of Lenny’s Newsletter. Each week I humbly tackle reader questions about product, growth, working with humans, and anything else..."
+          },
+          {
+            "heading": "## 1. What is activation rate?",
+            "word_count": 120,
+            "preview": "## 1. What is activation rate? Your activation rate is the percentage of your new users who hit your activation milestone. Concretely: `activation rate = [users who hit your activation..."
+          },
+          {
+            "heading": "## 2. What are examples of activation milestones?",
+            "word_count": 397,
+            "preview": "## 2. What are examples of activation milestones? A good activation metric should be two things: 1. **Highly predictive:** It should be predictive of long-term value delivery to the user,..."
+          },
+          {
+            "heading": "## 3. What is a good activation rate?",
+            "word_count": 140,
+            "preview": "## 3. What is a good activation rate? Based on our survey results, broadly, the **average activation rate is 34%**, and the **median activation rate is 25%**. For just SaaS..."
+          },
+          {
+            "heading": "## 4. What are the most common ways to increase activation?",
+            "word_count": 1246,
+            "preview": "## 4. What are the most common ways to increase activation? In our survey, we asked, “**If you’ve had success improving activation rate, what change has had the biggest impact?**”..."
+          },
+          {
+            "heading": "## 5. What are the most common mistakes people make when setting their activation milestone?",
+            "word_count": 184,
+            "preview": "## 5. What are the most common mistakes people make when setting their activation milestone? 1. **Too early:** Often companies define activation as simply completing the sign-up flow, which alone..."
+          },
+          {
+            "heading": "## **6. What percentage of companies have a time-bound activation definition?**",
+            "word_count": 74,
+            "preview": "## **6. What percentage of companies have a time-bound activation definition?** Based on our results, about 6% of respondents had time-bound activation, with a median of 10 days and a..."
+          },
+          {
+            "heading": "## 7. How do you determine your activation milestone, and make sure it’s causally linked to new-user retention rather than just correlated?",
+            "word_count": 182,
+            "preview": "## 7. How do you determine your activation milestone, and make sure it’s causally linked to new-user retention rather than just correlated? Initially, your selected activation event will be hypothesis-driven..."
+          },
+          {
+            "heading": "### Bonus ask: How did you come up with your activation milestone?",
+            "word_count": 75,
+            "preview": "### Bonus ask: How did you come up with your activation milestone? We’re curious what level of analysis teams have done to determine their activation milestone. What data did you..."
+          },
+          {
+            "heading": "### 📚 Further study",
+            "word_count": 34,
+            "preview": "### 📚 Further study 1. [Reforge: Retention and Engagement](https://www.reforge.com/retention-engagement-series) 2. [Activation: The Product Metric Everyone Thinks They Need but Can’t Seem to Define](https://openviewpartners.com/blog/user-activation-the-product-metric/) by Open View Partners *Have a fulfilling..."
+          },
+          {
+            "heading": "## 📣 Join Lenny’s Talent Collective 📣",
+            "word_count": 90,
+            "preview": "## 📣 Join Lenny’s Talent Collective 📣 If you’re hiring, [join Lenny’s Talent Collective](https://www.lennysjobs.com/talent/welcome) to start getting bi-monthly drops of world-class hand-curated product and growth people who are open to..."
+          }
+        ]
+      },
+      "podcast": {
+        "guest": "Lauryn Isford",
+        "episode_title": "Mastering onboarding | Lauryn Isford (Head of Growth at Airtable)",
+        "word_count": 11414,
+        "unchunked_preview": "**Lauryn Isford** (00:00:00): An activation rate that falls in a lower percentage range, maybe for most companies five to 15%, is better than one that falls in a higher percentage range because it means that there's likely much higher correlation with long-term retention and you're really working hard to get most of your users to reach a state that they're not reaching today. **Lenny** (00:00:24): Welcome to Lenny's Podcast where I interview world-class product leaders and growth experts to help you get better at the craft of building and growing products. Today my guest is Lauryn Isford. Lauryn was most recently head of growth at Airtable. Before that, she was a product growth lead at Facebook, working on user growth, internet.org, and growth of Facebook at India. Before that, interestingly, she led growth for Blue Bottle's e-commerce business. In our conversation, we dive deep into Lauryn's favorite topic, onboarding, why it's one of the biggest and most undervalued growth levers, what she's learned about optimizing onboarding flow through her work redoing Airtable's onboarding flow, what she's seen work and common pitfalls around onboarding, plus a ton of advice around figuring out your activation metric. I could talk all day with  ...11414 words total",
+        "chunked_samples": [
+          {
+            "speaker": "Lauryn Isford",
+            "timestamp": "00:00:00",
+            "text": "An activation rate that falls in a lower percentage range, maybe for most companies five to 15%, is better than one that falls in a higher percentage range because it means that there's likely much higher correlation with long-term retention and you're really working hard to get most of your users to reach a state that they're not reaching today."
+          },
+          {
+            "speaker": "Lenny",
+            "timestamp": "00:17:59",
+            "text": "Are there any generalized learnings from that experience of just how to do a great onboarding experience? It sounds like probably avoid tooltips, instead just kind of ask questions and show them progress as they're going through it in kind of like an immersive experience versus here's the product, check out all the cool features."
+          },
+          {
+            "speaker": "Lenny",
+            "timestamp": "00:48:42",
+            "text": "Awesome. All right. Back to your other suggestions."
+          }
+        ]
+      },
+      "search_demo": {
+        "query": "How do I improve activation rates for new users?",
+        "unchunked_result": "*👋 Hey, [Lenny](https://twitter.com/lennysan) here! Welcome to this month’s ✨ **free edition**✨ of Lenny’s Newsletter. Each week I humbly tackle reader questions about product, growth, working with humans, and anything else that’s stressing you out about work.* *If you’re not a subscriber, here’s what you missed this month:* 1. *[Mission → Vision → Strategy → Goals → Roadmap → Task](https://www.lennysnewsletter.com/p/mission-vision-strategy-goals-roadmap)* 2. *[The Racecar Growth Framework—expanded and illustrated](https://www.lennysnewsletter.com/p/the-racecar-growth-frameworkexpanded)* *Subscribe to get access to these posts, and every post.* > ## Q: What is considered a good activation rate? Increasing activation rate is one of the highest-leverage growth levers across most products, and...",
+        "chunked_result": "In our survey, we asked, “**If you’ve had success improving activation rate, what change has had the biggest impact?**” Here are the eight most commonly referenced tactics: 1. [Simpler onboarding UI/UX](https://www.lennysnewsletter.com/i/77646597/i-simpler-onboarding-uiux) 2. [Reducing onboarding friction](https://www.lennysnewsletter.com/i/77646597/ii-reducing-onboarding-friction) 3. [Emails and follow-up comms](https://www.lennysnewsletter.com/i/77646597/iii-emails-and-follow-up-comms) 4. [Optimizing copy](https://www.lennysnewsletter.com/i/77646597/iv-optimizing-copy) 5. [Smarter top-of-funnel targeting](https://www.lennysnewsletter.com/i/77646597/v-smarter-top-of-funnel-targeting) 6. [Sales outreach](https://www.lennysnewsletter.com/i/77646597/vi-sales-outreach) 7. [Adding incentives](https://www.lennysnewsletter.com/i/77646597/vii-adding-incentives) 8. [Showing value earlier](https://www.lennysnewsletter.com/i/77646597/viii-showing-value-earlier) Here are direct quotes from survey responders sharing what most helped them increase their activation rate: 1. “Removing distracting CTAs between sign-up event and activation event” 2. “Hiding a confusing button on home page for new users” 3. “Simplifying the flow” 4. “Simplify...  [from section: \"## 4. What are the most common ways to increase activation?\"]"
+      }
+    }
+  }
+}

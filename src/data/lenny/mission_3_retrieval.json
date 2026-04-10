@@ -1,0 +1,364 @@
+{
+  "topics": {
+    "product_strategy": {
+      "query": "How do I build a product vision and roadmap?",
+      "strict": {
+        "threshold": 0.55,
+        "count": 22,
+        "newsletter_count": 9,
+        "podcast_count": 13,
+        "top_results": [
+          {
+            "text": "Q: Okay, awesome. So before we get to that, just again reminding people what we just talked about, which is just like here's all these ways of framing your vision, and there's a lot of ways to do it. It's not like you need to make a beautiful deck that you can just write it out. You could write a press release, you could write a tweet or you could get a designer help you mock it up or just...",
+            "source": "Ebi Atawodi — Crafting a compelling product vision | Ebi Atawodi (YouTube, Netflix, Uber)",
+            "chunk_type": "qa_pair",
+            "similarity": 0.621
+          },
+          {
+            "text": "### Building product 1. [Mission → Vision → Strategy → Goals → Roadmap → Task](https://www.lennysnewsletter.com/p/mission-vision-strategy-goals-roadmap) 2. [My favorite product management templates](https://www.lennysnewsletter.com/p/my-favorite-templates-issue-37) 3. [How Figma builds product](https://www.lennysnewsletter.com/p/how-figma-builds-product) 4. [How to develop product sense](https://www.lennysnewsletter.com/p/product-sense) 5. [Prioritizing a roadmap](https://www.lennysnewsletter.com/p/prioritizing) 6. [Getting better at product strategy](https://www.lennysnewsletter.com/p/getting-better-at-product-strategy) 7. [How to get better at influence](https://www.lennysnewsletter.com/p/how-to-get-better-at-influence) 8. [The Minto Pyramid Principle and the SCR framework](https://www.lennysnewsletter.com/p/minto-pyramid-principle-scr) 9. [The top 5 things PMs should know about engineering](https://www.lennysnewsletter.com/p/the-top-5-things-pms-should-know) 10. [The nature of product, with Marty Cagan (Silicon Valley Product Group)](https://www.lennysnewsletter.com/p/the-nature-of-product-marty-cagan#details)...",
+            "source": "The Best of Lenny’s Newsletter 2022",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.612
+          },
+          {
+            "text": "Q: It's my pleasure. First, I just want to give a big thank you to Andre Albuquerque, who is the founder of One Month PM, who actually posted on LinkedIn about how much of a fan of yours he is and that I need to have you on this podcast. And so here we are. I want to start by talking about vision. Every product manager I've ever worked with and managed vision has always been this development area for...",
+            "source": "Ebi Atawodi — Crafting a compelling product vision | Ebi Atawodi (YouTube, Netflix, Uber)",
+            "chunk_type": "qa_pair",
+            "similarity": 0.597
+          }
+        ]
+      },
+      "medium": {
+        "threshold": 0.45,
+        "count": 38,
+        "newsletter_count": 16,
+        "podcast_count": 22,
+        "new_results": [
+          {
+            "text": "The value isn't in your roadmap, the value is in the roadmapping process. What you're actually doing is laying out your assumptions of the problems that you're solving. So you're saying, \"I think we have this problem, then this problem. What do you think?\" The whole point is that you just share your early assumptions with other people on the team, with customers, even, like anybody who will listen and just check that you're on the right path.",
+            "source": "Janna Bastow — Building better roadmaps | Janna Bastow (Mind the Product, ProdPad)",
+            "chunk_type": "statement",
+            "similarity": 0.547
+          },
+          {
+            "text": "Q: One last question just so folks get a sense of where this fits into all their work. Does this come before defining the vision and then the roadmap? Where does this fit in terms of vision and roadmap in terms of the process? A: So the document is evergreen and updated. I'm a big fan of evergreen documents because you create this mental thing where everybody just knows, link whatever the short link is, whatever you use in your...",
+            "source": "Ebi Atawodi — Crafting a compelling product vision | Ebi Atawodi (YouTube, Netflix, Uber)",
+            "chunk_type": "qa_pair",
+            "similarity": 0.547
+          },
+          {
+            "text": "Q: Yeah. I think the most important thing is people just get stuck on these and try to define them and make them perfect. And I think the most important thing is just don't overthink it. Just put something that sounds right and people are excited about it in a [inaudible 00:23:16]. That's the most important thing. The way I think about it is mission is just like what are you trying to achieve in the world? And then the...",
+            "source": "Ravi Mehta — How to build your product strategy stack | Ravi Mehta (Tinder, Facebook, Tripadvisor, Outpace)",
+            "chunk_type": "qa_pair",
+            "similarity": 0.547
+          }
+        ],
+        "golden_result": {
+          "text": "The value isn't in your roadmap, the value is in the roadmapping process. What you're actually doing is laying out your assumptions of the problems that you're solving. So you're saying, \"I think we have this problem, then this problem. What do you think?\" The whole point is that you just share your early assumptions with other people on the team, with customers, even, like anybody who will listen and just check that you're on the right path.",
+          "source": "Janna Bastow — Building better roadmaps | Janna Bastow (Mind the Product, ProdPad)",
+          "chunk_type": "statement",
+          "similarity": 0.547,
+          "why_golden": "Provides insight into the importance of the roadmapping process itself, emphasizing that the value lies in collaboratively validating assumptions about problems rather than just the final roadmap. This perspective encourages a more iterative and inclusive approach to product development, making it a valuable addition to a playbook on building a product vision and roadmap."
+        }
+      },
+      "loose": {
+        "threshold": 0.35,
+        "count": 38,
+        "newsletter_count": 16,
+        "podcast_count": 22,
+        "noise_examples": []
+      }
+    },
+    "user_research": {
+      "query": "How do I run effective customer discovery interviews?",
+      "strict": {
+        "threshold": 0.55,
+        "count": 5,
+        "newsletter_count": 1,
+        "podcast_count": 4,
+        "top_results": [
+          {
+            "text": "Q: Speaking of talking to customers, another one of your big bullet points in the book is around continuous customer discovery, and I'm curious what you found to be successful in actually doing that. A lot of people talk about it when you keep talking to customers, get feedback constantly. What actually works in your experience? A: Yeah, I feel like all of park management is about discovery these days. Everyone talks about it, and I want to make a...",
+            "source": "Oji Udezue — Picking sharp problems, increasing virality, and unique product frameworks | Oji Udezue (Typeform)",
+            "chunk_type": "qa_pair",
+            "similarity": 0.603
+          },
+          {
+            "text": "Q: In terms of knowing the insight and knowing thy customer, putting the time, I imagine, is a big element of that. Is that how you do that, or is there anything else along those lines that's just like, \"Here's how I get really good at this?\" A: When you take a new role, become best friends with a researcher, and spend time watching customers use the product firsthand because what they maybe report on or are trying to do...",
+            "source": "Paige Costello — How to ask the right questions, project confidence, and win over skeptics | Paige Costello (Asana)",
+            "chunk_type": "qa_pair",
+            "similarity": 0.597
+          },
+          {
+            "text": "And I was talking a little bit about we think of it as dollar-driven customer discovery. And I think a lot of founders are familiar with customer discovery. I think they at least talk to customers, which is good. I don't think most of them do it in the highest signal way because again, the customers, they're people, they're nice, they're going to be polite. They're also not good at predicting things that they will use or buy or want.",
+            "source": "Todd Jackson — A framework for finding product-market fit | Todd Jackson (First Round Capital)",
+            "chunk_type": "statement",
+            "similarity": 0.594
+          }
+        ]
+      },
+      "medium": {
+        "threshold": 0.45,
+        "count": 40,
+        "newsletter_count": 13,
+        "podcast_count": 27,
+        "new_results": [
+          {
+            "text": "In the weeks that followed, we brought our vision to prospective customers to validate the market need. At first, we received excitement and validation. However, we realized our first several “interviews” were actually sales pitches (e.g. “here’s this cool new thing, what do you think?”). Far too biased to get any real signal. After reading up on customer interview best practices, we tried again, this time [with an unbiased script](https://www.momtestbook.com/). Not one person brought up health debit cards as a...",
+            "source": "Startup to exit: Lessons from a first-time founder",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.549
+          },
+          {
+            "text": "### **If you can't easily survey 100+ active users, talk to 6-12 of them** 🗣 Ask questions along the lines of: 1. **Walk me through the last time you did X [where X is some essential function of your product]. For each key decision you made along the way, tell me a bit about why you made those decisions.** *You’ll notice this question doesn’t even refer to your product at all – ask it to understand how people typically go...",
+            "source": "What to ask your users about Product-Market Fit",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.547
+          },
+          {
+            "text": "So I mentioned it before, but we are heavy believers in the jobs-to-be-done theory, which is basically this idea that people don't buy your product, they buy the better version of themselves, yada yada. I don't need to explain any of that. But we use that to guide our research. And with SparkToro, we were in a position, and the purists will hate me saying this, but we were in a position to be able to run surveys. So yes,...",
+            "source": "Gia Laudi — Customer-led growth | Georgiana Laudi (Forget The Funnel)",
+            "chunk_type": "statement",
+            "similarity": 0.545
+          }
+        ],
+        "golden_result": {
+          "text": "In the weeks that followed, we brought our vision to prospective customers to validate the market need. At first, we received excitement and validation. However, we realized our first several “interviews” were actually sales pitches (e.g. “here’s this cool new thing, what do you think?”). Far too biased to get any real signal. After reading up on customer interview best practices, we tried again, this time [with an unbiased script](https://www.momtestbook.com/). Not one person brought up health debit cards as a...",
+          "source": "Startup to exit: Lessons from a first-time founder",
+          "chunk_type": "newsletter_section",
+          "similarity": 0.549,
+          "why_golden": "Provides valuable insights into the common pitfalls of customer discovery interviews, highlighting the importance of avoiding biased questions and sales pitches. This experience underscores the necessity of using unbiased scripts to gather genuine feedback, which is crucial for refining product ideas and ensuring market fit."
+        }
+      },
+      "loose": {
+        "threshold": 0.35,
+        "count": 40,
+        "newsletter_count": 13,
+        "podcast_count": 27,
+        "noise_examples": []
+      }
+    },
+    "plg": {
+      "query": "What does it take to add a PLG motion to our product?",
+      "strict": {
+        "threshold": 0.55,
+        "count": 8,
+        "newsletter_count": 8,
+        "podcast_count": 0,
+        "top_results": [
+          {
+            "text": "### [The first step to adding a PLG motion ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=1492s) The first step in understanding the difference between the PLG funnel and the sales-led funnel (SLG) **Sales-Led Funnel (SLG):** The sales-led funnel begins with the marketing team attracting visitors and turning them into leads. Leads are assessed based on how much they interact with marketing campaigns, like opening emails or attending webinars. A scoring system is employed, and those who reach a certain score become marketing-qualified leads and are handed...",
+            "source": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.627
+          },
+          {
+            "text": "## **Step 3. Anticipate the most common pitfalls** Before going further, I want to spend some time sharing the most common pitfalls you’re likely to face when adding a PLG motion, to help you avoid them. Here’s an overview of the most common challenges, how to identify them, and how to address them: #### **Pitfall #1: Lack of commitment and investment** I often see companies wanting to do PLG but not committing any meaningful resources to give it a chance...",
+            "source": "Five steps to starting your product-led growth motion",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.623
+          },
+          {
+            "text": "### [Why companies should have PLG and sales ▶️](https://www.youtube.com/watch?v=7l1fIxk7SnA&t=312s) The question is not either or but both and a matter of sequencing. PLG is perfect for lowering the barrier for more people to try the product and broaden the reach. Sales motion is for a very targeted list of big customer for big orders and having a clear hit list for revenue targets. If you are in a sales motion dominated traditional B2B software industry, you’ll will need to add...",
+            "source": "Summary: The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.618
+          }
+        ]
+      },
+      "medium": {
+        "threshold": 0.45,
+        "count": 38,
+        "newsletter_count": 28,
+        "podcast_count": 10,
+        "new_results": [
+          {
+            "text": "If your answer is no, then you need to first build the PLG data infra foundations. There is no way around it. You have to invest in these areas to enable PLG—e.g. hire the right growth/data leader; commit the resources to collect and analyze the data—and it takes time. The good news is that it’s very common, especially among B2B companies starting with a sales motion. A strong data foundation will not only support your PLG motion but also enable...",
+            "source": "Five steps to starting your product-led growth motion",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.548
+          },
+          {
+            "text": "### **1. Beginning phase** When you start, your main goal is to prove that a growth team and a PLG motion is a good fit for the business. There are two common setups: - **A dedicated growth team:** You assemble a small PLG team by hiring a growth PM, or reassigning an existing PM to growth, and adding supporting roles such as analyst, designer, and engineers. You can assign the team a KPI, and this team can get started with...",
+            "source": "Five steps to starting your product-led growth motion, part 2",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.546
+          },
+          {
+            "text": "## Step 1. Map your funnel Sales-led growth and product-led growth approach the customer journeys and funnels very differently. Each motion has benefits, and most successful B2B companies eventually layer both. You need to understand the differences between the two funnels because eventually you’ll need to build data infrastructure, design org charts, and create workflows to enable the measurement and coordination of both funnels. The traditional B2B sales-led funnel looks like this: The product-led funnel looks like this: As you...",
+            "source": "Five steps to starting your product-led growth motion",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.544
+          }
+        ],
+        "golden_result": {
+          "text": "### **1. Beginning phase** When you start, your main goal is to prove that a growth team and a PLG motion is a good fit for the business. There are two common setups: - **A dedicated growth team:** You assemble a small PLG team by hiring a growth PM, or reassigning an existing PM to growth, and adding supporting roles such as analyst, designer, and engineers. You can assign the team a KPI, and this team can get started with...",
+          "source": "Five steps to starting your product-led growth motion, part 2",
+          "chunk_type": "newsletter_section",
+          "similarity": 0.546,
+          "why_golden": "Provides foundational insights into the initial steps of implementing a Product-Led Growth (PLG) strategy, emphasizing the importance of establishing a dedicated growth team and setting clear KPIs. This information is valuable for a playbook as it outlines practical approaches for organizations to begin their PLG journey, even if it doesn't rank among the top results."
+        }
+      },
+      "loose": {
+        "threshold": 0.35,
+        "count": 40,
+        "newsletter_count": 28,
+        "podcast_count": 12,
+        "noise_examples": [
+          {
+            "text": "Q: Okay, perfect. I think that was really helpful. I think we dive into some of the meat of the discussion that we have planned and where I thought it'd be fun to start is the common pitfalls that people fall into when they're trying to add a product led growth motion. And so what are the most common ways people fail when they're trying to figure out product led growth? A: The first of all, as I mentioned, you...",
+            "source": "Hila Qu — The ultimate guide to adding a PLG motion | Hila Qu (Reforge, GitLab)",
+            "chunk_type": "qa_pair",
+            "similarity": 0.448,
+            "why_noise": "Discusses the common pitfalls companies face when attempting to implement a product-led growth strategy, rather than directly addressing the requirements for adding such a motion to a product."
+          },
+          {
+            "text": "Q: Amazing. I think on the one hand, this could be a whole podcast is just talking about your PLG learnings, knowing... It feels like HubSpot is one of the biggest success stories of transitioning more and more into PLG, at least at that point. Even though you're saying it was PLG early on, it feels like a huge shift to the business. So I really like this framework you just shared of if you're trying to become more product...",
+            "source": "Christopher Miller — Relentless curiosity, radical accountability, and HubSpot’s winning growth formula | Chris Miller",
+            "chunk_type": "qa_pair",
+            "similarity": 0.449,
+            "why_noise": "Discusses the transition to a product-led growth (PLG) model and shares insights on the importance of user activation, rather than directly addressing the steps needed to add a PLG motion to a specific product."
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "query": "How do I choose the right KPIs for my product?",
+      "strict": {
+        "threshold": 0.55,
+        "count": 4,
+        "newsletter_count": 0,
+        "podcast_count": 4,
+        "top_results": [
+          {
+            "text": "I somewhat walk around with the belief that the product manager's responsibility is to produce product market fit. And okay, how do you know you have product market fit? Charts that showcase things are going up into the right on one hand, and then tweets on the other. So metrics like quantitative and qualitative, and I really see them as deep siblings and equals, you really need both. It's not oh, OKRs versus something. There are some things you want...",
+            "source": "Jeff Weinstein — Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead)",
+            "chunk_type": "statement",
+            "similarity": 0.581
+          },
+          {
+            "text": "Let's talk about metrics, going in a different direction. Many people told me I need to ask you about picking metrics and the importance of metrics and how you think about metrics. So let me just maybe start with a question of, just why do you think picking the right metric and why are metrics so important in building successful products?",
+            "source": "Jeff Weinstein — Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead)",
+            "chunk_type": "statement",
+            "similarity": 0.574
+          },
+          {
+            "text": "We know we've done a good job when the conversion rate on whatever our primary CTA is on our website, whether or not it's start a trial or request a demo, something like that. Generally, the struggle phase is very straightforward in terms of measurement. That's like marketers' bread and butter, that's where they live and breathe all day long. Where things start to change though generally when we're working with companies is helping them figure out how should they...",
+            "source": "Gia Laudi — Customer-led growth | Georgiana Laudi (Forget The Funnel)",
+            "chunk_type": "statement",
+            "similarity": 0.563
+          }
+        ]
+      },
+      "medium": {
+        "threshold": 0.45,
+        "count": 39,
+        "newsletter_count": 14,
+        "podcast_count": 25,
+        "new_results": [
+          {
+            "text": "### **4. Do you use OKRs in some form?** We don’t use OKRs on the product team. We tried using OKRs at Gong at some stage across the company, but we found out that the process of updating OKRs to align with reality was time-consuming and the framework did not provide us with enough benefits to justify the effort. However, we review this decision annually. We may decide to give OKRs another shot at a company level in the coming...",
+            "source": "How Gong builds product",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.538
+          },
+          {
+            "text": "Whether you’re building a marketplace, a SaaS platform, a DTC business, or most any type of online business, you should also be tracking these five foundational metrics: 1. **Cohort-based retention:** Percentage of users who come back x months later 2. **Net revenue retention:** How much you grow revenue per customer over time 3. **New user growth:** Number of new users per day/week/month 4. **CAC/LTV, payback period, or contribution margin:** Cost to acquire a new user vs. money you make from...",
+            "source": "The most important marketplace metrics to track",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.538
+          },
+          {
+            "text": "Well, what was the value that we're trying to produce for the customer and can we measure it from their perspective? And okay, how do you know you have product market fit? Charts that showcase things are going up into the right on one hand and then tweets on the other.",
+            "source": "Jeff Weinstein — Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead)",
+            "chunk_type": "statement",
+            "similarity": 0.527
+          }
+        ],
+        "golden_result": {
+          "text": "### **4. Do you use OKRs in some form?** We don’t use OKRs on the product team. We tried using OKRs at Gong at some stage across the company, but we found out that the process of updating OKRs to align with reality was time-consuming and the framework did not provide us with enough benefits to justify the effort. However, we review this decision annually. We may decide to give OKRs another shot at a company level in the coming...",
+          "source": "How Gong builds product",
+          "chunk_type": "newsletter_section",
+          "similarity": 0.538,
+          "why_golden": "Provides insights into the practical challenges and considerations of using OKRs for KPI selection, highlighting the importance of aligning goals with reality and the need for flexibility in goal-setting frameworks. This perspective can help teams evaluate their own KPI strategies and decide whether to adopt or adapt existing frameworks like OKRs."
+        }
+      },
+      "loose": {
+        "threshold": 0.35,
+        "count": 39,
+        "newsletter_count": 14,
+        "podcast_count": 25,
+        "noise_examples": []
+      }
+    },
+    "onboarding": {
+      "query": "How do I improve activation rates for new users?",
+      "strict": {
+        "threshold": 0.55,
+        "count": 18,
+        "newsletter_count": 14,
+        "podcast_count": 4,
+        "top_results": [
+          {
+            "text": "## 1. What is activation rate? Your activation rate is the percentage of your new users who hit your activation milestone. Concretely: `activation rate = [users who hit your activation milestone] / [users who completed your signup flow].` Your activation milestone (often referred to as your “aha moment”) is the earliest point in your onboarding flow that, by showing your product’s value, is predictive of long-term retention. A user is typically considered activated when they reach this milestone. A good...",
+            "source": "What is a good activation rate",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.648
+          },
+          {
+            "text": "## 4. What are the most common ways to increase activation? In our survey, we asked, “**If you’ve had success improving activation rate, what change has had the biggest impact?**” Here are the eight most commonly referenced tactics: 1. [Simpler onboarding UI/UX](https://www.lennysnewsletter.com/i/77646597/i-simpler-onboarding-uiux) 2. [Reducing onboarding friction](https://www.lennysnewsletter.com/i/77646597/ii-reducing-onboarding-friction) 3. [Emails and follow-up comms](https://www.lennysnewsletter.com/i/77646597/iii-emails-and-follow-up-comms) 4. [Optimizing copy](https://www.lennysnewsletter.com/i/77646597/iv-optimizing-copy) 5. [Smarter top-of-funnel targeting](https://www.lennysnewsletter.com/i/77646597/v-smarter-top-of-funnel-targeting) 6. [Sales outreach](https://www.lennysnewsletter.com/i/77646597/vi-sales-outreach) 7. [Adding incentives](https://www.lennysnewsletter.com/i/77646597/vii-adding-incentives) 8. [Showing value earlier](https://www.lennysnewsletter.com/i/77646597/viii-showing-value-earlier) Here are direct quotes from survey responders sharing what most helped them...",
+            "source": "What is a good activation rate",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.633
+          },
+          {
+            "text": "An activation rate that falls in a lower percentage range, maybe for most companies five to 15%, is better than one that falls in a higher percentage range because it means that there's likely much higher correlation with long-term retention and you're really working hard to get most of your users to reach a state that they're not reaching today.",
+            "source": "Lauryn Isford — Mastering onboarding | Lauryn Isford (Head of Growth at Airtable)",
+            "chunk_type": "statement",
+            "similarity": 0.623
+          }
+        ]
+      },
+      "medium": {
+        "threshold": 0.45,
+        "count": 39,
+        "newsletter_count": 27,
+        "podcast_count": 12,
+        "new_results": [
+          {
+            "text": "The first-day experience is the most critical part of the user journey and represents your best shot at moving the needle on activation. I’ll typically find that 40%-60% of new users never return to the product after the first day. I collected a number of [product onboarding mishaps](https://kylepoyar.substack.com/p/your-guide-to-self-serve-onboarding), especially for those launching a self-service offering: - The product is too confusing without sales or success helping out - There’s too much of a blank slate - It’s unclear “what’s in...",
+            "source": "What is good free-to-paid conversion",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.55
+          },
+          {
+            "text": "### **3. Deliver immediate value through new user onboarding** - **Step:** Value Creation / Value Capture - **Target metrics:** Signup Rate, Trial Start Rate, Trial Conversion Rate, Install to Paid Conversion Rate Attention spans are getting shorter, leaving apps with little time to turn new users into subscribers. Recent reports have found that more than 75% of trial starts occur on the same day a user installs an app (often in the first few minutes). This means onboarding flows should...",
+            "source": "The Subscription Value Loop: A framework for growing consumer subscription businesses",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.549
+          },
+          {
+            "text": "Next, understanding how “activated” users are helps with both the “pod scooping and expansion” case and also the “conversion assist” case. How activated a user gets can show which potential users might need intervention (again, based on their potential value to your organization - large accounts and valuable title), and also where you have pods of highly activated users in larger accounts to prioritize. You likely already have existing indicators of activation with respect to your product - how far...",
+            "source": "The Transition: Layering sales onto a bottom-up self-serve product",
+            "chunk_type": "newsletter_section",
+            "similarity": 0.548
+          }
+        ],
+        "golden_result": {
+          "text": "The first-day experience is the most critical part of the user journey and represents your best shot at moving the needle on activation. I’ll typically find that 40%-60% of new users never return to the product after the first day. I collected a number of [product onboarding mishaps](https://kylepoyar.substack.com/p/your-guide-to-self-serve-onboarding), especially for those launching a self-service offering: - The product is too confusing without sales or success helping out - There’s too much of a blank slate - It’s unclear “what’s in...",
+          "source": "What is good free-to-paid conversion",
+          "chunk_type": "newsletter_section",
+          "similarity": 0.55,
+          "why_golden": "Provides critical insights into the importance of the first-day user experience, highlighting common onboarding pitfalls that can hinder activation rates. This information is valuable for a playbook as it offers actionable guidance on improving user retention and engagement from the outset."
+        }
+      },
+      "loose": {
+        "threshold": 0.35,
+        "count": 39,
+        "newsletter_count": 27,
+        "podcast_count": 12,
+        "noise_examples": []
+      }
+    }
+  }
+}
