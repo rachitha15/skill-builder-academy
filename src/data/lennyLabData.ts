@@ -96,23 +96,6 @@ Same content. Three different chunking decisions. Completely different search qu
 
 The Mihika Kapoor quote you saw earlier? That only existed as a findable result because the podcast was chunked by **speaker turns** — keeping each speaker's complete thought together. With paragraph chunking, her answer would have been split into fragments. With fixed-size, it would have been cut mid-sentence.`
       },
-      {
-        title: "Podcasts need different treatment",
-        content: `Everything above showed you what chunking does. But here's the nuance: **newsletters and podcasts need different strategies.**
-
-**Newsletters** are structured articles with headings and sections. Splitting by section headings (### markers) gives you complete topics.
-
-**Podcasts** are conversations — no headings, just two people talking. Splitting by **speaker turns** keeps each person's complete thought together.
-
-Using section-based chunking on a podcast? It finds nothing to split on — you get the whole 15,000-word transcript as one block. Using speaker-turn chunking on a newsletter? It doesn't know what a "speaker" is.
-
-**The takeaway:**
-- Newsletters → split by section headings
-- Podcasts → split by speaker turns
-- Same strategy for both = bad results from one or the other
-
-That clean 60-word Mihika Kapoor quote? It required choosing the right strategy for the right content type. Time to prove you understand how.`
-      }
     ],
     lessonContent: '',
     challengeInstructions: `### Mission Challenge: File the Intelligence

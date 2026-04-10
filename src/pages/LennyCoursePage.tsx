@@ -94,6 +94,18 @@ const LennyCoursePage = () => {
               downloadable playbook citing real experts from <strong className="text-foreground">349 newsletters</strong> and <strong className="text-foreground">289 podcast episodes</strong>.
             </p>
             <p className="text-sm text-muted-foreground">Free · No sign-up · ~1 hour</p>
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <span className="text-xs text-muted-foreground">Content from</span>
+              <a
+                href="https://www.lennysnewsletter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+              >
+                <img src="/lenny-logo.webp" alt="Lenny's Newsletter" className="h-5 w-auto" />
+                <span className="text-xs text-muted-foreground">Lenny Rachitsky</span>
+              </a>
+            </div>
           </motion.div>
         </section>
 
@@ -255,6 +267,18 @@ const LennyCoursePage = () => {
             {ctaLabel}
           </Link>
           <p className="text-sm text-muted-foreground mt-3">Free · No sign-up · ~1 hour</p>
+          <div className="flex items-center justify-center gap-2 mt-3">
+            <span className="text-xs text-muted-foreground">Content from</span>
+            <a
+              href="https://www.lennysnewsletter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+            >
+              <img src="/lenny-logo.webp" alt="Lenny's Newsletter" className="h-5 w-auto" />
+              <span className="text-xs text-muted-foreground">Lenny Rachitsky</span>
+            </a>
+          </div>
         </motion.div>
       </section>
 
