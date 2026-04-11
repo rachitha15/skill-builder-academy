@@ -24,7 +24,7 @@ const HomePage = () => {
     try {
       await supabase
         .from('course_interest_waitlist')
-        .insert([{ email: trimmed.toLowerCase(), course_interest: 'Product Thinking for Engineers' }]);
+        .insert([{ email: trimmed.toLowerCase(), course_interest: 'personal-os' }]);
     } catch {}
     setSubmitted(true);
     setSubmitting(false);
@@ -199,11 +199,15 @@ const HomePage = () => {
                 </span>
               </div>
               <h3 className="font-display font-bold text-foreground text-lg mb-2">
-                Product Thinking for Engineers
+                Your Personal AI Chief of Staff
               </h3>
-              <p className="text-sm text-muted-foreground mb-6 flex-1">
-                For engineers who want to think beyond code
+              <p className="text-sm text-muted-foreground mb-4">
+                For non-tech professionals who live in their inbox
               </p>
+              <div className="text-sm text-muted-foreground mb-6 flex-1 space-y-2">
+                <p><span className="text-foreground font-medium">You'll build:</span> An AI that reads your inbox every morning, surfaces what needs action, and keeps your pipeline current — automatically</p>
+                <p><span className="text-foreground font-medium">You'll take home:</span> A working personal OS — morning digest, tracker suggestions, and a CLAUDE.md memory file running on your laptop</p>
+              </div>
 
               {!submitted ? (
                 <div className="flex gap-2">
